@@ -1,0 +1,342 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Models\LocationModel;
+use App\Models\DepartmentModel;
+use App\Models\DocumentsModel;
+use App\Models\FormsModel;
+use App\Models\SubDocumentTitleModel;
+use App\Models\UserDocumentPermissionModel;
+use Illuminate\Support\Facades\Auth;
+
+class CAPAController extends Controller
+{
+    public function index(Request $request, $action) //action->permissions
+    {
+        if (($action == 'create') || ($action == 'update') || ($action == 'roll_back')) {
+            $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')->get();
+        }
+        if (($action == 'deactivate') || ($action == 'reactivate')) {
+            $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'DEACTIVE_REACTIVE_DOC')->get();
+        }
+        $sorted_sub_document_ids = array();
+        foreach ($documentAccessListIds as $key => $value) {
+            $sorted_sub_document_ids[] = $value->sub_document_id;
+        }
+        if (($action == 'update') || ($action == 'roll_back') || ($action == 'deactivate') || ($action == 'reactivate')) {
+            return $documentAccessListIds = DocumentsModel::whereIn('sub_document_id', $sorted_sub_document_ids)->where('status', 'ACTIVE')->get();
+        }
+        // elseif($action == 'create') {
+        //     $documentAccessListIds = DocumentsModel::whereNotIn('sub_document_id', $sorted_sub_document_ids)->get();
+        //     foreach ($documentAccessListIds as $key => $value) {
+        //         $ids = array_search($value, $documentAccessListIds);
+        //         unset($documentAccessListIds[$ids]);
+        //     }         
+        //     return $documentAccessListIds;
+        // }
+
+        $locationModel = LocationModel::all();
+        $departmentModel = DepartmentModel::all();
+        $formModel = FormsModel::all();
+        return view('capa.index', [
+            'action' => $action,
+            'locationModel' => $locationModel,
+            'departmentModel' => $departmentModel,
+            'formModel' => $formModel,
+            'documentAccessListIds' => $documentAccessListIds,
+            'status' => 'FRESH'
+        ]);
+    }
+
+    public function storeCapa(Request $request, $action)
+    {
+        $documentModel = new DocumentsModel();
+        $formBasicData = [
+            'user_id' => Auth::user()->id,
+            'capa_number' => $request->capa_number,
+            'location_id' => $request->location,
+            'department_id' => $request->department,
+            'prepared_by' => Auth::user()->name,
+            'status' => 'SAVED'
+        ];
+
+        if ($action == 'create') {
+            $formBasicData['version_number'] = 1.00;
+            $formBasicData['created_date'] = date('Y-m-d');
+            $formBasicData['capa_action'] = "CREATE";
+
+            if (($request->process_main_document != null) && ($request->process_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/PROC/1.0';
+                $formBasicData['form_id'] = 1;
+                $formBasicData['main_document_id'] = $request->process_main_document;
+                $formBasicData['sub_document_id'] = $request->process_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sop_production_main_document != null) && ($request->sop_production_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['form_id'] = 2;
+                $formBasicData['main_document_id'] = $request->sop_production_main_document;
+                $formBasicData['sub_document_id'] = $request->sop_production_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sop_qc_main_document != null) && ($request->sop_qc_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['form_id'] = 3;
+                $formBasicData['main_document_id'] = $request->sop_qc_main_document;
+                $formBasicData['sub_document_id'] = $request->sop_qc_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sop_maintenance_main_document != null) && ($request->sop_maintenance_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['form_id'] = 4;
+                $formBasicData['main_document_id'] = $request->sop_maintenance_main_document;
+                $formBasicData['sub_document_id'] = $request->sop_maintenance_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->msds_main_document != null) && ($request->msds_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/MSDS/1.0';
+                $formBasicData['form_id'] = 5;
+                $formBasicData['main_document_id'] = $request->msds_main_document;
+                $formBasicData['sub_document_id'] = $request->msds_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sss_main_document != null) && ($request->sss_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SSS/1.0';
+                $formBasicData['form_id'] = 6;
+                $formBasicData['main_document_id'] = $request->sss_main_document;
+                $formBasicData['sub_document_id'] = $request->sss_sub_document;
+                $documentModel->add($formBasicData);
+            }
+        }
+
+        if ($action == 'update') {
+            $formBasicData['revision_date'] = date('Y-m-d');
+            $formBasicData['capa_action'] = "UPDATE";
+            if (($request->process_main_document != null) && ($request->process_sub_document != null)) {
+                //$this->deactivatePreviousVersion($request->process_sub_document);
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/PROC/' . $this->getLatestVersion($request->process_sub_document);
+                $formBasicData['form_id'] = 1;
+                $formBasicData['main_document_id'] = $request->process_main_document;
+                $formBasicData['sub_document_id'] = $request->process_sub_document;
+                $formBasicData['version_number'] = $this->getLatestVersion($request->process_sub_document);
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sop_production_main_document != null) && ($request->sop_production_sub_document != null)) {
+                //$this->deactivatePreviousVersion($request->sop_production_sub_document);
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/' . $this->getLatestVersion($request->process_sub_document);
+                $formBasicData['form_id'] = 2;
+                $formBasicData['main_document_id'] = $request->sop_production_main_document;
+                $formBasicData['sub_document_id'] = $request->sop_production_sub_document;
+                $formBasicData['version_number'] = $this->getLatestVersion($request->sop_production_sub_document);
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sop_qc_main_document != null) && ($request->sop_qc_sub_document != null)) {
+                //$this->deactivatePreviousVersion($request->sop_qc_sub_document);
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/' . $this->getLatestVersion($request->process_sub_document);
+                $formBasicData['form_id'] = 3;
+                $formBasicData['main_document_id'] = $request->sop_qc_main_document;
+                $formBasicData['sub_document_id'] = $request->sop_qc_sub_document;
+                $formBasicData['version_number'] = $this->getLatestVersion($request->sop_qc_sub_document);
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sop_maintenance_main_document != null) && ($request->sop_maintenance_sub_document != null)) {
+                //$this->deactivatePreviousVersion($request->sop_maintenance_sub_document);
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/' . $this->getLatestVersion($request->process_sub_document);
+                $formBasicData['form_id'] = 4;
+                $formBasicData['main_document_id'] = $request->sop_maintenance_main_document;
+                $formBasicData['sub_document_id'] = $request->sop_maintenance_sub_document;
+                $formBasicData['version_number'] = $this->getLatestVersion($request->sop_maintenance_sub_document);
+                $documentModel->add($formBasicData);
+            }
+            if (($request->msds_main_document != null) && ($request->msds_sub_document != null)) {
+                //$this->deactivatePreviousVersion($request->msds_sub_document);
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/MSDS/' . $this->getLatestVersion($request->process_sub_document);
+                $formBasicData['form_id'] = 5;
+                $formBasicData['main_document_id'] = $request->msds_main_document;
+                $formBasicData['sub_document_id'] = $request->msds_sub_document;
+                $formBasicData['version_number'] = $this->getLatestVersion($request->msds_sub_document);
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sss_main_document != null) && ($request->sss_sub_document != null)) {
+                //$this->deactivatePreviousVersion($request->sss_sub_document);
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SSS/' . $this->getLatestVersion($request->process_sub_document);
+                $formBasicData['form_id'] = 6;
+                $formBasicData['main_document_id'] = $request->sss_main_document;
+                $formBasicData['sub_document_id'] = $request->sss_sub_document;
+                $formBasicData['version_number'] = $this->getLatestVersion($request->sss_sub_document);
+                $documentModel->add($formBasicData);
+            }
+        }
+
+        if ($action == 'roll_back') {
+            $formBasicData['revision_date'] = date('Y-m-d');
+            $formBasicData['capa_action'] = "ROLL_BACK";
+            if (($request->process_main_document != null) && ($request->process_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/PROC/1.0';
+                $formBasicData['form_id'] = 1;
+                $formBasicData['main_document_id'] = $request->process_main_document;
+                $formBasicData['sub_document_id'] = $request->process_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sop_production_main_document != null) && ($request->sop_production_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['form_id'] = 2;
+                $formBasicData['main_document_id'] = $request->sop_production_main_document;
+                $formBasicData['sub_document_id'] = $request->sop_production_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sop_qc_main_document != null) && ($request->sop_qc_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['form_id'] = 3;
+                $formBasicData['main_document_id'] = $request->sop_qc_main_document;
+                $formBasicData['sub_document_id'] = $request->sop_qc_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sop_maintenance_main_document != null) && ($request->sop_maintenance_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['form_id'] = 4;
+                $formBasicData['main_document_id'] = $request->sop_maintenance_main_document;
+                $formBasicData['sub_document_id'] = $request->sop_maintenance_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->msds_main_document != null) && ($request->msds_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/MSDS/1.0';
+                $formBasicData['form_id'] = 5;
+                $formBasicData['main_document_id'] = $request->msds_main_document;
+                $formBasicData['sub_document_id'] = $request->msds_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sss_main_document != null) && ($request->sss_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SSS/1.0';
+                $formBasicData['form_id'] = 6;
+                $formBasicData['main_document_id'] = $request->sss_main_document;
+                $formBasicData['sub_document_id'] = $request->sss_sub_document;
+                $documentModel->add($formBasicData);
+            }
+        }
+        if ($action == 'deactivate') {
+            $formBasicData['capa_action'] = "DEACTIVATE";
+            if (($request->process_main_document != null) && ($request->process_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/PROC/1.0';
+                $formBasicData['form_id'] = 1;
+                $formBasicData['main_document_id'] = $request->process_main_document;
+                $formBasicData['sub_document_id'] = $request->process_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sop_production_main_document != null) && ($request->sop_production_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['form_id'] = 2;
+                $formBasicData['main_document_id'] = $request->sop_production_main_document;
+                $formBasicData['sub_document_id'] = $request->sop_production_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sop_qc_main_document != null) && ($request->sop_qc_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['form_id'] = 3;
+                $formBasicData['main_document_id'] = $request->sop_qc_main_document;
+                $formBasicData['sub_document_id'] = $request->sop_qc_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sop_maintenance_main_document != null) && ($request->sop_maintenance_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['form_id'] = 4;
+                $formBasicData['main_document_id'] = $request->sop_maintenance_main_document;
+                $formBasicData['sub_document_id'] = $request->sop_maintenance_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->msds_main_document != null) && ($request->msds_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/MSDS/1.0';
+                $formBasicData['form_id'] = 5;
+                $formBasicData['main_document_id'] = $request->msds_main_document;
+                $formBasicData['sub_document_id'] = $request->msds_sub_document;
+                $documentModel->add($formBasicData);
+            }
+            if (($request->sss_main_document != null) && ($request->sss_sub_document != null)) {
+                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SSS/1.0';
+                $formBasicData['form_id'] = 6;
+                $formBasicData['main_document_id'] = $request->sss_main_document;
+                $formBasicData['sub_document_id'] = $request->sss_sub_document;
+                $documentModel->add($formBasicData);
+            }
+        }
+        if ($action == 'reactivate') {
+            $formBasicData['revision_date'] = date('Y-m-d');
+            $formBasicData['capa_action'] = "REACTIVATE";
+        }
+        return $request;
+    }
+
+
+
+
+    public function create($capa_number)
+    {
+        // $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')->get();
+        $process = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'CREATE')->where('form_id', 1)->where('capa_number', $capa_number)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
+        $sop_production = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'CREATE')->where('form_id', 2)->where('capa_number', $capa_number)->get();
+        $sop_quality_control = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'CREATE')->where('form_id', 3)->where('capa_number', $capa_number)->get();
+        $sop_maintenance = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'CREATE')->where('form_id', 4)->where('capa_number', $capa_number)->get();
+        $msds = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'CREATE')->where('form_id', 5)->where('capa_number', $capa_number)->get();
+        $sss = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'CREATE')->where('form_id', 6)->where('capa_number', $capa_number)->get();
+
+        return view('capa/create', [
+            'capa_number' => $capa_number,
+            'process' => $process,
+            'sop_production' => $sop_production,
+            'sop_quality_control' => $sop_quality_control,
+            'sop_maintenance' => $sop_maintenance,
+            'msds' => $msds,
+            'sss' => $sss,
+        ]);
+    }
+    public function update($capa_number)
+    {
+        // $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')->get();
+        $process = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'UPDATE')->where('form_id', 1)->where('capa_number', $capa_number)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
+        $sop_production = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'UPDATE')->where('form_id', 2)->where('capa_number', $capa_number)->get();
+        $sop_quality_control = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'UPDATE')->where('form_id', 3)->where('capa_number', $capa_number)->get();
+        $sop_maintenance = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'UPDATE')->where('form_id', 4)->where('capa_number', $capa_number)->get();
+        $msds = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'UPDATE')->where('form_id', 5)->where('capa_number', $capa_number)->get();
+        $sss = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'UPDATE')->where('form_id', 6)->where('capa_number', $capa_number)->get();
+
+        return view('capa/update', [
+            'capa_number' => $capa_number,
+            'process' => $process,
+            'sop_production' => $sop_production,
+            'sop_quality_control' => $sop_quality_control,
+            'sop_maintenance' => $sop_maintenance,
+            'msds' => $msds,
+            'sss' => $sss,
+        ]);
+    }
+    public function rollback(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+        }
+    }
+    public function deactivate(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+        }
+    }
+    public function reactivate(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+        }
+    }
+
+    private function getLatestVersion($sub_document_id)
+    {
+        $documentVersionNumber = DocumentsModel::select('version_number')->where('sub_document_id', $sub_document_id)->where('status', 'ACTIVE')->orderBy('version_number', 'DESC')->first();
+        return floatval($documentVersionNumber->version_number) + floatval(0.1);
+    }
+    private function deactivatePreviousVersion($sub_document_id)
+    {
+        $documentModel = DocumentsModel::where('sub_document_id', $sub_document_id)->where('status', 'ACTIVE')->first();
+        $documentModel->status = "DEACTIVE";
+        $documentModel->save();
+    }
+}

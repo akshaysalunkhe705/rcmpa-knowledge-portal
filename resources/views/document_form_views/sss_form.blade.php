@@ -1,0 +1,85 @@
+@extends('./layouts/formview_layout',
+[
+'title' => 'CAPA',
+]
+)
+
+@section('main_container')
+<?php
+$documentData = $dataSet->document_details;
+?>
+    <form action="{{ url('hod/capa_actions/sss') }}/{{ $dataSet->id }}" method="post">
+        <input type="hidden" name="document_id" value="{{ $dataSet->id }}">
+        @csrf
+        <div style="border:1px solid; padding:1%;">
+            <x-document-view-header-component documentNumber='{{ $dataSet->document_number }}'
+                createdDate='{{ $dataSet->created_date }}' versionNo='{{ $dataSet->version_number }}'
+                capaNumber='{{ $dataSet->capa_number }}' revisionDate='{{ $dataSet->revision_date }}'
+                preparedBy='{{ $dataSet->prepared_by }}' approvedBy='{{ $dataSet->approved_by }}'
+                location='{{ $dataSet->fetchLocation($dataSet->location_id) }}' department='{{ $dataSet->fetchDepartment($dataSet->department_id) }}'
+                mainDocumentId='{{ $dataSet->fetchMainDocumentTitle($dataSet->main_document_id) }}'
+                subDocumentId='{{ $dataSet->fetctSubDocumentTitle($dataSet->sub_document_id) }}' />
+        </div>
+        <br>
+        <label for="">Client Name</label>
+        <input type="text" name="client_name" id="client_name" class="form-control" value="{{ $dataSet->client_name }}">
+        <br>
+        <button class="btn btn-primary" onclick="js:add_sss_parameters();">+</button>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Specification</th>
+                    <th>Units</th>
+                    <th>Remark</th>
+                </tr>
+            </thead>
+            <tbody id="sss_parameters">
+                @if ($documentData != null)
+                    @for ($i = 0; $i < count($documentData['identification']['parameter']); $i++)
+                    <tr>
+                        <td>
+                            <input type="text" name="parameter[]" id="parameter[]" class="form-control" value="{{ $documentData['identification']['parameter'][$i] }}" disabled>
+                        </td>
+                        <td>
+                            <input type="text" name="specification[]" id="specification[]" class="form-control" value="{{ $documentData['identification']['specification'][$i] }}" disabled>
+                        </td>
+                        <td>
+                            <input type="text" name="units[]" id="units[]" class="form-control" value="{{ $documentData['identification']['units'][$i] }}" disabled>
+                        </td>
+                        <td>
+                            <input type="text" name="remark[]" id="remark[]" class="form-control" value="{{ $documentData['identification']['remark'][$i] }}" disabled>
+                        </td>
+                    </tr>
+                    @endfor
+                @endif
+                <tr>
+                    <td>
+                        <input type="text" name="parameter[]" id="parameter" class="form-control" disabled>
+                    </td>
+                    <td>
+                        <input type="text" name="specification[]" id="specification" class="form-control" disabled>
+                    </td>
+                    <td>
+                        <input type="text" name="units[]" id="units" class="form-control" disabled>
+                    </td>
+                    <td>
+                        <input type="text" name="remark[]" id="remark" class="form-control" disabled>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+        <div style="border:1px solid; padding:1%;">
+            <x-document-form-footer-component status='{{ $dataSet->status }}'
+                statusByAdmin='{{ $dataSet->status_by_admin }}'
+                statusBySuperAdmin='{{ $dataSet->status_by_super_admin }}'
+                rejectNote='{{ $dataSet->reject_note }}' removedNote='{{ $dataSet->removed_note }}' />
+        </div>
+        <br>
+        <input type="submit" name="SAVE" class="btn btn-primary" value="SAVE">
+        <input type="submit" name="SUBMIT" class="btn btn-primary" value="SUBMIT">
+    </form>
+
+    @endsection
