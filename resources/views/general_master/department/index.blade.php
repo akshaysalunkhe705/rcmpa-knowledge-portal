@@ -66,7 +66,7 @@
         function edit(id) {
             var location_id = $("#location_id-" + id).val();
             var department = $("#department-" + id).val();
-            $.get('http://localhost:8000/admin/general_master/department/edit/' + id, {
+            $.get('{{ url('admin/general_master/department/edit') }}/' + id, {
                 'location_id': location_id,
                 'department_name': department,
             }, function(response) {

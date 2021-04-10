@@ -75,7 +75,7 @@ use App\Models\FormsModel;
             var document = $("#document-" + id).val();
             var department_id = $("#department_id-" + id).val();
             var form_id = $("#form_id-" + id).val();
-            $.get('http://localhost:8000/admin/general_master/main_document_title/edit/' + id, {
+            $.get('{{ url('admin/general_master/main_document_title/edit') }}/' + id, {
                 'main_document_title': document,
                 'department_id': department_id,
                 'form_id': form_id

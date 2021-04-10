@@ -92,7 +92,7 @@ use App\Models\MainDocumentTitleModel;
             var department_id = $("#department_id-" + id).val();
             var form_id = $("#form_id-" + id).val();
             var main_document_id = $("#main_document_id-" + id).val();
-            $.get('http://localhost:8000/admin/general_master/sub_document_title/edit/' + id, {
+            $.get('{{ url('admin/general_master/sub_document_title/edit') }}/' + id, {
                 'sub_document_title': document,
                 'department_id': department_id,
                 'form_id': form_id,

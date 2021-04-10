@@ -50,7 +50,7 @@
     <script>
         function edit(id) {
             var role = $("#role-" + id).val();
-            $.get('http://localhost:8000/admin/general_master/role/edit/' + id, {
+            $.get('{{ url('admin/general_master/role/edit') }}/' + id, {
                 'role_name': role
             }, function(response) {
                 console.log(response);

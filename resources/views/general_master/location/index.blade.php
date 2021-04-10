@@ -50,7 +50,7 @@
         function edit(id)
         {
             var location = $("#location-" + id).val();
-            $.get('http://localhost:8000/admin/general_master/location/edit/' + id, {
+            $.get('{{ url('admin/general_master/location/edit') }}/' + id, {
                 'location_name': location
             }, function(response) {
                 console.log(response);

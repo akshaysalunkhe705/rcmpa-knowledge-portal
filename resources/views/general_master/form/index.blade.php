@@ -70,7 +70,7 @@
         function edit(id) {
             var form_master = $("#form_master-" + id).val();
             var sequence = $("#sequence-" + id).val();
-            $.get('http://localhost:8000/admin/general_master/forms/edit/' + id, {
+            $.get('{{ url('admin/general_master/forms/edit') }}/' + id, {
                 'form_name': form_master,
                 'sequence': sequence
             }, function(response) {

@@ -50,7 +50,7 @@
     <script>
         function edit(id) {
             var unit = $("#unit-" + id).val();
-            $.get('http://localhost:8000/admin/general_master/units/edit/' + id, {
+            $.get('{{ url('admin/general_master/units/edit') }}/' + id, {
                 'unit_name': unit
             }, function(response) {
                 console.log(response);
