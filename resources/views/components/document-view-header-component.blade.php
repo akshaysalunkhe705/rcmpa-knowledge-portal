@@ -1,5 +1,4 @@
 <div class="row">
-    ssss
     <div class="col-md-3">
         <label for="document_number">Document Number</label>
         <input type="text" name="document_number" class="form-control" value="{{ $documentNumber }}" readonly>

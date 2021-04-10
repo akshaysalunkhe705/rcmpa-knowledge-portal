@@ -8,9 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 //MODELS
-use App\models\DepartmentModel;
-use App\models\FormsModel;
-use App\models\MainDocumentTitleModel;
+use App\Models\DepartmentModel;
+use App\Models\FormsModel;
+use App\Models\MainDocumentTitleModel;
 
 class MainDocumenTitleController extends Controller
 {
