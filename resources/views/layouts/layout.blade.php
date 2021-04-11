@@ -286,7 +286,7 @@
               <span class="avatar avatar-xl sidebar-brand-icon h-auto">
                 <span class="avatar-title rounded bg-primary"
                   ><img
-                    src="{{ url('website-images/logso.png') }}"
+                    src="{{ url('website-images/logo.jpeg') }}"
                     class="img-fluid"
                     alt="logo"
                 /></span>
