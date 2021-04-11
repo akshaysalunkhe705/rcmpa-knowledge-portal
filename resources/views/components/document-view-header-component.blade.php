@@ -51,7 +51,7 @@
     <tr>
         <th>Document Name</th>
         <td>{{ $subDocumentId }}</td>
-        <th>Approved By</th>
-        <td>asd</td>
+        <th>Pages</th>
+        <td></td>
     </tr>
 </table>

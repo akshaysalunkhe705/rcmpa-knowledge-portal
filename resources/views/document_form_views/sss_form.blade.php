@@ -6,17 +6,16 @@
 
 @section('main_container')
     <?php $documentData = $dataSet->document_details; ?>
-    <input type="hidden" name="document_id" value="{{ $dataSet->id }}">
-    <div style="border:1px solid; padding:1%;">
-        <x-document-view-header-component documentNumber='{{ $dataSet->document_number }}'
-            createdDate='{{ $dataSet->created_date }}' versionNo='{{ $dataSet->version_number }}'
-            capaNumber='{{ $dataSet->capa_number }}' revisionDate='{{ $dataSet->revision_date }}'
-            preparedBy='{{ $dataSet->prepared_by }}' approvedBy='{{ $dataSet->approved_by }}'
-            location='{{ $dataSet->fetchLocation($dataSet->location_id) }}'
-            department='{{ $dataSet->fetchDepartment($dataSet->department_id) }}'
-            mainDocumentId='{{ $dataSet->fetchMainDocumentTitle($dataSet->main_document_id) }}'
-            subDocumentId='{{ $dataSet->fetctSubDocumentTitle($dataSet->sub_document_id) }}' />
-    </div>
+
+    <x-document-view-header-component documentNumber='{{ $dataSet->document_number }}'
+        createdDate='{{ $dataSet->created_date }}' versionNo='{{ $dataSet->version_number }}'
+        capaNumber='{{ $dataSet->capa_number }}' revisionDate='{{ $dataSet->revision_date }}'
+        preparedBy='{{ $dataSet->prepared_by }}' approvedBy='{{ $dataSet->approved_by }}'
+        location='{{ $dataSet->fetchLocation($dataSet->location_id) }}'
+        department='{{ $dataSet->fetchDepartment($dataSet->department_id) }}'
+        mainDocumentId='{{ $dataSet->fetchMainDocumentTitle($dataSet->main_document_id) }}'
+        subDocumentId='{{ $dataSet->fetctSubDocumentTitle($dataSet->sub_document_id) }}' />
+    
     <br>
     <label for="">Client Name</label>
     <input type="text" name="client_name" id="client_name" class="form-control" value="{{ $dataSet->client_name }}">

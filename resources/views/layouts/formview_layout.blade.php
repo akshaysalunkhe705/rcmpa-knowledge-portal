@@ -44,39 +44,17 @@
     <!-- Drawer Layout -->
     <div class="mdk-drawer-layout js-mdk-drawer-layout" data-push data-responsive-width="992px">
         <div class="mdk-drawer-layout__content page-content">
-            
+
             <div class="page-section page__container">
-                <div class="shadow-sm p-3 bg-light">
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-8" style="box-shadow: 0px 0px 5px grey">
-                            @yield('main_container')
-                        </div>
-                    </div>
+                {{-- <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8" style="box-shadow: 0px 0px 5px grey; padding:2%;"> --}}
+                        @yield('main_container')
+                    {{-- </div>
                 </div>
-            </div>
-
-            <!-- // END Page Content -->
-
-            <!-- Footer -->
-
-            <div class="bg-white border-top-2 mt-auto">
-                <div class="container page__container d-flex flex-column" style="padding: 1rem;">
-                    <p class="text-50 small mt-n1 mb-0">
-                        <a href="#" class="text-70 text-underline mr-8pt small">Terms</a>
-                        <a href="#" class="text-70 text-underline mr-8pt small">Privacy policy</a>
-                        Copyright <?= date('Y') ?> &copy; All rights reserved.</p>
-          </div>
+            </div> --}}
         </div>
         <!-- // END Footer -->
-      </div>
-
-      <!-- // END drawer-layout__content -->
-
-      <!-- Drawer -->
-      
-
-      <!-- // END Drawer -->
     </div>
 
     <!-- // END Drawer Layout -->
@@ -101,12 +79,15 @@
     <script src="{{ url('/js/preloader.js') }}"></script>
 
     <style>
-      .flex.justify-between.flex-1{
-        display: none;
-      }
-      .w-5.h-5{
-        width: 35px;
-      }
+        .flex.justify-between.flex-1 {
+            display: none;
+        }
+
+        .w-5.h-5 {
+            width: 35px;
+        }
+
     </style>
-  </body>
+</body>
+
 </html>
