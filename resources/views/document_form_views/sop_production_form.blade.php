@@ -6,7 +6,6 @@
 
 @section('main_container')
     <?php $documentData = $dataSet->document_details; ?>
-    <form action="{{ url('hod/capa_actions/sop_production') }}/{{ $dataSet->id }}" method="post">
         <input type="hidden" name="document_id" value="{{ $dataSet->id }}">
         @csrf
         <div style="border:1px solid; padding:1%;">
@@ -26,8 +25,7 @@
         </div>
 
         <br>
-        <label for="chemical_required">Chemical Required</label><button class="btn btn-primary"
-            onclick="js:add_chemical_required_pr();">+</button>
+        <label for="chemical_required">Chemical Required</label>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -49,8 +47,7 @@
             </tbody>
         </table>
         <br>
-        <label for="equipment_required">Equipment Required</label><button class="btn btn-primary"
-            onclick="js:add_equipment_required_pr();">+</button>
+        <label for="equipment_required">Equipment Required</label>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -84,8 +81,7 @@
         <input type="text" name="reference_document_urls" class="form-control" disabled>
 
         <br>
-        <label for="name_of_reference_document">Name Of Reference Document</label><button class="btn btn-primary"
-            onclick="js:add_name_of_reference_document();">+</button>
+        <label for="name_of_reference_document">Name Of Reference Document</label>
         <table class="table table-bordered">
             <tbody id="name_of_reference_document_sop_PR">
                 @if ($documentData['name_of_reference_document'] != null)
@@ -111,16 +107,5 @@
 <label for="reference_document_urls">Reference Document Upload</label>
 <input type="file" name="reference_document_urls" class="form-control" multiple>
 <br>
-
-<hr>
-<div style="border:1px solid; padding:1%;">
-    <x-document-form-footer-component status='{{ $dataSet->status }}'
-        statusByAdmin='{{ $dataSet->status_by_admin }}' statusBySuperAdmin='{{ $dataSet->status_by_super_admin }}'
-        rejectNote='{{ $dataSet->reject_note }}' removedNote='{{ $dataSet->removed_note }}' />
-</div>
-<br>
-<input type="submit" name="SAVE" class="btn btn-primary" value="SAVE">
-<input type="submit" name="SUBMIT" class="btn btn-primary" value="SUBMIT">
-</form>
 
 @endsection

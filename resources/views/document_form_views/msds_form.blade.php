@@ -8,7 +8,6 @@
 <?php
 $documentData = $dataSet->document_details;
 ?>
-    <form action="{{ url('hod/capa_actions/msds') }}/{{ $dataSet->id }}" method="post">
         <input type="hidden" name="document_id" value="{{ $dataSet->id }}">
         @csrf
         <div style="border:1px solid; padding:1%;">
@@ -85,17 +84,5 @@ $documentData = $dataSet->document_details;
         <br><br>
         <label for="toxiocological_information">Toxiocological Information</label><br>
         {{ $documentData['toxiocological_information'] }}
-
-        {{-- <hr>
-        <div style="border:1px solid; padding:1%;">
-            <x-document-form-footer-component status='{{ $dataSet->status }}'
-                statusByAdmin='{{ $dataSet->status_by_admin }}'
-                statusBySuperAdmin='{{ $dataSet->status_by_super_admin }}'
-                rejectNote='{{ $dataSet->reject_note }}' removedNote='{{ $dataSet->removed_note }}' />
-        </div>
-        <br>
-        <input type="submit" name="SAVE" class="btn btn-primary" value="SAVE">
-        <input type="submit" name="SUBMIT" class="btn btn-primary" value="SUBMIT"> --}}
-    </form>
 
 @endsection
