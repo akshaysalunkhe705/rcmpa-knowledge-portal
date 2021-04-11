@@ -62,7 +62,7 @@
                 <a href="index.html" class="navbar-brand mr-16pt d-lg-none">
                     <span class="avatar avatar-sm navbar-brand-icon mr-0 mr-lg-8pt">
                         <span class="avatar-title rounded bg-primary">
-                            <img src="{{ url('website-images/logo.png') }}" alt="logo" class="img-fluid" /></span>
+                            <img src="{{ url('website-images/logo.jpeg') }}" alt="logo" class="img-fluid" /></span>
                     </span>
 
                     <span class="d-none d-lg-block">Luma</span>
