@@ -31,7 +31,6 @@ Route::group(['prefix'=>'capa_actions'], function(){
     Route::post('sss/{document_id}',[CAPAActionController::class, 'sss']);
 });
 
-
 Route::group(['prefix'=>'document_status'],function(){
     Route::get('created_but_not_submitted',[DocumentStatusController::class, 'createdButNotSubmitted']);
     Route::get('submitted_but_not_approved',[DocumentStatusController::class, 'submittedButNotApproved']);

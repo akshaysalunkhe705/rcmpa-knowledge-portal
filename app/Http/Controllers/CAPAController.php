@@ -22,12 +22,14 @@ class CAPAController extends Controller
         if (($action == 'deactivate') || ($action == 'reactivate')) {
             $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'DEACTIVE_REACTIVE_DOC')->get();
         }
+        
+
         $sorted_sub_document_ids = array();
         foreach ($documentAccessListIds as $key => $value) {
             $sorted_sub_document_ids[] = $value->sub_document_id;
         }
         if (($action == 'update') || ($action == 'roll_back') || ($action == 'deactivate') || ($action == 'reactivate')) {
-            return $documentAccessListIds = DocumentsModel::whereIn('sub_document_id', $sorted_sub_document_ids)->where('status', 'ACTIVE')->get();
+            $documentAccessListIds = DocumentsModel::whereIn('sub_document_id', $sorted_sub_document_ids)->where('status', 'ACTIVE')->get();
         }
         // elseif($action == 'create') {
         //     $documentAccessListIds = DocumentsModel::whereNotIn('sub_document_id', $sorted_sub_document_ids)->get();
