@@ -42,7 +42,7 @@ class DocumentViewController extends Controller
     public function activeAdminDocument()
     {
         $document_dataset = DocumentsModel::where('status', 'ACTIVE')->get();
-        return view('document_views.admin.archived_document',[
+        return view('document_views.admin.active_document',[
             'document_dataset'=>$document_dataset
         ]);
     }
