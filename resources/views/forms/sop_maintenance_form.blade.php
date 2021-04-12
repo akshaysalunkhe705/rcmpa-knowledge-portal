@@ -40,9 +40,9 @@
         <textarea name="precautions" id="precautions"
             class="form-control">{{ $documentData != null ? $documentData['precautions'] : '' }}</textarea>
         <br>
-        <label for="applicable_formats_reference">applicable_formats_reference</label>
+        <label for="applicable_formats_reference">Applicable Formats Reference</label>
         <textarea name="applicable_formats_reference" id="applicable_formats_reference"
-            class="form-control">{{ $documentData != null ? $documentData['applicable_formats_reference'] }}</textarea>
+            class="form-control">{{ $documentData != null ? $documentData['applicable_formats_reference'] : '' }}</textarea>
         <br>
         <label for="abbrevations">abbrevations</label>
         <textarea name="abbrevations" id="abbrevations"
