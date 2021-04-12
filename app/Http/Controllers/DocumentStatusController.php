@@ -26,7 +26,7 @@ class DocumentStatusController extends Controller
     public function rejectedForResubmission()
     {
         $document_dataset = DocumentsModel::where('status', 'REJECT')->where('user_id', Auth::user()->id)->get();
-        return view('document_status.rejected_for_resusubmission', [
+        return view('document_status.rejected_for_resubmission', [
             'document_dataset' => $document_dataset
         ]);
     }
