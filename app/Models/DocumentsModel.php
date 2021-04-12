@@ -43,10 +43,16 @@ class DocumentsModel extends Model implements BaseModelInterface
 
     public function getCreatedDateAttribute($value)
     {
+        if($value == null){
+            return "";
+        }
         return date("d-M-Y", strtotime($value));
     }
     public function getRevisionDateAttribute($value)
     {
+        if($value == null){
+            return "";
+        }
         return date("d-M-Y", strtotime($value));
     }
 
