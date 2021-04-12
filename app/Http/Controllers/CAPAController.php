@@ -69,42 +69,42 @@ class CAPAController extends Controller
             $formBasicData['capa_action'] = "CREATE";
 
             if (($request->process_main_document != null) && ($request->process_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/PROC/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/PROC/1.0';
                 $formBasicData['form_id'] = 1;
                 $formBasicData['main_document_id'] = $request->process_main_document;
                 $formBasicData['sub_document_id'] = $request->process_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_production_main_document != null) && ($request->sop_production_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/1.0';
                 $formBasicData['form_id'] = 2;
                 $formBasicData['main_document_id'] = $request->sop_production_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_production_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_qc_main_document != null) && ($request->sop_qc_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/1.0';
                 $formBasicData['form_id'] = 3;
                 $formBasicData['main_document_id'] = $request->sop_qc_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_qc_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_maintenance_main_document != null) && ($request->sop_maintenance_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/1.0';
                 $formBasicData['form_id'] = 4;
                 $formBasicData['main_document_id'] = $request->sop_maintenance_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_maintenance_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->msds_main_document != null) && ($request->msds_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/MSDS/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/MSDS/1.0';
                 $formBasicData['form_id'] = 5;
                 $formBasicData['main_document_id'] = $request->msds_main_document;
                 $formBasicData['sub_document_id'] = $request->msds_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->sss_main_document != null) && ($request->sss_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SSS/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SSS/1.0';
                 $formBasicData['form_id'] = 6;
                 $formBasicData['main_document_id'] = $request->sss_main_document;
                 $formBasicData['sub_document_id'] = $request->sss_sub_document;
@@ -117,7 +117,7 @@ class CAPAController extends Controller
             $formBasicData['capa_action'] = "UPDATE";
             if (($request->process_main_document != null) && ($request->process_sub_document != null)) {
                 //$this->deactivatePreviousVersion($request->process_sub_document);
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/PROC/' . $this->getLatestVersion($request->process_sub_document);
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/PROC/' . $this->getLatestVersion($request->process_sub_document);
                 $formBasicData['form_id'] = 1;
                 $formBasicData['main_document_id'] = $request->process_main_document;
                 $formBasicData['sub_document_id'] = $request->process_sub_document;
@@ -126,7 +126,7 @@ class CAPAController extends Controller
             }
             if (($request->sop_production_main_document != null) && ($request->sop_production_sub_document != null)) {
                 //$this->deactivatePreviousVersion($request->sop_production_sub_document);
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/' . $this->getLatestVersion($request->process_sub_document);
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/' . $this->getLatestVersion($request->process_sub_document);
                 $formBasicData['form_id'] = 2;
                 $formBasicData['main_document_id'] = $request->sop_production_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_production_sub_document;
@@ -135,7 +135,7 @@ class CAPAController extends Controller
             }
             if (($request->sop_qc_main_document != null) && ($request->sop_qc_sub_document != null)) {
                 //$this->deactivatePreviousVersion($request->sop_qc_sub_document);
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/' . $this->getLatestVersion($request->process_sub_document);
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/' . $this->getLatestVersion($request->process_sub_document);
                 $formBasicData['form_id'] = 3;
                 $formBasicData['main_document_id'] = $request->sop_qc_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_qc_sub_document;
@@ -144,7 +144,7 @@ class CAPAController extends Controller
             }
             if (($request->sop_maintenance_main_document != null) && ($request->sop_maintenance_sub_document != null)) {
                 //$this->deactivatePreviousVersion($request->sop_maintenance_sub_document);
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/' . $this->getLatestVersion($request->process_sub_document);
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/' . $this->getLatestVersion($request->process_sub_document);
                 $formBasicData['form_id'] = 4;
                 $formBasicData['main_document_id'] = $request->sop_maintenance_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_maintenance_sub_document;
@@ -153,7 +153,7 @@ class CAPAController extends Controller
             }
             if (($request->msds_main_document != null) && ($request->msds_sub_document != null)) {
                 //$this->deactivatePreviousVersion($request->msds_sub_document);
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/MSDS/' . $this->getLatestVersion($request->process_sub_document);
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/MSDS/' . $this->getLatestVersion($request->process_sub_document);
                 $formBasicData['form_id'] = 5;
                 $formBasicData['main_document_id'] = $request->msds_main_document;
                 $formBasicData['sub_document_id'] = $request->msds_sub_document;
@@ -162,7 +162,7 @@ class CAPAController extends Controller
             }
             if (($request->sss_main_document != null) && ($request->sss_sub_document != null)) {
                 //$this->deactivatePreviousVersion($request->sss_sub_document);
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SSS/' . $this->getLatestVersion($request->process_sub_document);
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SSS/' . $this->getLatestVersion($request->process_sub_document);
                 $formBasicData['form_id'] = 6;
                 $formBasicData['main_document_id'] = $request->sss_main_document;
                 $formBasicData['sub_document_id'] = $request->sss_sub_document;
@@ -175,42 +175,42 @@ class CAPAController extends Controller
             $formBasicData['revision_date'] = date('Y-m-d');
             $formBasicData['capa_action'] = "ROLL_BACK";
             if (($request->process_main_document != null) && ($request->process_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/PROC/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/PROC/1.0';
                 $formBasicData['form_id'] = 1;
                 $formBasicData['main_document_id'] = $request->process_main_document;
                 $formBasicData['sub_document_id'] = $request->process_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_production_main_document != null) && ($request->sop_production_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/1.0';
                 $formBasicData['form_id'] = 2;
                 $formBasicData['main_document_id'] = $request->sop_production_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_production_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_qc_main_document != null) && ($request->sop_qc_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/1.0';
                 $formBasicData['form_id'] = 3;
                 $formBasicData['main_document_id'] = $request->sop_qc_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_qc_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_maintenance_main_document != null) && ($request->sop_maintenance_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/1.0';
                 $formBasicData['form_id'] = 4;
                 $formBasicData['main_document_id'] = $request->sop_maintenance_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_maintenance_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->msds_main_document != null) && ($request->msds_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/MSDS/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/MSDS/1.0';
                 $formBasicData['form_id'] = 5;
                 $formBasicData['main_document_id'] = $request->msds_main_document;
                 $formBasicData['sub_document_id'] = $request->msds_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->sss_main_document != null) && ($request->sss_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SSS/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SSS/1.0';
                 $formBasicData['form_id'] = 6;
                 $formBasicData['main_document_id'] = $request->sss_main_document;
                 $formBasicData['sub_document_id'] = $request->sss_sub_document;
@@ -220,42 +220,42 @@ class CAPAController extends Controller
         if ($action == 'deactivate') {
             $formBasicData['capa_action'] = "DEACTIVATE";
             if (($request->process_main_document != null) && ($request->process_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/PROC/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/PROC/1.0';
                 $formBasicData['form_id'] = 1;
                 $formBasicData['main_document_id'] = $request->process_main_document;
                 $formBasicData['sub_document_id'] = $request->process_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_production_main_document != null) && ($request->sop_production_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/1.0';
                 $formBasicData['form_id'] = 2;
                 $formBasicData['main_document_id'] = $request->sop_production_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_production_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_qc_main_document != null) && ($request->sop_qc_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/1.0';
                 $formBasicData['form_id'] = 3;
                 $formBasicData['main_document_id'] = $request->sop_qc_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_qc_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_maintenance_main_document != null) && ($request->sop_maintenance_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SOP/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/1.0';
                 $formBasicData['form_id'] = 4;
                 $formBasicData['main_document_id'] = $request->sop_maintenance_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_maintenance_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->msds_main_document != null) && ($request->msds_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/MSDS/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/MSDS/1.0';
                 $formBasicData['form_id'] = 5;
                 $formBasicData['main_document_id'] = $request->msds_main_document;
                 $formBasicData['sub_document_id'] = $request->msds_sub_document;
                 $documentModel->add($formBasicData);
             }
             if (($request->sss_main_document != null) && ($request->sss_sub_document != null)) {
-                $formBasicData['document_number'] = mb_substr($request->location, 0, 3) . '/' . mb_substr($request->department, 0, 3) . '/SSS/1.0';
+                $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SSS/1.0';
                 $formBasicData['form_id'] = 6;
                 $formBasicData['main_document_id'] = $request->sss_main_document;
                 $formBasicData['sub_document_id'] = $request->sss_sub_document;
