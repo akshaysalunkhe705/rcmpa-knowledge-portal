@@ -16,7 +16,7 @@ Route::group(['prefix'=>'capa'], function(){
     Route::match(['GET','POST'], '/{action}',[CAPAController::class, 'index']);
     Route::match(['GET','POST'], 'store_capa/{action}',[CAPAController::class, 'storeCapa']);
     Route::get('set/create/{capa_number}',[CAPAController::class, 'create']);
-    Route::get('set/update/{capa_number}',[CAPAController::class, 'create']);
+    Route::get('set/update/{capa_number}',[CAPAController::class, 'update']);
     Route::get('set/roll_back/{capa_number}',[CAPAController::class, 'roll_back']);
     Route::get('set/deactivate/{capa_number}',[CAPAController::class, 'deactivate']);
     Route::get('set/reactivate/{capa_number}',[CAPAController::class, 'reactivate']);
