@@ -16,7 +16,7 @@ $documentData = $dataSet->document_details;
         </div>
         <br>
         <label for="">Client Name</label>
-        <input type="text" name="client_name" id="client_name" class="form-control" value="{{ $dataSet->client_name }}">
+        <input type="text" name="client_name" id="client_name" class="form-control" value="{{ $documentData != null ? $documentData->client_name : '' }}">
         <br>
         <button class="btn btn-primary" onclick="js:add_sss_parameters();">+</button>
         <table class="table table-bordered">
@@ -33,16 +33,16 @@ $documentData = $dataSet->document_details;
                     @for ($i = 0; $i < count($documentData['identification']['parameter']); $i++)
                     <tr>
                         <td>
-                            <input type="text" name="parameter[]" id="parameter[]" class="form-control" value="{{ $documentData['identification']['parameter'][$i] }}">
+                            <input type="text" name="parameter[]" id="parameter[]" class="form-control" value="{{ $documentData != null ? $documentData['identification']['parameter'][$i] : '' }}">
                         </td>
                         <td>
-                            <input type="text" name="specification[]" id="specification[]" class="form-control" value="{{ $documentData['identification']['specification'][$i] }}">
+                            <input type="text" name="specification[]" id="specification[]" class="form-control" value="{{ $documentData != null ? $documentData['identification']['specification'][$i] : '' }}">
                         </td>
                         <td>
-                            <input type="text" name="units[]" id="units[]" class="form-control" value="{{ $documentData['identification']['units'][$i] }}">
+                            <input type="text" name="units[]" id="units[]" class="form-control" value="{{ $documentData != null ? $documentData['identification']['units'][$i] : '' }}">
                         </td>
                         <td>
-                            <input type="text" name="remark[]" id="remark[]" class="form-control" value="{{ $documentData['identification']['remark'][$i] }}">
+                            <input type="text" name="remark[]" id="remark[]" class="form-control" value="{{ $documentData != null ? $documentData['identification']['remark'][$i] : '' }}">
                         </td>
                     </tr>
                     @endfor
@@ -83,7 +83,7 @@ $documentData = $dataSet->document_details;
         $("#sss_parameters").after(`
             <tr>
                 <td>
-                    <input type="text" name="parameter[]" id="parameter" class="form-control" >
+                    <input type="text" name="parameter[]" id="parameter" class="form-control">
                 </td>
                 <td>
                     <input type="text" name="specification[]" id="specification" class="form-control">

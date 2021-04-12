@@ -17,40 +17,40 @@
 
         <br>
         <label for="purpose">Purpose</label>
-        <textarea name="purpose" id="purpose" class="form-control">{{ $documentData['purpose'] }}</textarea>
+        <textarea name="purpose" id="purpose" class="form-control">{{ $documentData != null ? $documentData['purpose'] : '' }}</textarea>
         <br>
         <label for="scope">scope</label>
-        <textarea name="scope" id="scope" class="form-control">{{ $documentData['scope'] }}</textarea>
+        <textarea name="scope" id="scope" class="form-control">{{ $documentData != null ? $documentData['scope'] : '' }}</textarea>
         <br>
         <label for="responsibility">responsibility</label>
         <textarea name="responsibility" id="responsibility"
-            class="form-control">{{ $documentData['responsibility'] }}</textarea>
+            class="form-control">{{ $documentData != null ? $documentData['responsibility'] : '' }}</textarea>
         <br>
         <label for="accountability">accountability</label>
         <textarea name="accountability" id="accountability"
-            class="form-control">{{ $documentData['accountability'] }}</textarea>
+            class="form-control">{{ $documentData != null ? $documentData['accountability'] : '' }}</textarea>
         <br>
         <label for="defination">defination</label>
-        <textarea name="defination" id="defination" class="form-control">{{ $documentData['defination'] }}</textarea>
+        <textarea name="defination" id="defination" class="form-control">{{ $documentData != null ? $documentData['defination'] : '' }}</textarea>
         <br>
         <label for="procedures">procedures</label>
-        <textarea name="procedures" id="procedures" class="form-control">{{ $documentData['procedures'] }}</textarea>
+        <textarea name="procedures" id="procedures" class="form-control">{{ $documentData != null ? $documentData['procedures'] : '' }}</textarea>
         <br>
         <label for="precautions">precautions</label>
         <textarea name="precautions" id="precautions"
-            class="form-control">{{ $documentData['precautions'] }}</textarea>
+            class="form-control">{{ $documentData != null ? $documentData['precautions'] : '' }}</textarea>
         <br>
         <label for="applicable_formats_reference">applicable_formats_reference</label>
         <textarea name="applicable_formats_reference" id="applicable_formats_reference"
-            class="form-control">{{ $documentData['applicable_formats_reference'] }}</textarea>
+            class="form-control">{{ $documentData != null ? $documentData['applicable_formats_reference'] }}</textarea>
         <br>
         <label for="abbrevations">abbrevations</label>
         <textarea name="abbrevations" id="abbrevations"
-            class="form-control">{{ $documentData['abbrevations'] }}</textarea>
+            class="form-control">{{ $documentData != null ? $documentData['abbrevations'] : '' }}</textarea>
         <br>
         <label for="document_history">document_history</label>
         <textarea name="document_history" id="document_history"
-            class="form-control">{{ $documentData['document_history'] }}</textarea>
+            class="form-control">{{ $documentData != null ? $documentData['document_history'] : '' }}</textarea>
         <br>
         <label for="reference_document_urls">reference_document</label>
         <input type="file" name="reference_document_urls" class="form-control">

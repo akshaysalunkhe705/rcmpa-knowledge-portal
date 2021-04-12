@@ -20,8 +20,8 @@
         </div>
 
         <br>
-        <label for="chemical_required">Chemical Required</label><button class="btn btn-primary"
-            onclick="js:add_chemical_required_pr();">+</button>
+        <label for="chemical_required">Chemical Required</label>
+        <button class="btn btn-primary" onclick="js:add_chemical_required_pr();">+</button>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -57,7 +57,8 @@
             <tbody id="equipment_required_PR">
                 <tr>
                     <td><input class="form-control" type="text" name="equipement_name[]" id="name"></td>
-                    <td><input class="form-control" type="text" name="equipement_location_mark_and_number[]" id="location_mark_and_number"></td>
+                    <td><input class="form-control" type="text" name="equipement_location_mark_and_number[]"
+                            id="location_mark_and_number"></td>
                     <td><input class="form-control" type="text" name="equipement_capacity[]" id="capacity"></td>
                     <td><input class="form-control" type="text" name="equipement_unit[]" id="unit"></td>
                 </tr>
@@ -88,24 +89,24 @@
                         @foreach ($documentData['name_of_reference_document'] as $item)
                             @if ($i % 3 == 0)
                                 <?php $i = 0; ?>
-                                    </tr>
-                                    <tr>
-                                @endif
-                                <?php $i++; ?>
-                                <td>
-                                    <input type="text" name="name_of_reference_document[]" class="form-control"
-                                        value="{{ $item }}">
-                                </td>
-                        @endforeach
                     </tr>
+                    <tr>
                 @endif
-                <tr>
-                    <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
-                    <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
-                    <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
-                </tr>
-            </tbody>
-        </table>
+                <?php $i++; ?>
+                <td>
+                    <input type="text" name="name_of_reference_document[]" class="form-control"
+                        value="{{ $item }}">
+                </td>
+@endforeach
+</tr>
+@endif
+<tr>
+    <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
+    <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
+    <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
+</tr>
+</tbody>
+</table>
 
 <label for="reference_document_urls">Reference Document Upload</label>
 <input type="file" name="reference_document_urls" class="form-control" multiple>
@@ -164,6 +165,7 @@
     CKEDITOR.replace('pre_production_process', {});
     CKEDITOR.replace('production_process', {});
     CKEDITOR.replace('post_production_process', {});
+
 </script>
 
 @endforeach

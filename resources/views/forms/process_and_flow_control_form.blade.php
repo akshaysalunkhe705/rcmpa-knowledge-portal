@@ -17,7 +17,7 @@ $documentData = $dataSet->document_details;
         <hr>
         <div>
             <label for="objective">Objective</label>
-            <input type="text" name="objective" class="form-control" value="{{ $documentData['objective'] != null ? $documentData['objective'] : '' }}">
+            <input type="text" name="objective" class="form-control" value="{{ $documentData != null ? $documentData['objective'] : '' }}">
         </div>
         <br>
 
