@@ -62,8 +62,7 @@ use App\Models\SubDocumentTitleModel;
                 <th>List of Versions</th>
                 <th>Action</th>
             </tr>
-
-            @foreach ($document_dataset as $item)
+            @foreach ($process as $item)
                 <tr>
                     <td>{{ $item->capa_number }}</td>
                     <td>{{ $item->version_number }}</td>
