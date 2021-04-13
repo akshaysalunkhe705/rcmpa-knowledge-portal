@@ -80,29 +80,149 @@ use App\Models\SubDocumentTitleModel;
         </table>
     </section>
     <section id="sop_production">
-        @include('forms.sop_production_form',[
-        'sopProductionDataset' => $sop_production
-        ])
+        <table class="table">
+            <tr>
+                <th>CAPA No</th>
+                <th>Version</th>
+                <th>Location/Department</th>
+                <th>Form</th>
+                <th>Master Document Title</th>
+                <th>Sub Document Title</th>
+                <th>List of Versions</th>
+                <th>Action</th>
+            </tr>
+            @foreach ($sop_production as $item)
+                <tr>
+                    <td>{{ $item->capa_number }}</td>
+                    <td>{{ $item->version_number }}</td>
+                    <td>{{ $item->fetchLocation($item->location_id) }} / {{ $item->fetchDepartment($item->department_id) }}</td>
+                    <td>{{ $item->fetchForm($item->form_id) }}</td>
+                    <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
+                    <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
+                    <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
+                    <td>
+                        <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}"
+                            class="btn">View</a>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
     </section>
     <section id="sop_quality_control">
-        @include('forms.sop_quality_control_form',[
-        'sopQualityControlDataset' => $sop_quality_control
-        ])
+        <table class="table">
+            <tr>
+                <th>CAPA No</th>
+                <th>Version</th>
+                <th>Location/Department</th>
+                <th>Form</th>
+                <th>Master Document Title</th>
+                <th>Sub Document Title</th>
+                <th>List of Versions</th>
+                <th>Action</th>
+            </tr>
+            @foreach ($sop_quality_control as $item)
+                <tr>
+                    <td>{{ $item->capa_number }}</td>
+                    <td>{{ $item->version_number }}</td>
+                    <td>{{ $item->fetchLocation($item->location_id) }} / {{ $item->fetchDepartment($item->department_id) }}</td>
+                    <td>{{ $item->fetchForm($item->form_id) }}</td>
+                    <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
+                    <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
+                    <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
+                    <td>
+                        <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}"
+                            class="btn">View</a>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
     </section>
     <section id="sop_maintenance">
-        @include('forms.sop_maintenance_form',[
-        'sopMaintenanceDataset' => $sop_maintenance
-        ])
+        <table class="table">
+            <tr>
+                <th>CAPA No</th>
+                <th>Version</th>
+                <th>Location/Department</th>
+                <th>Form</th>
+                <th>Master Document Title</th>
+                <th>Sub Document Title</th>
+                <th>List of Versions</th>
+                <th>Action</th>
+            </tr>
+            @foreach ($sop_maintenance as $item)
+                <tr>
+                    <td>{{ $item->capa_number }}</td>
+                    <td>{{ $item->version_number }}</td>
+                    <td>{{ $item->fetchLocation($item->location_id) }} / {{ $item->fetchDepartment($item->department_id) }}</td>
+                    <td>{{ $item->fetchForm($item->form_id) }}</td>
+                    <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
+                    <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
+                    <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
+                    <td>
+                        <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}"
+                            class="btn">View</a>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
     </section>
     <section id="msds">
-        @include('forms.msds_form',[
-        'msdsDataset' => $msds
-        ])
+        <table class="table">
+            <tr>
+                <th>CAPA No</th>
+                <th>Version</th>
+                <th>Location/Department</th>
+                <th>Form</th>
+                <th>Master Document Title</th>
+                <th>Sub Document Title</th>
+                <th>List of Versions</th>
+                <th>Action</th>
+            </tr>
+            @foreach ($msds as $item)
+                <tr>
+                    <td>{{ $item->capa_number }}</td>
+                    <td>{{ $item->version_number }}</td>
+                    <td>{{ $item->fetchLocation($item->location_id) }} / {{ $item->fetchDepartment($item->department_id) }}</td>
+                    <td>{{ $item->fetchForm($item->form_id) }}</td>
+                    <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
+                    <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
+                    <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
+                    <td>
+                        <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}"
+                            class="btn">View</a>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
     </section>
     <section id="sss">
-        @include('forms.sss_form',[
-        'sssDataset' => $sss
-        ])
+        <table class="table">
+            <tr>
+                <th>CAPA No</th>
+                <th>Version</th>
+                <th>Location/Department</th>
+                <th>Form</th>
+                <th>Master Document Title</th>
+                <th>Sub Document Title</th>
+                <th>List of Versions</th>
+                <th>Action</th>
+            </tr>
+            @foreach ($sss as $item)
+                <tr>
+                    <td>{{ $item->capa_number }}</td>
+                    <td>{{ $item->version_number }}</td>
+                    <td>{{ $item->fetchLocation($item->location_id) }} / {{ $item->fetchDepartment($item->department_id) }}</td>
+                    <td>{{ $item->fetchForm($item->form_id) }}</td>
+                    <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
+                    <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
+                    <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
+                    <td>
+                        <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}"
+                            class="btn">View</a>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
     </section>
 
 
