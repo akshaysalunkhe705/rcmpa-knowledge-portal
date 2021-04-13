@@ -59,7 +59,7 @@ use App\Models\SubDocumentTitleModel;
                 <th>Form</th>
                 <th>Master Document Title</th>
                 <th>Sub Document Title</th>
-                <th>List of Versions</th>
+                <th>Versions</th>
                 <th>Action</th>
             </tr>
             @foreach ($process as $item)
@@ -70,7 +70,7 @@ use App\Models\SubDocumentTitleModel;
                     <td>{{ $item->fetchForm($item->form_id) }}</td>
                     <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
                     <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
-                    <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
+                    <td>{{ $item->version_number }}</td>
                     <td>
                         <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}"
                             class="btn">View</a>
