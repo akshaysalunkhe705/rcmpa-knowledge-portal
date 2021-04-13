@@ -170,20 +170,30 @@ use App\Models\SubDocumentTitleModel;
                         location.href = "{{ url('/hod/capa/set/update') }}/" + capa_number;
                     }
                     if (action == "roll_back") {
-                        location.href = "{{ url('/hod/capa/set/roll_back') }}/" + response.process_sub_document +'/'+ response.sop_maintenance_sub_document +'/'+ response.sop_production_sub_document +'/'+ response.sop_qc_sub_document +'/'+ response.msds_sub_document +'/'+ response.sss_sub_document;
+                        location.href = "{{ url('/hod/capa/set/roll_back') }}/" + capa_number + response.process_sub_document +
+                            '/' + response.sop_maintenance_sub_document + '/' + response
+                            .sop_production_sub_document + '/' + response.sop_qc_sub_document + '/' + response
+                            .msds_sub_document + '/' + response.sss_sub_document;
                     }
                     if (action == "deactivate") {
-                        location.href = "{{ url('/hod/capa/set/deactivate') }}/" + response.process_sub_document +'/'+ response.sop_maintenance_sub_document +'/'+ response.sop_production_sub_document +'/'+ response.sop_qc_sub_document +'/'+ response.msds_sub_document +'/'+ response.sss_sub_document;
+                        location.href = "{{ url('/hod/capa/set/deactivate') }}/" + capa_number + response.process_sub_document +
+                            '/' + response.sop_maintenance_sub_document + '/' + response
+                            .sop_production_sub_document + '/' + response.sop_qc_sub_document + '/' + response
+                            .msds_sub_document + '/' + response.sss_sub_document;
                     }
                     if (action == "reactivate") {
-                        location.href = "{{ url('/hod/capa/set/reactivate') }}/" + response.process_sub_document +'/'+ response.sop_maintenance_sub_document +'/'+ response.sop_production_sub_document +'/'+ response.sop_qc_sub_document +'/'+ response.msds_sub_document +'/'+ response.sss_sub_document;
+                        location.href = "{{ url('/hod/capa/set/reactivate') }}/" + capa_number + response.process_sub_document +
+                            '/' + response.sop_maintenance_sub_document + '/' + response
+                            .sop_production_sub_document + '/' + response.sop_qc_sub_document + '/' + response
+                            .msds_sub_document + '/' + response.sss_sub_document;
                     }
                 }
             });
         }
 
         function showSelectedFormDocument(id) {
-            $("#selected-form-" + id).css('visibility','visible');
+            $("#selected-form-" + id).css('visibility', 'visible');
         }
+
     </script>
 @endsection
