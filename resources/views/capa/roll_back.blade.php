@@ -78,7 +78,7 @@ use App\Models\SubDocumentTitleModel;
                         <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}"
                             class="btn">View</a> |
                         <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}"
-                            class="btn">Active</a>
+                            class="btn">Roll Back</a>
                     </td>
                 </tr>
             @endforeach
