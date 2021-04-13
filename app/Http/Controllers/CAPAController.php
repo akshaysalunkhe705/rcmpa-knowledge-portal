@@ -368,7 +368,7 @@ class CAPAController extends Controller
         $msds = DocumentsModel::where('form_id', 5)->get();
         $sss = DocumentsModel::where('form_id', 6)->get();
 
-        return view('capa/update', [
+        return view('capa/roll_back', [
             'capa_number' => $capa_number,
             'process' => $process,
             'sop_production' => $sop_production,
