@@ -170,7 +170,7 @@ use App\Models\SubDocumentTitleModel;
                         location.href = "{{ url('/hod/capa/set/update') }}/" + capa_number;
                     }
                     if (action == "roll_back") {
-                        location.href = "{{ url('/hod/capa/set/roll_back') }}/" + capa_number;
+                        // location.href = "{{ url('/hod/capa/set/roll_back') }}/" + capa_number;
                     }
                     if (action == "deactivate") {
                         location.href = "{{ url('/hod/capa/set/deactivate') }}/" + capa_number;
