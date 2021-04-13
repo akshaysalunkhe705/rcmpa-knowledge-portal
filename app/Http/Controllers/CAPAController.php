@@ -361,12 +361,12 @@ class CAPAController extends Controller
     public function rollback($capa_number)
     {
         // $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')->get();
-        $process = DocumentsModel::where('form_id', 1)->where('version_number','!=', null)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
-        $sop_production = DocumentsModel::where('form_id', 2)->where('version_number','!=', null)->get();
-        $sop_quality_control = DocumentsModel::where('form_id', 3)->where('version_number','!=', null)->get();
-        $sop_maintenance = DocumentsModel::where('form_id', 4)->where('version_number','!=', null)->get();
-        $msds = DocumentsModel::where('form_id', 5)->where('version_number','!=', null)->get();
-        $sss = DocumentsModel::where('form_id', 6)->where('version_number','!=', null)->get();
+        $process = DocumentsModel::where('form_id', 1)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
+        $sop_production = DocumentsModel::where('form_id', 2)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->get();
+        $sop_quality_control = DocumentsModel::where('form_id', 3)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->get();
+        $sop_maintenance = DocumentsModel::where('form_id', 4)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->get();
+        $msds = DocumentsModel::where('form_id', 5)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->get();
+        $sss = DocumentsModel::where('form_id', 6)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->get();
 
         return view('capa/roll_back', [
             'capa_number' => $capa_number,
