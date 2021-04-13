@@ -66,14 +66,19 @@ use App\Models\SubDocumentTitleModel;
                 <tr>
                     <td>{{ $item->capa_number }}</td>
                     <td>{{ $item->version_number }}</td>
-                    <td>{{ $item->fetchLocation($item->location_id) }} / {{ $item->fetchDepartment($item->department_id) }}</td>
+                    <td>
+                        {{ $item->fetchLocation($item->location_id) }} /
+                        {{ $item->fetchDepartment($item->department_id) }}
+                    </td>
                     <td>{{ $item->fetchForm($item->form_id) }}</td>
                     <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
                     <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
                     <td>{{ $item->version_number }}</td>
                     <td>
                         <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}"
-                            class="btn">View</a>
+                            class="btn">View</a> |
+                        <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}"
+                            class="btn">Active</a>
                     </td>
                 </tr>
             @endforeach
@@ -95,7 +100,8 @@ use App\Models\SubDocumentTitleModel;
                 <tr>
                     <td>{{ $item->capa_number }}</td>
                     <td>{{ $item->version_number }}</td>
-                    <td>{{ $item->fetchLocation($item->location_id) }} / {{ $item->fetchDepartment($item->department_id) }}</td>
+                    <td>{{ $item->fetchLocation($item->location_id) }} /
+                        {{ $item->fetchDepartment($item->department_id) }}</td>
                     <td>{{ $item->fetchForm($item->form_id) }}</td>
                     <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
                     <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
@@ -124,7 +130,8 @@ use App\Models\SubDocumentTitleModel;
                 <tr>
                     <td>{{ $item->capa_number }}</td>
                     <td>{{ $item->version_number }}</td>
-                    <td>{{ $item->fetchLocation($item->location_id) }} / {{ $item->fetchDepartment($item->department_id) }}</td>
+                    <td>{{ $item->fetchLocation($item->location_id) }} /
+                        {{ $item->fetchDepartment($item->department_id) }}</td>
                     <td>{{ $item->fetchForm($item->form_id) }}</td>
                     <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
                     <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
@@ -153,7 +160,8 @@ use App\Models\SubDocumentTitleModel;
                 <tr>
                     <td>{{ $item->capa_number }}</td>
                     <td>{{ $item->version_number }}</td>
-                    <td>{{ $item->fetchLocation($item->location_id) }} / {{ $item->fetchDepartment($item->department_id) }}</td>
+                    <td>{{ $item->fetchLocation($item->location_id) }} /
+                        {{ $item->fetchDepartment($item->department_id) }}</td>
                     <td>{{ $item->fetchForm($item->form_id) }}</td>
                     <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
                     <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
@@ -182,7 +190,8 @@ use App\Models\SubDocumentTitleModel;
                 <tr>
                     <td>{{ $item->capa_number }}</td>
                     <td>{{ $item->version_number }}</td>
-                    <td>{{ $item->fetchLocation($item->location_id) }} / {{ $item->fetchDepartment($item->department_id) }}</td>
+                    <td>{{ $item->fetchLocation($item->location_id) }} /
+                        {{ $item->fetchDepartment($item->department_id) }}</td>
                     <td>{{ $item->fetchForm($item->form_id) }}</td>
                     <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
                     <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
@@ -211,7 +220,8 @@ use App\Models\SubDocumentTitleModel;
                 <tr>
                     <td>{{ $item->capa_number }}</td>
                     <td>{{ $item->version_number }}</td>
-                    <td>{{ $item->fetchLocation($item->location_id) }} / {{ $item->fetchDepartment($item->department_id) }}</td>
+                    <td>{{ $item->fetchLocation($item->location_id) }} /
+                        {{ $item->fetchDepartment($item->department_id) }}</td>
                     <td>{{ $item->fetchForm($item->form_id) }}</td>
                     <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
                     <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
