@@ -119,7 +119,7 @@ class CAPAController extends Controller
             $formBasicData['capa_action'] = "UPDATE";
 
             if (($request->process_main_document != null) && ($request->process_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->process_main_document)->where('sub_document_id', $request->process_sub_document)->get();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->process_main_document)->where('sub_document_id', $request->process_sub_document)->where('status','ACTIVE')->first();
                 $document_details = $previousActiveVersionModel->document_details;
                 $formBasicData['document_details'] = $document_details;
 
@@ -131,7 +131,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_production_main_document != null) && ($request->sop_production_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_production_main_document)->where('sub_document_id', $request->sop_production_sub_document)->get();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_production_main_document)->where('sub_document_id', $request->sop_production_sub_document)->where('status','ACTIVE')->first();
                 $document_details = $previousActiveVersionModel->document_details;
                 $formBasicData['document_details'] = $document_details;
                 
@@ -143,7 +143,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_qc_main_document != null) && ($request->sop_qc_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_qc_main_document)->where('sub_document_id', $request->sop_qc_sub_document)->get();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_qc_main_document)->where('sub_document_id', $request->sop_qc_sub_document)->where('status','ACTIVE')->first();
                 $document_details = $previousActiveVersionModel->document_details;
                 $formBasicData['document_details'] = $document_details;
                 
@@ -155,7 +155,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_maintenance_main_document != null) && ($request->sop_maintenance_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_maintenance_main_document)->where('sub_document_id', $request->sop_maintenance_sub_document)->get();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_maintenance_main_document)->where('sub_document_id', $request->sop_maintenance_sub_document)->where('status','ACTIVE')->first();
                 $document_details = $previousActiveVersionModel->document_details;
                 $formBasicData['document_details'] = $document_details;
                 
@@ -167,7 +167,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->msds_main_document != null) && ($request->msds_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->msds_main_document)->where('sub_document_id', $request->msds_sub_document)->get();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->msds_main_document)->where('sub_document_id', $request->msds_sub_document)->where('status','ACTIVE')->first();
                 $document_details = $previousActiveVersionModel->document_details;
                 $formBasicData['document_details'] = $document_details;
                 
@@ -179,7 +179,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sss_main_document != null) && ($request->sss_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sss_main_document)->where('sub_document_id', $request->sss_sub_document)->get();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sss_main_document)->where('sub_document_id', $request->sss_sub_document)->where('status','ACTIVE')->first();
                 $document_details = $previousActiveVersionModel->document_details;
                 $formBasicData['document_details'] = $document_details;
                 
