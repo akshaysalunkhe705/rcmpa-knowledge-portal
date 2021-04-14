@@ -83,7 +83,7 @@
             onclick="js:add_name_of_reference_document();">+</button>
         <table class="table table-bordered">
             <tbody id="name_of_reference_document_sop_PR">
-                @if ($documentData['name_of_reference_document'] != null)
+                @if (isset($documentData['name_of_reference_document']))
                     <tr>
                         <?php $i = 0; ?>
                         @foreach ($documentData['name_of_reference_document'] as $item)
