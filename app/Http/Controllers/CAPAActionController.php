@@ -65,7 +65,7 @@ class CAPAActionController extends Controller
             'pre_production_process' => $request->pre_production_process,
             'production_process' => $request->production_process,
             'post_production_process' => $request->post_production_process,
-            'name_of_reference_document' => $request->name_of_reference_document_pr,
+            'name_of_reference_document' => $request->name_of_reference_document,
         ];
         $model = DocumentsModel::find($request->document_id);
         $model->document_details = $documentData;
