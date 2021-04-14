@@ -18,7 +18,7 @@
     
     <br>
     <label for="">Client Name</label>
-    <input type="text" name="client_name" id="client_name" class="form-control" value="{{ $dataSet->client_name }}">
+    <input type="text" name="client_name" id="client_name" class="form-control" value="{{ $documentData->client_name }}">
     <br>
     <table class="table table-bordered">
         <thead>
