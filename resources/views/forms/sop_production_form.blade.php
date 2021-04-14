@@ -74,13 +74,13 @@
         <br>
 
         <label for="pre_production_process">Pre Production Process</label>
-        <input type="text" name="pre_production_process" class="form-control" value="{{ isset($documentData['pre_production_process']) ? $documentData['pre_production_process'] : ''  }}">
+        <textarea name="pre_production_process" id="pre_production_process" class="form-control"> {{ isset($documentData['pre_production_process']) ? $documentData['pre_production_process'] : ''  }} </textarea>
 
         <label for="production_process">Production Process</label>
-        <input type="text" name="production_process" class="form-control" value="{{ isset($documentData['production_process']) ? $documentData['production_process'] : ''  }}">
+        <textarea name="production_process" id="production_process" class="form-control"> {{ isset($documentData['production_process']) ? $documentData['production_process'] : ''  }} </textarea>
 
         <label for="post_production_process">Post Production Process</label>
-        <input type="text" name="post_production_process" class="form-control" value="{{ isset($documentData['post_production_process']) ? $documentData['post_production_process'] : ''  }}">
+        <textarea name="post_production_process" id="post_production_process" class="form-control"> {{ isset($documentData['post_production_process']) ? $documentData['post_production_process'] : ''  }} </textarea>
 
         <br>
         <label for="name_of_reference_document">Name Of Reference Document</label><button class="btn btn-primary" onclick="js:add_name_of_reference_document_pr();">+</button>
