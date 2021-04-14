@@ -55,27 +55,139 @@ use App\Models\DepartmentModel;
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                @foreach ($formMasters as $formMaster)
-                                    <div class="col-md-6">
-                                        <div onclick="js:toggleSlide({{ $user->id }},{{ $formMaster->id }})"
-                                            class="border p-1" style="font-weight:bold">
-                                            {{ $formMaster->form_name }}
-                                        </div>
-                                        <div id="form-master-{{ $user->id }}-{{ $formMaster->id }}"
-                                            class="form-master border p-1" style="display: none">
-                                            <p>
-                                                <input type="checkbox" name="" checked disabled> Create/update/Rollback Document |<br>
-                                                <input type="checkbox" name="" disabled> View Active Documents |<br>
-                                                <input type="checkbox" name="" checked disabled> View Rejected Documents |<br>
-                                                <input type="checkbox" name="" checked disabled> View Archived Documents |<br>
-                                                <input type="checkbox" name="" checked disabled> View Pending Documents |<br>
-                                                <input type="checkbox" name="" disabled> Deactivate Documents |<br>
-                                                <input type="checkbox" name="" disabled> View CAPA status |<br>
-                                            </p>
-                                        </div>
+                                @foreach ($departmentDataset as $department)
+        <div onclick="js:toggleDepartmentSlide({{ $department->id }})" class="border p-2 bg-danger"
+            style="font-weight:bold;">
+            <h4 style="color:white;">{{ $department->department_name }}</h4>
+        </div>
+        <div id="department-{{ $department->id }}" class=" border p-2" style="background-color:rgb(179, 179, 179)">
+            @foreach ($FormsModel as $formMaster)
+                <?php $masterDocumentsCount = 0; ?>
+                <div class="masterForm-{{ $department->id }}-{{ $formMaster->id }}">
+                    <div onclick="js:toggleFormMasterSlide({{ $formMaster->id }})" class="border p-2 bg-info">
+                        <h5>{{ $formMaster->form_name }}</h5>
+                    </div>
+                    <div id="form-master-{{ $formMaster->id }}" class="form-master border p-2"
+                        style="background-color:white;">
+                        <?php $mainDocumentDataset = MainDocumentTitleModel::where('department_id',
+                        $department->id)
+                        ->where('form_id', $formMaster->id)
+                        ->get(); ?>
+                        @foreach ($mainDocumentDataset as $mainDocument)
+                            <?php $masterDocumentsCount++; ?>
+                            <h5> {{ $mainDocument->document_name }} </h5>
+                            <?php $subDocumentDataset = SubDocumentTitleModel::where('department_id',
+                            $department->id)
+                            ->where('main_document_id', $mainDocument->id)
+                            ->get(); ?>
+
+                            @foreach ($subDocumentDataset as $subDocument)
+                                <?php
+                                $CREATE_UPDATE_ROLLBACK_DOC_PERMISSION_STATUS =
+                                UserDocumentPermissionModel::where('user_id', $user->id)
+                                ->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')
+                                ->where('department_id', $department->id)
+                                ->where('form_id', $formMaster->id)
+                                ->where('main_document_id', $mainDocument->id)
+                                ->where('sub_document_id', $subDocument->id)
+                                ->first();
+                                $VIEW_ACTIVE_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id',
+                                $user->id)
+                                ->where('permission_type', 'VIEW_ACTIVE_DOC')
+                                ->where('department_id', $department->id)
+                                ->where('form_id', $formMaster->id)
+                                ->where('main_document_id', $mainDocument->id)
+                                ->where('sub_document_id', $subDocument->id)
+                                ->first();
+                                $DEACTIVE_REACTIVE_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id',
+                                $user->id)
+                                ->where('permission_type', 'DEACTIVE_REACTIVE_DOC')
+                                ->where('department_id', $department->id)
+                                ->where('form_id', $formMaster->id)
+                                ->where('main_document_id', $mainDocument->id)
+                                ->where('sub_document_id', $subDocument->id)
+                                ->first();
+                                $VIEW_PENDING_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id',
+                                $user->id)
+                                ->where('permission_type', 'VIEW_PENDING_DOC')
+                                ->where('department_id', $department->id)
+                                ->where('form_id', $formMaster->id)
+                                ->where('main_document_id', $mainDocument->id)
+                                ->where('sub_document_id', $subDocument->id)
+                                ->first();
+                                $VIEW_REJECTED_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id',
+                                $user->id)
+                                ->where('permission_type', 'VIEW_REJECTED_DOC')
+                                ->where('department_id', $department->id)
+                                ->where('form_id', $formMaster->id)
+                                ->where('main_document_id', $mainDocument->id)
+                                ->where('sub_document_id', $subDocument->id)
+                                ->first();
+                                $VIEW_ARCHIVE_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id',
+                                $user->id)
+                                ->where('permission_type', 'VIEW_ARCHIVE_DOC')
+                                ->where('department_id', $department->id)
+                                ->where('form_id', $formMaster->id)
+                                ->where('main_document_id', $mainDocument->id)
+                                ->where('sub_document_id', $subDocument->id)
+                                ->first();
+                                $CAPA_STATUS_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id', $user->id)
+                                ->where('permission_type', 'CAPA_STATUS')
+                                ->where('department_id', $department->id)
+                                ->where('form_id', $formMaster->id)
+                                ->where('main_document_id', $mainDocument->id)
+                                ->where('sub_document_id', $subDocument->id)
+                                ->first();
+                                ?>
+                                <div class="border p-3">
+                                    <b>{{ $mainDocument->main_document_title }} - (
+                                        {{ $subDocument->sub_document_title }} ) </b>
+                                    <br><br>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <input type="checkbox"
+                                                id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-ALL"
+                                                onchange="js:checked_all(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'ALL');">
+                                            SELECT ALL <br>
+                                            <input type="checkbox"
+                                                id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-CREATE_UPDATE_ROLLBACK_DOC"
+                                                onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'CREATE_UPDATE_ROLLBACK_DOC');" <?= $CREATE_UPDATE_ROLLBACK_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> Create | Update | Rollback
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ACTIVE_DOC');" <?= $VIEW_ACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Active Docs <br>
+                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-DEACTIVE_REACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'DEACTIVE_REACTIVE_DOC');" <?= $DEACTIVE_REACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> Deactivate | Reactive Docs
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_PENDING_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_PENDING_DOC');" <?= $VIEW_PENDING_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Pending Docs <br>
+                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_REJECTED_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_REJECTED_DOC');" <?= $VIEW_REJECTED_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Rejected Docs
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ARCHIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ARCHIVE_DOC');" <?= $VIEW_ARCHIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Archive Docs <br>
+                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-CAPA_STATUS" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'CAPA_STATUS');" <?= $CAPA_STATUS_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View CAPA Status
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                         <br>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
+                                <br><br>
+                            </div>
+                            @if ($masterDocumentsCount == 0)
+                                <style>
+                                    .masterForm-<?= $department->id ?>-<?= $formMaster->id ?>{
+                                        display: none;
+                                    }
+
+                                </style>
+                            @endif
+                        @endforeach
+                    </div>
+                    <br><br>
+                @endforeach
                             </div>
                         </div>
                         <div class="modal-footer">
