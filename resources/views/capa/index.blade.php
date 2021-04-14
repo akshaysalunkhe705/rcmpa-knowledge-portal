@@ -30,7 +30,7 @@ use App\Models\SubDocumentTitleModel;
         </div>
         <div class="col-md-4">
             <label for="location"> Location </label>
-            <select name="location" id="location" class="form-control" onchange="js:fetchDepartment();">
+            <select name="location" id="location" class="form-control" ><!-- onchange="js:fetchDepartment();" -->
                 <option value="">Select Location</option>
                 @foreach ($locationModel as $item)
                     <option value="{{ $item->id }}">{{ $item->location_name }}</option>
@@ -39,12 +39,10 @@ use App\Models\SubDocumentTitleModel;
         </div>
         <div class="col-md-4">
             <label for="department"> Department </label>
-            <select name="department" id="department" class="form-control">
+            <input type="text" name="department" id="department" class="form-control" value="{{ Auth::user()->department }}">
+            {{-- <select name="department" id="department" class="form-control">
                 <option value="">Select Department</option>
-                {{-- @foreach ($departmentModel as $item)
-                    <option value="{{ $item->department_name }}">{{ $item->department_name }}</option>
-                @endforeach --}}
-            </select>
+            </select> --}}
         </div>
     </div>
 
