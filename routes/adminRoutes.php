@@ -34,6 +34,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::match(['GET', 'POST'], 'add', [UserController::class, 'add']);
     Route::match(['GET', 'POST'], 'edit/{id}', [UserController::class, 'edit']);
     Route::get('remove/{user_id}', [UserController::class, 'remove']);
+    Route::get('change_password/{user_id}/{password}', [UserController::class, 'changePassword']);
 });
 
 Route::group(['middleware' => ['AuthCheck'], 'prefix' => 'general_master'], function () {

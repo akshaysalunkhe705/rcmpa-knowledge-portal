@@ -57,7 +57,7 @@ use App\Models\DepartmentModel;
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <input type="password" class="form-control" name="password-{{ $user->id }}" id="password-{{ $user->id }}">
+                                    <input type="password" class="form-control" name="password-{{ $user->id }}" id="password-{{ $user->id }}" placeholder="Enter New Password">
                                 </div>
                                 <div class="col-md-4">
                                     <button type="button" class="btn btn-primary" onclick="js:changePassword({{ $user->id }});">Change Password</button>
@@ -88,7 +88,7 @@ use App\Models\DepartmentModel;
         function changePassword(user_id)
         {
             var password = $("#password-"+user_id).val();
-            $.get('{{ url('') }}',{},function(response) {
+            $.get('{{ url('admin/user/changePassword') }}/'+user_id+'/'+password,{},function(response) {
                 alert("Successfully Change Password");
             });
         }
