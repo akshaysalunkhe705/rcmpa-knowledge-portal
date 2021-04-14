@@ -87,11 +87,13 @@ class UserController extends Controller
         ]);
     }
 
-    public function edit()
+    public function remove($user_id)
     {
+
     }
 
-    public function remove()
+    public function edit()
     {
+    
     }
 }

@@ -33,7 +33,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('detail/{id}', [UserController::class, 'detail']);
     Route::match(['GET', 'POST'], 'add', [UserController::class, 'add']);
     Route::match(['GET', 'POST'], 'edit/{id}', [UserController::class, 'edit']);
-    Route::get('remove/{id}', [UserController::class, 'remove']);
+    Route::get('remove/{user_id}', [UserController::class, 'remove']);
 });
 
 Route::group(['middleware' => ['AuthCheck'], 'prefix' => 'general_master'], function () {
