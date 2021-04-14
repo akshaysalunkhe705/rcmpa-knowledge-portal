@@ -191,7 +191,6 @@ use App\Models\UserDocumentPermissionModel;
 
                 <script>
                     function assignRoleToUser(checkbox_id, user_id, department_id, form_id, main_document_id, sub_document_id, action) {
-                            alert($("#"+checkbox_id).val());
                         if($("#"+checkbox_id).prop("checked") == true)
                         {
                             $.get('{{ url('admin/user_document_permissions/set_document_action') }}',{
@@ -230,13 +229,13 @@ use App\Models\UserDocumentPermissionModel;
                         alert($("#"+checkbox_id).val());
                         if($("#"+checkbox_id).prop("checked") == true)
                         {
-                            $("#curd-" + checkbox_id).attr('checked', true);
-                            $("#view_active-" + checkbox_id).attr('checked', true);
-                            $("#view_rejected-" + checkbox_id).attr('checked', true);
-                            $("#view_archive-" + checkbox_id).attr('checked', true);
-                            $("#view_pending-" + checkbox_id).attr('checked', true);
-                            $("#view_deactivate-" + checkbox_id).attr('checked', true);
-                            $("#capa_status-" + checkbox_id).attr('checked', true);
+                            $("#curd-" + checkbox_id).attr('checked', 'checked');
+                            $("#view_active-" + checkbox_id).attr('checked', 'checked');
+                            $("#view_rejected-" + checkbox_id).attr('checked', 'checked');
+                            $("#view_archive-" + checkbox_id).attr('checked', 'checked');
+                            $("#view_pending-" + checkbox_id).attr('checked', 'checked');
+                            $("#view_deactivate-" + checkbox_id).attr('checked', 'checked');
+                            $("#capa_status-" + checkbox_id).attr('checked', 'checked');
                             
                             $.get('{{ url('admin/user_document_permissions/set_all_action') }}',{
                                 'user_id':user_id,
@@ -247,9 +246,10 @@ use App\Models\UserDocumentPermissionModel;
                                 'permission_type':action,
                             },function(response) {
                                 console.log(response);
+                                location.reload();
                             });
                         }else{
-                            $("#curd-" + checkbox_id).attr('checked', false);
+                            $("#curd-" + checkbox_id).attr('checked', 'checked');
                             $("#view_active-" + checkbox_id).attr('checked', false);
                             $("#view_rejected-" + checkbox_id).attr('checked', false);
                             $("#view_archive-" + checkbox_id).attr('checked', false);
@@ -266,6 +266,7 @@ use App\Models\UserDocumentPermissionModel;
                                 'permission_type':action,
                             },function(response) {
                                 console.log(response);
+                                location.reload();
                             });
                         }
                     }
