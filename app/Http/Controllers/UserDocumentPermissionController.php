@@ -15,8 +15,7 @@ class UserDocumentPermissionController extends Controller
             'department_id' => $request->department_id,
             'form_id' => $request->form_id,
             'main_document_id' => $request->main_document_id,
-            'sub_document_id' => $request->sub_document_id,
-            'status' => 'SAVED'
+            'sub_document_id' => $request->sub_document_id
         ]);
     }
 
@@ -39,8 +38,7 @@ class UserDocumentPermissionController extends Controller
             'department_id' => $request->department_id,
             'form_id' => $request->form_id,
             'main_document_id' => $request->main_document_id,
-            'sub_document_id' => $request->sub_document_id,
-            'status' => 'SAVED'
+            'sub_document_id' => $request->sub_document_id
         ]);
         
         UserDocumentPermissionModel::create([
@@ -49,8 +47,7 @@ class UserDocumentPermissionController extends Controller
             'department_id' => $request->department_id,
             'form_id' => $request->form_id,
             'main_document_id' => $request->main_document_id,
-            'sub_document_id' => $request->sub_document_id,
-            'status' => 'SAVED'
+            'sub_document_id' => $request->sub_document_id
         ]);
         
         UserDocumentPermissionModel::create([
@@ -59,8 +56,7 @@ class UserDocumentPermissionController extends Controller
             'department_id' => $request->department_id,
             'form_id' => $request->form_id,
             'main_document_id' => $request->main_document_id,
-            'sub_document_id' => $request->sub_document_id,
-            'status' => 'SAVED'
+            'sub_document_id' => $request->sub_document_id
         ]);
         
         UserDocumentPermissionModel::create([
@@ -69,8 +65,7 @@ class UserDocumentPermissionController extends Controller
             'department_id' => $request->department_id,
             'form_id' => $request->form_id,
             'main_document_id' => $request->main_document_id,
-            'sub_document_id' => $request->sub_document_id,
-            'status' => 'SAVED'
+            'sub_document_id' => $request->sub_document_id
         ]);
         
         UserDocumentPermissionModel::create([
@@ -79,8 +74,7 @@ class UserDocumentPermissionController extends Controller
             'department_id' => $request->department_id,
             'form_id' => $request->form_id,
             'main_document_id' => $request->main_document_id,
-            'sub_document_id' => $request->sub_document_id,
-            'status' => 'SAVED'
+            'sub_document_id' => $request->sub_document_id
         ]);
         
         UserDocumentPermissionModel::create([
@@ -89,8 +83,7 @@ class UserDocumentPermissionController extends Controller
             'department_id' => $request->department_id,
             'form_id' => $request->form_id,
             'main_document_id' => $request->main_document_id,
-            'sub_document_id' => $request->sub_document_id,
-            'status' => 'SAVED'
+            'sub_document_id' => $request->sub_document_id
         ]);
         
         UserDocumentPermissionModel::create([
@@ -99,8 +92,16 @@ class UserDocumentPermissionController extends Controller
             'department_id' => $request->department_id,
             'form_id' => $request->form_id,
             'main_document_id' => $request->main_document_id,
-            'sub_document_id' => $request->sub_document_id,
-            'status' => 'SAVED'
+            'sub_document_id' => $request->sub_document_id
+        ]);
+        
+        UserDocumentPermissionModel::create([
+            'user_id' => $request->user_id,
+            'permission_type' => 'CAPA_STATUS',
+            'department_id' => $request->department_id,
+            'form_id' => $request->form_id,
+            'main_document_id' => $request->main_document_id,
+            'sub_document_id' => $request->sub_document_id
         ]);
         
         UserDocumentPermissionModel::create([
@@ -109,8 +110,7 @@ class UserDocumentPermissionController extends Controller
             'department_id' => $request->department_id,
             'form_id' => $request->form_id,
             'main_document_id' => $request->main_document_id,
-            'sub_document_id' => $request->sub_document_id,
-            'status' => 'SAVED'
+            'sub_document_id' => $request->sub_document_id
         ]);
     }
 
