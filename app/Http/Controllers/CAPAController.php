@@ -361,12 +361,12 @@ class CAPAController extends Controller
     public function rollback($capa_number, $process_sub_document, $sop_maintenance_sub_document, $sop_production_sub_document, $sop_qc_sub_document, $msds_sub_document, $sss_sub_document)
     {
         // $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')->get();
-        $process = DocumentsModel::where('form_id', 1)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->where('sub_document_id',$process_sub_document)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
-        $sop_production = DocumentsModel::where('form_id', 2)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->where('sub_document_id',$sop_production_sub_document)->get();
-        $sop_quality_control = DocumentsModel::where('form_id', 3)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->where('sub_document_id',$sop_qc_sub_document)->get();
-        $sop_maintenance = DocumentsModel::where('form_id', 4)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->where('sub_document_id',$sop_maintenance_sub_document)->get();
-        $msds = DocumentsModel::where('form_id', 5)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->where('sub_document_id',$msds_sub_document)->get();
-        $sss = DocumentsModel::where('form_id', 6)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->where('sub_document_id',$sss_sub_document)->get();
+        $process = DocumentsModel::where('form_id', 1)->where('version_number','!=', null)->where('status', 'ARCHIVED')->where('sub_document_id',$process_sub_document)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
+        $sop_production = DocumentsModel::where('form_id', 2)->where('version_number','!=', null)->where('status', 'ARCHIVED')->where('sub_document_id',$sop_production_sub_document)->get();
+        $sop_quality_control = DocumentsModel::where('form_id', 3)->where('version_number','!=', null)->where('status', 'ARCHIVED')->where('sub_document_id',$sop_qc_sub_document)->get();
+        $sop_maintenance = DocumentsModel::where('form_id', 4)->where('version_number','!=', null)->where('status', 'ARCHIVED')->where('sub_document_id',$sop_maintenance_sub_document)->get();
+        $msds = DocumentsModel::where('form_id', 5)->where('version_number','!=', null)->where('status', 'ARCHIVED')->where('sub_document_id',$msds_sub_document)->get();
+        $sss = DocumentsModel::where('form_id', 6)->where('version_number','!=', null)->where('status', 'ARCHIVED')->where('sub_document_id',$sss_sub_document)->get();
 
         return view('capa/roll_back', [
             'capa_number' => $capa_number,
