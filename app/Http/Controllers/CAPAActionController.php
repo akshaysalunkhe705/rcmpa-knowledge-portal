@@ -200,9 +200,9 @@ class CAPAActionController extends Controller
         $model->version_number = $version_number;
         $model->save();
     }
-    public function deactivate($sub_document_id)
+    public function deactivate($sub_document_ids)
     {
-        $model = DocumentsModel::find($sub_document_id);
+        $model = DocumentsModel::find($sub_document_ids);
         $model->status = "DEACTIVE";
         $model->save();
     }
