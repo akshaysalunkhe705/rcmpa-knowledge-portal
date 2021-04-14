@@ -16,6 +16,7 @@ use League\CommonMark\Block\Element\Document;
 class CAPAActionController extends Controller
 {
     //---------------------FORM SAVE ACTIONS AAT MADHLA CONTENT ITHE SAVE HONAR
+    //---------------------CREATE AND UPDATE
     public function process_and_flow_control(Request $request)
     {
         $documentData = [
@@ -193,7 +194,7 @@ class CAPAActionController extends Controller
         return redirect()->back()->with('message', 'Successful');
     }
 
-
+    //---------------------ROLL BACK
     public function roll_back($sub_document_id, $version_number)
     {
         $model = DocumentsModel::where('capa_action','ROLL_BACK')->where('status','SAVED')->where('sub_document_id', $sub_document_id)->orderBy('id', 'DESC')->first();
@@ -202,12 +203,16 @@ class CAPAActionController extends Controller
         $model->save();
         return redirect()->back();
     }
+
+    //---------------------DEACTIVATE
     public function deactivate($sub_document_ids)
     {
         $model = DocumentsModel::find($sub_document_ids);
         $model->status = "DEACTIVE";
         $model->save();
     }
+
+    //---------------------REACTIVATE
     public function reactivate($document_id)
     {
         $model = DocumentsModel::find($document_id);
