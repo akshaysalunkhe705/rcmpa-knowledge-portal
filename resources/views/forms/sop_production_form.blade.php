@@ -74,20 +74,16 @@
         <br>
 
         <label for="pre_production_process">Pre Production Process</label>
-        <input type="text" name="pre_production_process" class="form-control">
+        <input type="text" name="pre_production_process" class="form-control" value="{{ isset($documentData['equipement_required']['equipement_unit'][$i]) ? $documentData['equipement_required']['equipement_unit'][$i] : ''  }}">
 
         <label for="production_process">Production Process</label>
-        <input type="text" name="production_process" class="form-control">
+        <input type="text" name="production_process" class="form-control" value="{{ isset($documentData['equipement_required']['equipement_unit'][$i]) ? $documentData['equipement_required']['equipement_unit'][$i] : ''  }}">
 
         <label for="post_production_process">Post Production Process</label>
-        <input type="text" name="post_production_process" class="form-control">
-
-        <label for="reference_document_urls">Reference Document Urls</label>
-        <input type="text" name="reference_document_urls" class="form-control">
+        <input type="text" name="post_production_process" class="form-control" value="{{ isset($documentData['equipement_required']['equipement_unit'][$i]) ? $documentData['equipement_required']['equipement_unit'][$i] : ''  }}">
 
         <br>
-        <label for="name_of_reference_document">Name Of Reference Document</label><button class="btn btn-primary"
-            onclick="js:add_name_of_reference_document();">+</button>
+        <label for="name_of_reference_document">Name Of Reference Document</label><button class="btn btn-primary" onclick="js:add_name_of_reference_document_pr();">+</button>
         <table class="table table-bordered">
             <tbody id="name_of_reference_document_sop_PR">
                 @if (isset($documentData['name_of_reference_document']))
@@ -155,7 +151,7 @@
         return false;
     }
 
-    function add_name_of_reference_document() {
+    function add_name_of_reference_document_pr() {
         event.preventDefault();
         $("#name_of_reference_document_sop_PR").after(`
             <tr>
