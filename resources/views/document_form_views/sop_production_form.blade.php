@@ -16,7 +16,7 @@
         subDocumentId='{{ $dataSet->fetctSubDocumentTitle($dataSet->sub_document_id) }}' />
     <div>
         <label for="objective">Objective</label>
-        <input type="text" name="objective" class="form-control" disabled>
+        <input type="text" name="objective" class="form-control" value="{{ $documentData != null ? $documentData['objective'] : '' }}">
     </div>
 
     <br>
@@ -57,34 +57,34 @@
             </tr>
         </thead>
         <tbody id="equipment_required_PR">
-            <tr>
-                <td><input class="form-control" type="text" name="equipement_name[]" id="name" disabled></td>
-                <td><input class="form-control" type="text" name="equipement_location_mark_and_number[]"
-                        id="location_mark_and_number" disabled></td>
-                <td><input class="form-control" type="text" name="equipement_capacity[]" id="capacity" disabled></td>
-                <td><input class="form-control" type="text" name="equipement_unit[]" id="unit" disabled></td>
-            </tr>
+            @if ($documentData != null)
+                @for ($i = 0; $i < count($documentData['equipement_required']['equipement_name']); $i++)
+                    <tr>
+                        <td><input class="form-control" type="text" name="equipement_name[]" id="name" value="{{ isset($documentData['equipement_required']['equipement_name'][$i]) ? $documentData['equipement_required']['equipement_name'][$i] : ''  }}"></td>
+                        <td><input class="form-control" type="text" name="equipement_location_mark_and_number[]" id="location_mark_and_number" value="{{ isset($documentData['equipement_required']['equipement_location_mark_and_number'][$i]) ? $documentData['equipement_required']['equipement_location_mark_and_number'][$i] : ''  }}"></td>
+                        <td><input class="form-control" type="text" name="equipement_capacity[]" id="capacity" value="{{ isset($documentData['equipement_required']['equipement_capacity'][$i]) ? $documentData['equipement_required']['equipement_capacity'][$i] : ''  }}"></td>
+                        <td><input class="form-control" type="text" name="equipement_unit[]" id="unit" value="{{ isset($documentData['equipement_required']['equipement_unit'][$i]) ? $documentData['equipement_required']['equipement_unit'][$i] : ''  }}"></td>
+                    </tr>
+                @endfor
+            @endif
         </tbody>
     </table>
-    <br>
 
+    <br>
     <label for="pre_production_process">Pre Production Process</label>
-    <input type="text" name="pre_production_process" class="form-control" disabled>
+    <textarea name="pre_production_process" id="pre_production_process" class="form-control" disabled> {{ isset($documentData['pre_production_process']) ? $documentData['pre_production_process'] : ''  }} </textarea>
 
     <label for="production_process">Production Process</label>
-    <input type="text" name="production_process" class="form-control" disabled>
+    <textarea name="production_process" id="production_process" class="form-control" disabled> {{ isset($documentData['production_process']) ? $documentData['production_process'] : ''  }} </textarea>
 
     <label for="post_production_process">Post Production Process</label>
-    <input type="text" name="post_production_process" class="form-control" disabled>
-
-    <label for="reference_document_urls">Reference Document Urls</label>
-    <input type="text" name="reference_document_urls" class="form-control" disabled>
+    <textarea name="post_production_process" id="post_production_process" class="form-control" disabled> {{ isset($documentData['post_production_process']) ? $documentData['post_production_process'] : ''  }} </textarea>
 
     <br>
-    <label for="name_of_reference_document">Name Of Reference Document</label>
+    <label for="name_of_reference_document">Name Of Reference Document</label><button class="btn btn-primary" onclick="js:add_name_of_reference_document_pr();">+</button>
     <table class="table table-bordered">
         <tbody id="name_of_reference_document_sop_PR">
-            @if ($documentData['name_of_reference_document'] != null)
+            @if (isset($documentData['name_of_reference_document']))
                 <tr>
                     <?php $i = 0; ?>
                     @foreach ($documentData['name_of_reference_document'] as $item)
@@ -95,17 +95,13 @@
             @endif
             <?php $i++; ?>
             <td>
-                <input type="text" name="name_of_reference_document[]" class="form-control" value="{{ $item }}"
-                    disabled>
+                <input type="text" name="name_of_reference_document[]" class="form-control" value="{{ $item }}" disabled>
             </td>
-            @endforeach
-            </tr>
-            @endif
-        </tbody>
-    </table>
+    @endforeach
+    </tr>
+    @endif
+</tbody>
+</table>
 
-    <label for="reference_document_urls">Reference Document Upload</label>
-    <input type="file" name="reference_document_urls" class="form-control" multiple>
-    <br>
 
 @endsection
