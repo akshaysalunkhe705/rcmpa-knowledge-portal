@@ -140,7 +140,7 @@ use App\Models\UserDocumentPermissionModel;
                                         <div class="col-md-3">
                                             <input type="checkbox"
                                                 id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-ALL"
-                                                onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'ALL');">
+                                                onchange="js:checked_all(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'ALL');">
                                             SELECT ALL <br>
                                             <input type="checkbox"
                                                 id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-CREATE_UPDATE_ROLLBACK_DOC"
