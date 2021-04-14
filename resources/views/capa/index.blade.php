@@ -39,7 +39,7 @@ use App\Models\SubDocumentTitleModel;
         </div>
         <div class="col-md-4">
             <label for="department"> Department </label>
-            <input type="text" name="department" id="department" class="form-control" value="{{ Auth::user()->department }}" disabled>
+            <input type="text" name="department" id="department" class="form-control" value="{{ Auth::user()->department }}" readonly>
             {{-- <select name="department" id="department" class="form-control">
                 <option value="">Select Department</option>
             </select> --}}
