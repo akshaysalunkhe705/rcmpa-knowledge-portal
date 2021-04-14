@@ -50,12 +50,10 @@ class UserController extends Controller
     public function fetch()
     {
         $usersModel = User::all();
-        $departmentDataset = DepartmentModel::all();
         $FormsModel = FormsModel::all();
 
         return view('user.fetch', [
             'users' => $usersModel,
-            'departmentDataset' => $departmentDataset,
             'formMasters' => $FormsModel
         ]);
     }
