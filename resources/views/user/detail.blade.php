@@ -73,18 +73,19 @@ use App\Models\UserDocumentPermissionModel;
                             $department->id)
                             ->where('main_document_id', $mainDocument->id)
                             ->get(); ?>
-                            
+
                             @foreach ($subDocumentDataset as $subDocument)
                                 <?php
-                                $CREATE_UPDATE_ROLLBACK_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id',
-                                $user->id)
+                                $CREATE_UPDATE_ROLLBACK_DOC_PERMISSION_STATUS =
+                                UserDocumentPermissionModel::where('user_id', $user->id)
                                 ->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')
                                 ->where('department_id', $department->id)
                                 ->where('form_id', $formMaster->id)
                                 ->where('main_document_id', $mainDocument->id)
                                 ->where('sub_document_id', $subDocument->id)
                                 ->first();
-                                $VIEW_ACTIVE_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id', $user->id)
+                                $VIEW_ACTIVE_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id',
+                                $user->id)
                                 ->where('permission_type', 'VIEW_ACTIVE_DOC')
                                 ->where('department_id', $department->id)
                                 ->where('form_id', $formMaster->id)
@@ -99,21 +100,24 @@ use App\Models\UserDocumentPermissionModel;
                                 ->where('main_document_id', $mainDocument->id)
                                 ->where('sub_document_id', $subDocument->id)
                                 ->first();
-                                $VIEW_PENDING_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id', $user->id)
+                                $VIEW_PENDING_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id',
+                                $user->id)
                                 ->where('permission_type', 'VIEW_PENDING_DOC')
                                 ->where('department_id', $department->id)
                                 ->where('form_id', $formMaster->id)
                                 ->where('main_document_id', $mainDocument->id)
                                 ->where('sub_document_id', $subDocument->id)
                                 ->first();
-                                $VIEW_REJECTED_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id', $user->id)
+                                $VIEW_REJECTED_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id',
+                                $user->id)
                                 ->where('permission_type', 'VIEW_REJECTED_DOC')
                                 ->where('department_id', $department->id)
                                 ->where('form_id', $formMaster->id)
                                 ->where('main_document_id', $mainDocument->id)
                                 ->where('sub_document_id', $subDocument->id)
                                 ->first();
-                                $VIEW_ARCHIVE_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id', $user->id)
+                                $VIEW_ARCHIVE_DOC_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id',
+                                $user->id)
                                 ->where('permission_type', 'VIEW_ARCHIVE_DOC')
                                 ->where('department_id', $department->id)
                                 ->where('form_id', $formMaster->id)
@@ -129,7 +133,8 @@ use App\Models\UserDocumentPermissionModel;
                                 ->first();
                                 ?>
                                 <div class="border p-3">
-                                    <b>{{ $mainDocument->main_document_title }} - ( {{ $subDocument->sub_document_title }} ) </b>
+                                    <b>{{ $mainDocument->main_document_title }} - (
+                                        {{ $subDocument->sub_document_title }} ) </b>
                                     <br><br>
                                     <div class="row">
                                         <div class="col-md-3">
@@ -140,94 +145,115 @@ use App\Models\UserDocumentPermissionModel;
                                             <input type="checkbox"
                                                 id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-CREATE_UPDATE_ROLLBACK_DOC"
                                                 onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'CREATE_UPDATE_ROLLBACK_DOC');" <?= $CREATE_UPDATE_ROLLBACK_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> Create | Update | Rollback
-                                            </div>
+                                                </div>
 
-                                            <div class="col-md-3">
-                                                <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ACTIVE_DOC');" <?= $VIEW_ACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Active Docs <br>
-                                                <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-DEACTIVE_REACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'DEACTIVE_REACTIVE_DOC');" <?= $DEACTIVE_REACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> Deactivate | Reactive Docs
-                                            </div>
+                                                <div class="col-md-3">
+                                                    <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ACTIVE_DOC');" <?= $VIEW_ACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Active Docs <br>
+                                                    <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-DEACTIVE_REACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'DEACTIVE_REACTIVE_DOC');" <?= $DEACTIVE_REACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> Deactivate | Reactive Docs
+                                                </div>
 
-                                            <div class="col-md-3">
-                                                <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_PENDING_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_PENDING_DOC');" <?= $VIEW_PENDING_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Pending Docs <br>
-                                                <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_REJECTED_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_REJECTED_DOC');" <?= $VIEW_REJECTED_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Rejected Docs
-                                            </div>
+                                                <div class="col-md-3">
+                                                    <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_PENDING_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_PENDING_DOC');" <?= $VIEW_PENDING_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Pending Docs <br>
+                                                    <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_REJECTED_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_REJECTED_DOC');" <?= $VIEW_REJECTED_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Rejected Docs
+                                                </div>
 
-                                            <div class="col-md-3">
-                                                <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ARCHIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ARCHIVE_DOC');" <?= $VIEW_ARCHIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Archive Docs <br>
-                                                <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-CAPA_STATUS" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'CAPA_STATUS');" <?= $CAPA_STATUS_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View CAPA Status
+                                                <div class="col-md-3">
+                                                    <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ARCHIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ARCHIVE_DOC');" <?= $VIEW_ARCHIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Archive Docs <br>
+                                                    <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-CAPA_STATUS" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'CAPA_STATUS');" <?= $CAPA_STATUS_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View CAPA Status
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endforeach
+                                    <br>
                                 @endforeach
-                                <br>
-                            @endforeach
+                            </div>
+                            <br><br>
                         </div>
-                        <br><br>
-                    </div>
-                    @if ($masterDocumentsCount == 0)
-                        <style>
-                            .masterForm-<?= $department->id ?>-<?= $formMaster->id ?>{
-                                display: none;
-                            }
+                        @if ($masterDocumentsCount == 0)
+                            <style>
+                                .masterForm-<?= $department->id ?>-<?= $formMaster->id ?>{
+                                    display: none;
+                                }
 
-                        </style>
-                    @endif
-                @endforeach
-            </div>
-            <br><br>
-        @endforeach
+                            </style>
+                        @endif
+                    @endforeach
+                </div>
+                <br><br>
+            @endforeach
 
-        <style>
-            label {
-                font-size: 1.2em;
-            }
-
-        </style>
-
-        <script>
-            function assignRoleToUser(checkbox_id, user_id, department_id, form_id, main_document_id, sub_document_id, action) {
-                if($("#"+checkbox_id).prop("checked") == true)
-                {
-                    $.get('{{ url('admin/user_document_permissions/set_document_action') }}',{
-                        'user_id':user_id,
-                        'department_id':department_id,
-                        'form_id':form_id,
-                        'main_document_id':main_document_id,
-                        'sub_document_id':sub_document_id,
-                        'permission_type':action,
-                    },function(response) {
-                        console.log(response);
-                    });
-                }else{
-                    $.get('{{ url('admin/user_document_permissions/unset_document_action') }}',{
-                        'user_id':user_id,
-                        'department_id':department_id,
-                        'form_id':form_id,
-                        'main_document_id':main_document_id,
-                        'sub_document_id':sub_document_id,
-                        'permission_type':action,
-                    },function(response) {
-                        console.log(response);
-                    });
+            <style>
+                label {
+                    font-size: 1.2em;
                 }
-            }
 
-            function toggleDepartmentSlide(id) {
-                $("#department-" + id).slideToggle();
-            }
+            </style>
 
-            function toggleFormMasterSlide(id) {
-                $("#form-master-" + id).slideToggle();
-            }
+            <script>
+                function assignRoleToUser(checkbox_id, user_id, department_id, form_id, main_document_id, sub_document_id, action) {
+                    if($("#"+checkbox_id).prop("checked") == true)
+                    {
+                        $.get('{{ url('admin/user_document_permissions/set_document_action') }}',{
+                            'user_id':user_id,
+                            'department_id':department_id,
+                            'form_id':form_id,
+                            'main_document_id':main_document_id,
+                            'sub_document_id':sub_document_id,
+                            'permission_type':action,
+                        },function(response) {
+                            console.log(response);
+                        });
+                    }else{
+                        $.get('{{ url('admin/user_document_permissions/unset_document_action') }}',{
+                            'user_id':user_id,
+                            'department_id':department_id,
+                            'form_id':form_id,
+                            'main_document_id':main_document_id,
+                            'sub_document_id':sub_document_id,
+                            'permission_type':action,
+                        },function(response) {
+                            console.log(response);
+                        });
+                    }
+                }
 
-            function checked_all(id) {
-                $("#curd-" + id).prop('checked', true);
-                $("#view_active-" + id).prop('checked', true);
-                $("#view_rejected-" + id).prop('checked', true);
-                $("#view_archive-" + id).prop('checked', true);
-                $("#view_pending-" + id).prop('checked', true);
-                $("#view_deactivate-" + id).prop('checked', true);
-                $("#capa_status-" + id).prop('checked', true);
-            }
-        </script>
+                function toggleDepartmentSlide(id) {
+                    $("#department-" + id).slideToggle();
+                }
+
+                function toggleFormMasterSlide(id) {
+                    $("#form-master-" + id).slideToggle();
+                }
+
+                function checked_all(checkbox_id, user_id, department_id, form_id, main_document_id, sub_document_id, action) {
+                    if($("#"+checkbox_id).prop("checked") == true)
+                    {
+                        $("#curd-" + checkbox_id).prop('checked', true);
+                        $("#view_active-" + checkbox_id).prop('checked', true);
+                        $("#view_rejected-" + checkbox_id).prop('checked', true);
+                        $("#view_archive-" + checkbox_id).prop('checked', true);
+                        $("#view_pending-" + checkbox_id).prop('checked', true);
+                        $("#view_deactivate-" + checkbox_id).prop('checked', true);
+                        $("#capa_status-" + checkbox_id).prop('checked', true);
+                    }else{
+                        $("#curd-" + checkbox_id).prop('checked', false);
+                        $("#view_active-" + checkbox_id).prop('checked', false);
+                        $("#view_rejected-" + checkbox_id).prop('checked', false);
+                        $("#view_archive-" + checkbox_id).prop('checked', false);
+                        $("#view_pending-" + checkbox_id).prop('checked', false);
+                        $("#view_deactivate-" + checkbox_id).prop('checked', false);
+                        $("#capa_status-" + checkbox_id).prop('checked', false);
+                    }
+                    $.get('{{ url('admin/user_document_permissions/set_all_action') }}',{
+                            'user_id':user_id,
+                            'department_id':department_id,
+                            'form_id':form_id,
+                            'main_document_id':main_document_id,
+                            'sub_document_id':sub_document_id,
+                            'permission_type':action,
+                        },function(response) {
+                            console.log(response);
+                        });
+                }
+            </script>
 @endsection

@@ -88,6 +88,7 @@ Route::group(['middleware' => ['AuthCheck'], 'prefix' => 'general_master'], func
 Route::group(['prefix' => 'user_document_permissions'], function () {
     Route::match(['GET', 'POST'], 'set_document_action', [UserDocumentPermissionController::class, 'set_document_action']);
     Route::match(['GET', 'POST'], 'unset_document_action', [UserDocumentPermissionController::class, 'unset_document_action']);
+    Route::match(['GET', 'POST'], 'set_all_action', [UserDocumentPermissionController::class, 'set_all_action']);
 });
 
 Route::group(['prefix' => 'documents'], function () {
