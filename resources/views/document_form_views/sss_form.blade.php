@@ -18,7 +18,7 @@
     
     <br>
     <label for="">Client Name</label>
-    <input type="text" name="client_name" id="client_name" class="form-control" value="{{ isset($documentData['client_name']) ? $documentData['client_name'] : '' }}">
+    <input type="text" name="client_name" id="client_name" class="form-control" value="{{ isset($documentData['client_name']) ? $documentData['client_name'] : '' }}" disabled>
     <br>
     <table class="table table-bordered">
         <thead>
