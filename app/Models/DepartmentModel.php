@@ -44,4 +44,12 @@ class DepartmentModel extends Model implements BaseModelInterface
     public function remove($id)
     {
     }
+
+
+    //-----------------------------
+    public function fetchIdFromDepartmentName($value)
+    {
+        $model = $this->where('department_name',$value)->first();
+        return $model->id;
+    }
 }

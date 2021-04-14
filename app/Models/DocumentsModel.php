@@ -43,14 +43,14 @@ class DocumentsModel extends Model implements BaseModelInterface
 
     public function getCreatedDateAttribute($value)
     {
-        if($value == null){
+        if ($value == null) {
             return "";
         }
         return date("d-M-Y", strtotime($value));
     }
     public function getRevisionDateAttribute($value)
     {
-        if($value == null){
+        if ($value == null) {
             return "";
         }
         return date("d-M-Y", strtotime($value));
@@ -126,27 +126,42 @@ class DocumentsModel extends Model implements BaseModelInterface
     public function fetchLocation($id)
     {
         $model = LocationModel::find($id);
-        return $model->location_name;
+        if ($model != null) {
+            return $model->location_name;
+        }
+        return "No Name";
     }
     public function fetchDepartment($id)
     {
         $model = DepartmentModel::find($id);
-        return $model->department_name;
+        if ($model != null) {
+            return $model->department_name;
+        }
+        return "No Name";
     }
     public function fetchForm($id)
     {
         $model = FormsModel::find($id);
-        return $model->form_name;
+        if ($model != null) {
+            return $model->form_name;
+        }
+        return "No Name";
     }
     public function fetchMainDocumentTitle($id)
     {
         $model = MainDocumentTitleModel::find($id);
-        return $model->main_document_title;
+        if ($model != null) {
+            return $model->main_document_title;
+        }
+        return "No Name";
     }
     public function fetctSubDocumentTitle($id)
     {
         $model = SubDocumentTitleModel::find($id);
-        return $model->sub_document_title;
+        if ($model != null) {
+            return $model->sub_document_title;
+        }
+        return "No Name";
     }
 
 
