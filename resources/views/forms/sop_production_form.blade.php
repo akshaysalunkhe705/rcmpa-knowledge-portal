@@ -74,13 +74,13 @@
         <br>
 
         <label for="pre_production_process">Pre Production Process</label>
-        <input type="text" name="pre_production_process" class="form-control" value="{{ isset($documentData['equipement_required']['equipement_unit'][$i]) ? $documentData['equipement_required']['equipement_unit'][$i] : ''  }}">
+        <input type="text" name="pre_production_process" class="form-control" value="{{ isset($documentData['pre_production_process']) ? $documentData['pre_production_process'] : ''  }}">
 
         <label for="production_process">Production Process</label>
-        <input type="text" name="production_process" class="form-control" value="{{ isset($documentData['equipement_required']['equipement_unit'][$i]) ? $documentData['equipement_required']['equipement_unit'][$i] : ''  }}">
+        <input type="text" name="production_process" class="form-control" value="{{ isset($documentData['production_process']) ? $documentData['production_process'] : ''  }}">
 
         <label for="post_production_process">Post Production Process</label>
-        <input type="text" name="post_production_process" class="form-control" value="{{ isset($documentData['equipement_required']['equipement_unit'][$i]) ? $documentData['equipement_required']['equipement_unit'][$i] : ''  }}">
+        <input type="text" name="post_production_process" class="form-control" value="{{ isset($documentData['post_production_process']) ? $documentData['post_production_process'] : ''  }}">
 
         <br>
         <label for="name_of_reference_document">Name Of Reference Document</label><button class="btn btn-primary" onclick="js:add_name_of_reference_document_pr();">+</button>
@@ -97,7 +97,7 @@
                 @endif
                 <?php $i++; ?>
                 <td>
-                    <input type="text" name="name_of_reference_document_pr[]" class="form-control"
+                    <input type="text" name="name_of_reference_document[]" class="form-control"
                         value="{{ $item }}">
                 </td>
 @endforeach
