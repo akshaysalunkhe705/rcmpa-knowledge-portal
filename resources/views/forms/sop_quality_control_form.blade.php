@@ -69,11 +69,6 @@
                         </tr>
                     @endfor
                 @endif
-                {{-- <tr>
-                    <td><input type="text" class="form-control" name="apparatus_name[]" id="name"></td>
-                    <td><input type="text" class="form-control" name="apparatus_make[]" id="make"></td>
-                    <td><input type="text" class="form-control" name="apparatus_model[]" id="model"></td>
-                </tr> --}}
             </tbody>
         </table>
         <br>
@@ -88,11 +83,20 @@
         <label for="name_of_reference_document">Name Of Reference Document</label> <button class="btn btn-primary" onclick="js:add_name_of_reference_document_qc();">+</button>
         <table class="table table-bordered">
             <tbody id="name_of_reference_document_qc">
-                {{-- <tr>
-                    <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
-                    <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
-                    <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
-                </tr> --}}
+                @if (isset($documentData['name_of_reference_document']))
+                    <tr>
+                        <?php $i = 0; ?>
+                        @foreach ($documentData['name_of_reference_document'] as $item)
+                            @if ($i % 3 == 0)
+                                <?php $i = 0; ?>
+                    </tr>
+                    <tr>
+                @endif
+                <?php $i++; ?>
+                <td>
+                    <input type="text" name="name_of_reference_document[]" class="form-control"
+                        value="{{ $item }}">
+                </td>
             </tbody>
         </table>
         <br>
