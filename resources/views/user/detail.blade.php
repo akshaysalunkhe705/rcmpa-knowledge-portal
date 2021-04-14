@@ -228,13 +228,13 @@ use App\Models\UserDocumentPermissionModel;
                 function checked_all(checkbox_id, user_id, department_id, form_id, main_document_id, sub_document_id, action) {
                     if($("#"+checkbox_id).prop("checked") == true)
                     {
-                        $("#curd-" + checkbox_id).prop('checked', true);
-                        $("#view_active-" + checkbox_id).prop('checked', true);
-                        $("#view_rejected-" + checkbox_id).prop('checked', true);
-                        $("#view_archive-" + checkbox_id).prop('checked', true);
-                        $("#view_pending-" + checkbox_id).prop('checked', true);
-                        $("#view_deactivate-" + checkbox_id).prop('checked', true);
-                        $("#capa_status-" + checkbox_id).prop('checked', true);
+                        $("#curd-" + checkbox_id).attr('checked', true);
+                        $("#view_active-" + checkbox_id).attr('checked', true);
+                        $("#view_rejected-" + checkbox_id).attr('checked', true);
+                        $("#view_archive-" + checkbox_id).attr('checked', true);
+                        $("#view_pending-" + checkbox_id).attr('checked', true);
+                        $("#view_deactivate-" + checkbox_id).attr('checked', true);
+                        $("#capa_status-" + checkbox_id).attr('checked', true);
                         
                         $.get('{{ url('admin/user_document_permissions/set_all_action') }}',{
                             'user_id':user_id,
@@ -247,13 +247,13 @@ use App\Models\UserDocumentPermissionModel;
                             console.log(response);
                         });
                     }else{
-                        $("#curd-" + checkbox_id).prop('checked', false);
-                        $("#view_active-" + checkbox_id).prop('checked', false);
-                        $("#view_rejected-" + checkbox_id).prop('checked', false);
-                        $("#view_archive-" + checkbox_id).prop('checked', false);
-                        $("#view_pending-" + checkbox_id).prop('checked', false);
-                        $("#view_deactivate-" + checkbox_id).prop('checked', false);
-                        $("#capa_status-" + checkbox_id).prop('checked', false);
+                        $("#curd-" + checkbox_id).attr('checked', false);
+                        $("#view_active-" + checkbox_id).attr('checked', false);
+                        $("#view_rejected-" + checkbox_id).attr('checked', false);
+                        $("#view_archive-" + checkbox_id).attr('checked', false);
+                        $("#view_pending-" + checkbox_id).attr('checked', false);
+                        $("#view_deactivate-" + checkbox_id).attr('checked', false);
+                        $("#capa_status-" + checkbox_id).attr('checked', false);
                         
                         $.get('{{ url('admin/user_document_permissions/unset_all_action') }}',{
                             'user_id':user_id,
