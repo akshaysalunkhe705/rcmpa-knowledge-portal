@@ -19,8 +19,8 @@ Route::group(['prefix' => 'capa'], function () {
     Route::get('set/update/{capa_number}', [CAPAController::class, 'update']);
 
     Route::get('set/roll_back/{capa_number}/{process_sub_document}/{sop_maintenance_sub_document}/{sop_production_sub_document}/{sop_qc_sub_document}/{msds_sub_document}/{sss_sub_document}', [CAPAController::class, 'rollback']);
-    Route::get('set/deactivate/{capa_number}', [CAPAController::class, 'deactivate']);
-    Route::get('set/reactivate/{capa_number}', [CAPAController::class, 'reactivate']);
+    Route::get('set/deactivate/{capa_number}/{process_sub_document}/{sop_maintenance_sub_document}/{sop_production_sub_document}/{sop_qc_sub_document}/{msds_sub_document}/{sss_sub_document}', [CAPAController::class, 'deactivate']);
+    Route::get('set/reactivate/{capa_number}/{process_sub_document}/{sop_maintenance_sub_document}/{sop_production_sub_document}/{sop_qc_sub_document}/{msds_sub_document}/{sss_sub_document}', [CAPAController::class, 'reactivate']);
 });
 
 Route::group(['prefix' => 'capa_actions'], function () {
