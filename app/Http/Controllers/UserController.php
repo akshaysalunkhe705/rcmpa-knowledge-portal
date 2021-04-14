@@ -91,7 +91,8 @@ class UserController extends Controller
     public function remove($user_id)
     {
         $model = User::find($user_id);
-        return $model->delete();
+        $model->delete();
+        return redirect()->back();
     }
 
     public function edit()
