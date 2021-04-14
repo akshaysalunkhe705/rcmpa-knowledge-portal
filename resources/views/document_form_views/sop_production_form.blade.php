@@ -32,13 +32,17 @@
             </tr>
         </thead>
         <tbody id="chemical_required_PR">
-            <tr>
-                <td><input class="form-control" type="text" name="chemical_name[]" id="chemical_name" disabled></td>
-                <td><input class="form-control" type="text" name="chemical_make[]" id="make" disabled></td>
-                <td><input class="form-control" type="text" name="chemical_grade_purity[]" id="grade_purity" disabled></td>
-                <td><input class="form-control" type="text" name="chemical_quantity[]" id="quantity" disabled></td>
-                <td><input class="form-control" type="text" name="chemical_unit[]" id="unit" disabled></td>
-            </tr>
+            @if ($documentData != null)
+                @for ($i = 0; $i < count($documentData['chemical_required']['checmical_name']); $i++)
+                    <tr>
+                        <td><input class="form-control" type="text" name="chemical_name[]" id="chemical_name" value="{{ isset($documentData['chemical_required']['checmical_name'][$i]) ? $documentData['chemical_required']['checmical_name'][$i] : '' }}" disabled></td>
+                        <td><input class="form-control" type="text" name="chemical_make[]" id="make"  value="{{ isset($documentData['chemical_required']['chemical_make'][$i]) ? $documentData['chemical_required']['chemical_make'][$i] : '' }}" disabled></td>
+                        <td><input class="form-control" type="text" name="chemical_grade_purity[]" id="grade_purity" value="{{ isset($documentData['chemical_required']['chemical_grade_purity'][$i]) ? $documentData['chemical_required']['chemical_grade_purity'][$i] : '' }}" disabled></td>
+                        <td><input class="form-control" type="text" name="chemical_quantity[]" id="quantity" value="{{ isset($documentData['chemical_required']['chemical_quantity'][$i]) ? $documentData['chemical_required']['chemical_quantity'][$i] : '' }}" disabled></td>
+                        <td><input class="form-control" type="text" name="chemical_unit[]" id="unit" value="{{ isset($documentData['chemical_required']['chemical_unit'][$i]) ? $documentData['chemical_required']['chemical_unit'][$i] : '' }}" disabled></td>
+                    </tr>
+                @endfor
+            @endif
         </tbody>
     </table>
     <br>
