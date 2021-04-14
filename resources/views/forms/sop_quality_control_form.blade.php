@@ -72,7 +72,7 @@
         <textarea name="testing" class="form-control">{{ isset($documentData['testing']) ? $documentData['testing'] : '' }}</textarea>
 
         <br>
-        <label for="name_of_reference_document">Name Of Reference Document</label><button class="btn btn-primary" onclick="js:add_name_of_reference_document_qc();">+</button>
+        <label for="name_of_reference_document">Name Of Reference Document</label> <button class="btn btn-primary" onclick="js:add_name_of_reference_document_qc();">+</button>
         <table class="table table-bordered">
             <tbody id="name_of_reference_document_qc">
                 {{-- <tr>

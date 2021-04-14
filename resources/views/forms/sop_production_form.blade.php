@@ -33,13 +33,17 @@
                 </tr>
             </thead>
             <tbody id="chemical_required_PR">
-                {{-- <tr>
-                    <td><input class="form-control" type="text" name="chemical_name[]" id="chemical_name"></td>
-                    <td><input class="form-control" type="text" name="chemical_make[]" id="make"></td>
-                    <td><input class="form-control" type="text" name="chemical_grade_purity[]" id="grade_purity"></td>
-                    <td><input class="form-control" type="text" name="chemical_quantity[]" id="quantity"></td>
-                    <td><input class="form-control" type="text" name="chemical_unit[]" id="unit"></td>
-                </tr> --}}
+                @if ($documentData != null)
+                    @for ($i = 0; $i < count($documentData['chemical_required']); $i++)
+                        <tr>
+                            <td><input class="form-control" type="text" name="chemical_name[]" id="chemical_name" value="{{ $documentData['chemical_required']['checmical_name'][$i] }}"></td>
+                            <td><input class="form-control" type="text" name="chemical_make[]" id="make"></td>
+                            <td><input class="form-control" type="text" name="chemical_grade_purity[]" id="grade_purity"></td>
+                            <td><input class="form-control" type="text" name="chemical_quantity[]" id="quantity"></td>
+                            <td><input class="form-control" type="text" name="chemical_unit[]" id="unit"></td>
+                        </tr>
+                    @endfor
+                @endif
             </tbody>
         </table>
         <br>
