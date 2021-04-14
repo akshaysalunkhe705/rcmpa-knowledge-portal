@@ -12,7 +12,7 @@
 <?php
 use App\Models\MainDocumentTitleModel;
 use App\Models\SubDocumentTitleModel;
-$deptModel = new App\Models\SubDocumentTitleModel();
+$deptModel = new App\Models\DepartmentModel();
 ?>
 
 @section('main_container')
