@@ -148,4 +148,19 @@ class DocumentsModel extends Model implements BaseModelInterface
         $model = SubDocumentTitleModel::find($id);
         return $model->sub_document_title;
     }
+
+
+
+    ///
+    public function getLatestVersion($sub_document_id)
+    {
+        $documentVersionNumber = DocumentsModel::select('version_number')->where('sub_document_id', $sub_document_id)->where('status', 'ACTIVE')->orderBy('version_number', 'DESC')->first();
+        return floatval($documentVersionNumber->version_number) + floatval(0.1);
+    }
+    public function deactivatePreviousVersion($sub_document_id)
+    {
+        $documentModel = DocumentsModel::where('sub_document_id', $sub_document_id)->where('status', 'ACTIVE')->first();
+        $documentModel->status = "DEACTIVE";
+        $documentModel->save();
+    }
 }

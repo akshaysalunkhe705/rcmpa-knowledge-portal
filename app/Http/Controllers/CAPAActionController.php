@@ -11,7 +11,7 @@ use App\Models\DocumentsModel;
 use App\Models\FormsModel;
 use App\Models\LocationModel;
 use App\Models\UserDocumentPermissionModel;
-
+use League\CommonMark\Block\Element\Document;
 
 class CAPAActionController extends Controller
 {
@@ -194,9 +194,23 @@ class CAPAActionController extends Controller
     }
 
 
-    public function roll_back($document_id)
+    public function roll_back($document_id, $version_number)
     {
-
+        $model = DocumentsModel::find($document_id);
+        $model->version_number = $version_number;
+        $model->save();
+    }
+    public function deactivate($sub_document_id)
+    {
+        $model = DocumentsModel::find($sub_document_id);
+        $model->status = "DEACTIVE";
+        $model->save();
+    }
+    public function reactivate($document_id)
+    {
+        $model = DocumentsModel::find($document_id);
+        $model->version_number = "ACTIVE";
+        $model->save();
     }
 
 

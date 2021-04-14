@@ -418,16 +418,4 @@ class CAPAController extends Controller
             'sss' => $sss,
         ]);
     }
-
-    private function getLatestVersion($sub_document_id)
-    {
-        $documentVersionNumber = DocumentsModel::select('version_number')->where('sub_document_id', $sub_document_id)->where('status', 'ACTIVE')->orderBy('version_number', 'DESC')->first();
-        return floatval($documentVersionNumber->version_number) + floatval(0.1);
-    }
-    private function deactivatePreviousVersion($sub_document_id)
-    {
-        $documentModel = DocumentsModel::where('sub_document_id', $sub_document_id)->where('status', 'ACTIVE')->first();
-        $documentModel->status = "DEACTIVE";
-        $documentModel->save();
-    }
 }
