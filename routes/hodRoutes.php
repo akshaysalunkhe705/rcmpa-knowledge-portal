@@ -31,7 +31,7 @@ Route::group(['prefix'=>'capa_actions'], function(){
     Route::post('msds/{document_id}',[CAPAActionController::class, 'msds']);
     Route::post('sss/{document_id}',[CAPAActionController::class, 'sss']);
 
-    Route::get('roll_back_document/{document_id}/{version_number}',[CAPAActionController::class, 'roll_back']);
+    Route::get('roll_back_document/{sub_document_id}/{version_number}',[CAPAActionController::class, 'roll_back']);
     Route::get('deactivate/{sub_document_ids}',[CAPAActionController::class, 'deactivate']);
     Route::get('activate/{document_id}',[CAPAActionController::class, 'reactivate']);
 });
