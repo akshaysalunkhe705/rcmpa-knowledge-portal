@@ -14,6 +14,7 @@ use App\Models\DepartmentModel;
 use App\Models\RoleModel;
 use App\Models\FormsModel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 //Interface
 
@@ -98,5 +99,12 @@ class UserController extends Controller
     public function edit()
     {
     
+    }
+
+    public function changePassword($user_id, $password)
+    {
+        $model = User::find($user_id);
+        $model->password = Hash::make($password);
+        return $model->save();
     }
 }
