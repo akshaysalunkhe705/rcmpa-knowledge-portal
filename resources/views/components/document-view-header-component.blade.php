@@ -46,7 +46,7 @@
         <th>Master Document Name</th>
         <td>{{ $mainDocumentId }}</td>
         <th>Approved By</th>
-        <td>Mr. Maxeem Gill</td>
+        <td>{{ $approvedBy }}</td>
     </tr>
     <tr>
         <th>Document Name</th>
