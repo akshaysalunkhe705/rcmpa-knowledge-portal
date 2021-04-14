@@ -88,7 +88,7 @@ use App\Models\DepartmentModel;
         function changePassword(user_id)
         {
             var password = $("#password-"+user_id).val();
-            $.get('{{ url('admin/user/changePassword') }}/'+user_id+'/'+password,{},function(response) {
+            $.get('{{ url('admin/user/change_password') }}/'+user_id+'/'+password,{},function(response) {
                 alert("Successfully Change Password");
             });
         }
