@@ -40,7 +40,7 @@ use App\Models\DepartmentModel;
                     <a class="btn btn-info" href="{{ url('admin/user/detail') }}/{{ $user->id }}">Set Permissions</a>
                 </td>
                 <th>
-                    <button class="btn btn-info" data-toggle="modal" data-target="#change-password-{{ $user->id }}">Change Password</button> |
+                    <button class="btn btn-warning" data-toggle="modal" data-target="#change-password-{{ $user->id }}">Change Password</button> |
                     <a class="btn btn-danger" href="{{ url('admin/user/remove') }}/{{ $user->id }}">Delete</a>
                 </th>
             </tr>
@@ -87,7 +87,8 @@ use App\Models\DepartmentModel;
 
         function changePassword(user_id)
         {
-            $.get('',{},function(response) {
+            var password = $("#password-"+user_id).val();
+            $.get('{{ url('') }}',{},function(response) {
                 alert("Successfully Change Password");
             });
         }
