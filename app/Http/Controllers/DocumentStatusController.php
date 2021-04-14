@@ -73,7 +73,7 @@ class DocumentStatusController extends Controller
         if(Auth::user()->role == "ADMIN"){
             $model->status_by_admin = "REJECT";
         }
-        return $model->save();
+        $model->save();
         return redirect()->back()->with('success_message',"Reject Successfully");
     }
     public function removeDocument($document_id)
@@ -87,7 +87,7 @@ class DocumentStatusController extends Controller
         if(Auth::user()->role == "ADMIN"){
             $model->status_by_admin = "REMOVE";
         }
-        return $model->save();
+        $model->save();
         return redirect()->back()->with('success_message',"Remove Successfully");
     }
 }
