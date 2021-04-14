@@ -12,6 +12,7 @@
 <?php
 use App\Models\MainDocumentTitleModel;
 use App\Models\SubDocumentTitleModel;
+$deptModel = new App\Models\SubDocumentTitleModel();
 ?>
 
 @section('main_container')
@@ -39,7 +40,7 @@ use App\Models\SubDocumentTitleModel;
         </div>
         <div class="col-md-4">
             <label for="department"> Department </label>
-            <input type="hidden" name="department" id="department" value="">
+            <input type="hidden" name="department" id="department" value="{{ $deptModel->fetchIdFromDepartmentName(Auth::user()->department) }}">
             <input type="text" class="form-control" value="{{ Auth::user()->department }}" readonly>
             {{-- <select name="department" id="department" class="form-control">
                 <option value="">Select Department</option>
