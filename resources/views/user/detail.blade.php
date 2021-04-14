@@ -235,16 +235,8 @@ use App\Models\UserDocumentPermissionModel;
                         $("#view_pending-" + checkbox_id).prop('checked', true);
                         $("#view_deactivate-" + checkbox_id).prop('checked', true);
                         $("#capa_status-" + checkbox_id).prop('checked', true);
-                    }else{
-                        $("#curd-" + checkbox_id).prop('checked', false);
-                        $("#view_active-" + checkbox_id).prop('checked', false);
-                        $("#view_rejected-" + checkbox_id).prop('checked', false);
-                        $("#view_archive-" + checkbox_id).prop('checked', false);
-                        $("#view_pending-" + checkbox_id).prop('checked', false);
-                        $("#view_deactivate-" + checkbox_id).prop('checked', false);
-                        $("#capa_status-" + checkbox_id).prop('checked', false);
-                    }
-                    $.get('{{ url('admin/user_document_permissions/set_all_action') }}',{
+                        
+                        $.get('{{ url('admin/user_document_permissions/set_all_action') }}',{
                             'user_id':user_id,
                             'department_id':department_id,
                             'form_id':form_id,
@@ -254,6 +246,26 @@ use App\Models\UserDocumentPermissionModel;
                         },function(response) {
                             console.log(response);
                         });
+                    }else{
+                        $("#curd-" + checkbox_id).prop('checked', false);
+                        $("#view_active-" + checkbox_id).prop('checked', false);
+                        $("#view_rejected-" + checkbox_id).prop('checked', false);
+                        $("#view_archive-" + checkbox_id).prop('checked', false);
+                        $("#view_pending-" + checkbox_id).prop('checked', false);
+                        $("#view_deactivate-" + checkbox_id).prop('checked', false);
+                        $("#capa_status-" + checkbox_id).prop('checked', false);
+                        
+                        $.get('{{ url('admin/user_document_permissions/unset_all_action') }}',{
+                            'user_id':user_id,
+                            'department_id':department_id,
+                            'form_id':form_id,
+                            'main_document_id':main_document_id,
+                            'sub_document_id':sub_document_id,
+                            'permission_type':action,
+                        },function(response) {
+                            console.log(response);
+                        });
+                    }
                 }
             </script>
 @endsection
