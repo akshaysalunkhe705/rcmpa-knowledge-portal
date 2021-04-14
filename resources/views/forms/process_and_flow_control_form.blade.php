@@ -42,7 +42,7 @@ $documentData = $dataSet->document_details;
                         @endforeach
                     </tr>
                 @endif
-                <tr>
+                {{-- <tr>
                     <td>
                         <input type="text" name="department_and_third_party_involvement[]" id="department_and_third_party_involvement" class="form-control">
                     </td>
@@ -52,7 +52,7 @@ $documentData = $dataSet->document_details;
                     <td>
                         <input type="text" name="department_and_third_party_involvement[]" id="department_and_third_party_involvement" class="form-control">
                     </td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
         <br>
@@ -76,7 +76,7 @@ $documentData = $dataSet->document_details;
                     @endforeach
                 </tr>
                 @endif
-                <tr>
+                {{-- <tr>
                     <td>
                         <input type="text" name="list_of_document_involved[]" id="list_of_document_involved"class="form-control">
                     </td>
@@ -86,7 +86,7 @@ $documentData = $dataSet->document_details;
                     <td>
                         <input type="text" name="list_of_document_involved[]" id="list_of_document_involved" class="form-control">
                     </td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
         <br>
@@ -130,13 +130,13 @@ $documentData = $dataSet->document_details;
                         </tr>
                     @endfor
                 @endif
-                <tr>
+                {{-- <tr>
                     <td><input type="text" name="process_description[]" id="process_description" class="form-control"></td>
                     <td><input type="text" name="units[]" id="units" class="form-control"></td>
                     <td><input type="text" name="desgination_responsible[]" id="desgination_responsible" class="form-control"></td>
                     <td><input type="text" name="document_in_use[]" id="document_in_use" class="form-control"></td>
                     <td><input type="text" name="special_remarks[]" id="special_remarks" class="form-control"></td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
         <br>
