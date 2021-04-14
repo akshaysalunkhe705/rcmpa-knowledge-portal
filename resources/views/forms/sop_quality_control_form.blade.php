@@ -91,12 +91,15 @@
                                 <?php $i = 0; ?>
                     </tr>
                     <tr>
+                    @endif
+                    <?php $i++; ?>
+                    <td>
+                        <input type="text" name="name_of_reference_document[]" class="form-control"
+                            value="{{ $item }}">
+                    </td>
+                @endforeach
+                </tr>
                 @endif
-                <?php $i++; ?>
-                <td>
-                    <input type="text" name="name_of_reference_document[]" class="form-control"
-                        value="{{ $item }}">
-                </td>
             </tbody>
         </table>
         <br>
