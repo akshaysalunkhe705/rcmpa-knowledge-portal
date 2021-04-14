@@ -4,8 +4,8 @@
 'heading' => 'General Master',
 'breadcrumb1' => 'general-master',
 'breadcrumb2' => 'General Master',
-'nav_status' => 'general-master',
-'sub_nav_status' => 'department-general-master',
+'nav_status' => 'general-masters',
+'sub_nav_status' => 'department-general-masters',
 ]
 )
 
