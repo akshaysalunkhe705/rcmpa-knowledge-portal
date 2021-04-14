@@ -227,9 +227,9 @@ use App\Models\UserDocumentPermissionModel;
                     }
 
                     function checked_all(checkbox_id, user_id, department_id, form_id, main_document_id, sub_document_id, action) {
+                        alert($("#"+checkbox_id).val());
                         if($("#"+checkbox_id).prop("checked") == true)
                         {
-                        alert($("#"+checkbox_id).val());
                             $("#curd-" + checkbox_id).attr('checked', true);
                             $("#view_active-" + checkbox_id).attr('checked', true);
                             $("#view_rejected-" + checkbox_id).attr('checked', true);
