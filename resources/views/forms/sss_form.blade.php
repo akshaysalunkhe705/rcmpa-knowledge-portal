@@ -16,7 +16,7 @@ $documentData = $dataSet->document_details;
         </div>
         <br>
         <label for="">Client Name</label>
-        <input type="text" name="client_name" id="client_name" class="form-control" value="{{ $documentData != null ? $documentData->client_name : '' }}">
+        <input type="text" name="client_name" id="client_name" class="form-control" value="{{ $documentData != null ? $documentData['client_name'] : '' }}">
         <br>
         <button class="btn btn-primary" onclick="js:add_sss_parameters();">+</button>
         <table class="table table-bordered">
