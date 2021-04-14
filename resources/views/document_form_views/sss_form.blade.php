@@ -18,7 +18,7 @@
     
     <br>
     <label for="">Client Name</label>
-    <input type="text" name="client_name" id="client_name" class="form-control" value="{{ $documentData->client_name }}">
+    <input type="text" name="client_name" id="client_name" class="form-control" value="{{ isset($documentData['client_name']) ? $documentData['client_name'] : '' }}">
     <br>
     <table class="table table-bordered">
         <thead>
@@ -35,19 +35,19 @@
                     <tr>
                         <td>
                             <input type="text" name="parameter[]" id="parameter[]" class="form-control"
-                                value="{{ $documentData['identification']['parameter'][$i] }}" disabled>
+                                value="{{ isset($documentData['identification']['parameter'][$i]) ? $documentData['client_name'] : ''  }}" disabled>
                         </td>
                         <td>
                             <input type="text" name="specification[]" id="specification[]" class="form-control"
-                                value="{{ $documentData['identification']['specification'][$i] }}" disabled>
+                                value="{{ isset($documentData['identification']['specification'][$i]) ? $documentData['client_name'] : ''  }}" disabled>
                         </td>
                         <td>
                             <input type="text" name="units[]" id="units[]" class="form-control"
-                                value="{{ $documentData['identification']['units'][$i] }}" disabled>
+                                value="{{ isset($documentData['identification']['units'][$i]) ? $documentData['client_name'] : ''  }}" disabled>
                         </td>
                         <td>
                             <input type="text" name="remark[]" id="remark[]" class="form-control"
-                                value="{{ $documentData['identification']['remark'][$i] }}" disabled>
+                                value="{{ isset($documentData['identification']['remark'][$i]) ? $documentData['client_name'] : ''  }}" disabled>
                         </td>
                     </tr>
                 @endfor
