@@ -40,9 +40,8 @@ use App\Models\DepartmentModel;
                     <a class="btn btn-info" href="{{ url('admin/user/detail') }}/{{ $user->id }}">Set Permissions</a>
                 </td>
                 <th>
-                    <button class="btn" data-toggle="modal" data-target="#change-password-{{ $user->id }}">Change
-                        Password</button> |
-                    <a class="btn" href="{{ url('admin/user/remove') }}/{{ $user->id }}">Delete</a>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#change-password-{{ $user->id }}">Change Password</button> |
+                    <a class="btn btn-danger" href="{{ url('admin/user/remove') }}/{{ $user->id }}">Delete</a>
                 </th>
             </tr>
             <div class="modal fade" id="set-permission-{{ $user->id }}" tabindex="-1" role="dialog"
