@@ -33,13 +33,13 @@
                 </tr>
             </thead>
             <tbody id="chemical_required_PR">
-                <tr>
+                {{-- <tr>
                     <td><input class="form-control" type="text" name="chemical_name[]" id="chemical_name"></td>
                     <td><input class="form-control" type="text" name="chemical_make[]" id="make"></td>
                     <td><input class="form-control" type="text" name="chemical_grade_purity[]" id="grade_purity"></td>
                     <td><input class="form-control" type="text" name="chemical_quantity[]" id="quantity"></td>
                     <td><input class="form-control" type="text" name="chemical_unit[]" id="unit"></td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
         <br>
@@ -55,13 +55,13 @@
                 </tr>
             </thead>
             <tbody id="equipment_required_PR">
-                <tr>
+                {{-- <tr>
                     <td><input class="form-control" type="text" name="equipement_name[]" id="name"></td>
                     <td><input class="form-control" type="text" name="equipement_location_mark_and_number[]"
                             id="location_mark_and_number"></td>
                     <td><input class="form-control" type="text" name="equipement_capacity[]" id="capacity"></td>
                     <td><input class="form-control" type="text" name="equipement_unit[]" id="unit"></td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
         <br>
@@ -100,11 +100,11 @@
 @endforeach
 </tr>
 @endif
-<tr>
+{{-- <tr>
     <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
     <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
     <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
-</tr>
+</tr> --}}
 </tbody>
 </table>
 
