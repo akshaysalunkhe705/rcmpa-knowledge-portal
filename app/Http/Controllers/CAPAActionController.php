@@ -62,7 +62,10 @@ class CAPAActionController extends Controller
                 'equipement_capacity' => $request->equipement_capacity,
                 'equipement_unit' => $request->equipement_unit,
             ],
-            'name_of_reference_document' => $request->name_of_reference_document,
+            'pre_production_process' => $request->pre_production_process,
+            'production_process' => $request->production_process,
+            'post_production_process' => $request->post_production_process,
+            'name_of_reference_document' => $request->name_of_reference_document_pr,
         ];
         $model = DocumentsModel::find($request->document_id);
         $model->document_details = $documentData;

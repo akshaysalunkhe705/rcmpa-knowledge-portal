@@ -97,7 +97,7 @@
                 @endif
                 <?php $i++; ?>
                 <td>
-                    <input type="text" name="name_of_reference_document[]" class="form-control"
+                    <input type="text" name="name_of_reference_document_pr[]" class="form-control"
                         value="{{ $item }}">
                 </td>
 @endforeach
