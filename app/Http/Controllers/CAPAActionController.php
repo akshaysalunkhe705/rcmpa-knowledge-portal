@@ -47,7 +47,7 @@ class CAPAActionController extends Controller
 
     public function sop_production(Request $request)
     {
-        return $documentData = [
+        $documentData = [
             'objective' => $request->objective,
             'chemical_required' => [
                 'checmical_name' => $request->chemical_name,
