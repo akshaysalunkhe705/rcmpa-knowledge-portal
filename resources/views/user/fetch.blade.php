@@ -61,17 +61,17 @@ use App\Models\DepartmentModel;
             <h4 style="color:white;">{{ $department->department_name }}</h4>
         </div>
         <div id="department-{{ $department->id }}" class=" border p-2" style="background-color:rgb(179, 179, 179)">
-            @foreach ($FormsModel as $formMaster)
+            @foreach ($FormsModel as $formModel)
                 <?php $masterDocumentsCount = 0; ?>
-                <div class="masterForm-{{ $department->id }}-{{ $formMaster->id }}">
-                    <div onclick="js:toggleFormMasterSlide({{ $formMaster->id }})" class="border p-2 bg-info">
-                        <h5>{{ $formMaster->form_name }}</h5>
+                <div class="masterForm-{{ $department->id }}-{{ $formModel->id }}">
+                    <div onclick="js:toggleformModelSlide({{ $formModel->id }})" class="border p-2 bg-info">
+                        <h5>{{ $formModel->form_name }}</h5>
                     </div>
-                    <div id="form-master-{{ $formMaster->id }}" class="form-master border p-2"
+                    <div id="form-master-{{ $formModel->id }}" class="form-master border p-2"
                         style="background-color:white;">
                         <?php $mainDocumentDataset = MainDocumentTitleModel::where('department_id',
                         $department->id)
-                        ->where('form_id', $formMaster->id)
+                        ->where('form_id', $formModel->id)
                         ->get(); ?>
                         @foreach ($mainDocumentDataset as $mainDocument)
                             <?php $masterDocumentsCount++; ?>
@@ -87,7 +87,7 @@ use App\Models\DepartmentModel;
                                 UserDocumentPermissionModel::where('user_id', $user->id)
                                 ->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')
                                 ->where('department_id', $department->id)
-                                ->where('form_id', $formMaster->id)
+                                ->where('form_id', $formModel->id)
                                 ->where('main_document_id', $mainDocument->id)
                                 ->where('sub_document_id', $subDocument->id)
                                 ->first();
@@ -95,7 +95,7 @@ use App\Models\DepartmentModel;
                                 $user->id)
                                 ->where('permission_type', 'VIEW_ACTIVE_DOC')
                                 ->where('department_id', $department->id)
-                                ->where('form_id', $formMaster->id)
+                                ->where('form_id', $formModel->id)
                                 ->where('main_document_id', $mainDocument->id)
                                 ->where('sub_document_id', $subDocument->id)
                                 ->first();
@@ -103,7 +103,7 @@ use App\Models\DepartmentModel;
                                 $user->id)
                                 ->where('permission_type', 'DEACTIVE_REACTIVE_DOC')
                                 ->where('department_id', $department->id)
-                                ->where('form_id', $formMaster->id)
+                                ->where('form_id', $formModel->id)
                                 ->where('main_document_id', $mainDocument->id)
                                 ->where('sub_document_id', $subDocument->id)
                                 ->first();
@@ -111,7 +111,7 @@ use App\Models\DepartmentModel;
                                 $user->id)
                                 ->where('permission_type', 'VIEW_PENDING_DOC')
                                 ->where('department_id', $department->id)
-                                ->where('form_id', $formMaster->id)
+                                ->where('form_id', $formModel->id)
                                 ->where('main_document_id', $mainDocument->id)
                                 ->where('sub_document_id', $subDocument->id)
                                 ->first();
@@ -119,7 +119,7 @@ use App\Models\DepartmentModel;
                                 $user->id)
                                 ->where('permission_type', 'VIEW_REJECTED_DOC')
                                 ->where('department_id', $department->id)
-                                ->where('form_id', $formMaster->id)
+                                ->where('form_id', $formModel->id)
                                 ->where('main_document_id', $mainDocument->id)
                                 ->where('sub_document_id', $subDocument->id)
                                 ->first();
@@ -127,14 +127,14 @@ use App\Models\DepartmentModel;
                                 $user->id)
                                 ->where('permission_type', 'VIEW_ARCHIVE_DOC')
                                 ->where('department_id', $department->id)
-                                ->where('form_id', $formMaster->id)
+                                ->where('form_id', $formModel->id)
                                 ->where('main_document_id', $mainDocument->id)
                                 ->where('sub_document_id', $subDocument->id)
                                 ->first();
                                 $CAPA_STATUS_PERMISSION_STATUS = UserDocumentPermissionModel::where('user_id', $user->id)
                                 ->where('permission_type', 'CAPA_STATUS')
                                 ->where('department_id', $department->id)
-                                ->where('form_id', $formMaster->id)
+                                ->where('form_id', $formModel->id)
                                 ->where('main_document_id', $mainDocument->id)
                                 ->where('sub_document_id', $subDocument->id)
                                 ->first();
@@ -146,27 +146,27 @@ use App\Models\DepartmentModel;
                                     <div class="row">
                                         <div class="col-md-3">
                                             <input type="checkbox"
-                                                id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-ALL"
-                                                onchange="js:checked_all(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'ALL');">
+                                                id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formModel->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-ALL"
+                                                onchange="js:checked_all(id, {{ $user->id }}, {{ $department->id }}, {{ $formModel->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'ALL');">
                                             SELECT ALL <br>
                                             <input type="checkbox"
-                                                id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-CREATE_UPDATE_ROLLBACK_DOC"
-                                                onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'CREATE_UPDATE_ROLLBACK_DOC');" <?= $CREATE_UPDATE_ROLLBACK_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> Create | Update | Rollback
+                                                id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formModel->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-CREATE_UPDATE_ROLLBACK_DOC"
+                                                onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formModel->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'CREATE_UPDATE_ROLLBACK_DOC');" <?= $CREATE_UPDATE_ROLLBACK_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?> disabled > Create | Update | Rollback
                                                     </div>
 
                                                     <div class="col-md-3">
-                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ACTIVE_DOC');" <?= $VIEW_ACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Active Docs <br>
-                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-DEACTIVE_REACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'DEACTIVE_REACTIVE_DOC');" <?= $DEACTIVE_REACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> Deactivate | Reactive Docs
+                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formModel->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formModel->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ACTIVE_DOC');" <?= $VIEW_ACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?> disabled > View Active Docs <br>
+                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formModel->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-DEACTIVE_REACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formModel->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'DEACTIVE_REACTIVE_DOC');" <?= $DEACTIVE_REACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?> disabled > Deactivate | Reactive Docs
                                                     </div>
 
                                                     <div class="col-md-3">
-                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_PENDING_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_PENDING_DOC');" <?= $VIEW_PENDING_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Pending Docs <br>
-                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_REJECTED_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_REJECTED_DOC');" <?= $VIEW_REJECTED_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Rejected Docs
+                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formModel->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_PENDING_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formModel->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_PENDING_DOC');" <?= $VIEW_PENDING_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?> disabled > View Pending Docs <br>
+                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formModel->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_REJECTED_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formModel->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_REJECTED_DOC');" <?= $VIEW_REJECTED_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?> disabled > View Rejected Docs
                                                     </div>
 
                                                     <div class="col-md-3">
-                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ARCHIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ARCHIVE_DOC');" <?= $VIEW_ARCHIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Archive Docs <br>
-                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-CAPA_STATUS" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'CAPA_STATUS');" <?= $CAPA_STATUS_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View CAPA Status
+                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formModel->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ARCHIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formModel->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ARCHIVE_DOC');" <?= $VIEW_ARCHIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?> disabled > View Archive Docs <br>
+                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formModel->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-CAPA_STATUS" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formModel->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'CAPA_STATUS');" <?= $CAPA_STATUS_PERMISSION_STATUS != null ? 'checked' : 'none' ?> disabled > View CAPA Status
                                                     </div>
                                                 </div>
                                             </div>
@@ -178,7 +178,7 @@ use App\Models\DepartmentModel;
                             </div>
                             @if ($masterDocumentsCount == 0)
                                 <style>
-                                    .masterForm-<?= $department->id ?>-<?= $formMaster->id ?>{
+                                    .masterForm-<?= $department->id ?>-<?= $formModel->id ?>{
                                         display: none;
                                     }
 
