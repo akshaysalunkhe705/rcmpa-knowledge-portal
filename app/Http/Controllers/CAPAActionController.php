@@ -15,6 +15,7 @@ use App\Models\UserDocumentPermissionModel;
 
 class CAPAActionController extends Controller
 {
+//---------------------FORM SAVE ACTIONS
     public function process_and_flow_control(Request $request)
     {
         $documentData = [
@@ -190,6 +191,12 @@ class CAPAActionController extends Controller
         }
         $model->save();
         return redirect()->back()->with('message', 'Successful');
+    }
+
+
+    public function roll_back($document_id)
+    {
+
     }
 
 
