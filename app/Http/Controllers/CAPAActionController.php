@@ -92,9 +92,9 @@ class CAPAActionController extends Controller
                 'chemical_unit' => $request->chemical_unit
             ],
             'apparatus_required' => [
-                'name' => $request->apparatus_name,
-                'make' => $request->apparatus_make,
-                'model' => $request->apparatus_model
+                'apparatus_name' => $request->apparatus_name,
+                'apparatus_make' => $request->apparatus_make,
+                'apparatus_model' => $request->apparatus_model
             ],
             'pre_testing' => $request->pre_testing,
             'testing' => $request->testing,
