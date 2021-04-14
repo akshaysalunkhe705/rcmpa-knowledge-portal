@@ -47,7 +47,7 @@ $documentData = $dataSet->document_details;
                     </tr>
                     @endfor
                 @endif
-                <tr>
+                {{-- <tr>
                     <td>
                         <input type="text" name="parameter[]" id="parameter" class="form-control" >
                     </td>
@@ -60,7 +60,7 @@ $documentData = $dataSet->document_details;
                     <td>
                         <input type="text" name="remark[]" id="remark" class="form-control">
                     </td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
 

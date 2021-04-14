@@ -34,13 +34,13 @@
                 </tr>
             </thead>
             <tbody id="chemical_required_qc">
-                <tr>
+                {{-- <tr>
                     <td><input type="text" class="form-control" name="chemical_name[]" id="chemical_name"></td>
                     <td><input type="text" class="form-control" name="chemical_make[]" id="make"></td>
                     <td><input type="text" class="form-control" name="chemical_grade_purity[]" id="grade_purity"></td>
                     <td><input type="text" class="form-control" name="chemical_quantity[]" id="quantity"></td>
                     <td><input type="text" class="form-control" name="chemical_unit[]" id="unit"></td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
         <br>
@@ -56,11 +56,11 @@
                 </tr>
             </thead>
             <tbody id="apparatus_required">
-                <tr>
+                {{-- <tr>
                     <td><input type="text" class="form-control" name="apparatus_name[]" id="name"></td>
                     <td><input type="text" class="form-control" name="apparatus_make[]" id="make"></td>
                     <td><input type="text" class="form-control" name="apparatus_model[]" id="model"></td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
         <br>
@@ -75,11 +75,11 @@
         <label for="name_of_reference_document">Name Of Reference Document</label><button class="btn" onclick="js:add_name_of_reference_document_qc();">+</button>
         <table class="table table-bordered">
             <tbody id="name_of_reference_document_qc">
-                <tr>
+                {{-- <tr>
                     <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
                     <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
                     <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
-                </tr>
+                </tr> --}}
             </tbody>
         </table>
         <br>
