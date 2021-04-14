@@ -34,7 +34,6 @@ $documentData = $dataSet->document_details;
                                 </tr><tr>
                             @endif
                             <?php $i++ ?>
-                            <td>Remove</td>
                             <td>
                                 <input type="text" name="department_and_third_party_involvement[]"
                                     id="department_and_third_party_involvement" class="form-control"
