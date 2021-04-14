@@ -228,14 +228,6 @@ use App\Models\UserDocumentPermissionModel;
                     function checked_all(checkbox_id, user_id, department_id, form_id, main_document_id, sub_document_id, action) {
                         if($("#"+checkbox_id).prop("checked") == true)
                         {
-                            $("#curd-" + checkbox_id).attr('checked', 'checked');
-                            $("#view_active-" + checkbox_id).attr('checked', 'checked');
-                            $("#view_rejected-" + checkbox_id).attr('checked', 'checked');
-                            $("#view_archive-" + checkbox_id).attr('checked', 'checked');
-                            $("#view_pending-" + checkbox_id).attr('checked', 'checked');
-                            $("#view_deactivate-" + checkbox_id).attr('checked', 'checked');
-                            $("#capa_status-" + checkbox_id).attr('checked', 'checked');
-                            
                             $.get('{{ url('admin/user_document_permissions/set_all_action') }}',{
                                 'user_id':user_id,
                                 'department_id':department_id,

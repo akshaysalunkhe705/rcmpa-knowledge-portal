@@ -56,7 +56,7 @@ class UserController extends Controller
         return view('user.fetch', [
             'users' => $usersModel,
             'departmentDataset' => $departmentDataset,
-            'FormsModel' => $FormsModel
+            'formMasters' => $FormsModel
         ]);
     }
 
