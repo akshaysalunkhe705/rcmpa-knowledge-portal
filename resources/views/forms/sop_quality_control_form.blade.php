@@ -66,10 +66,10 @@
         <br>
 
         <label for="pre_testing ">Pre Testing</label>
-        <textarea name="pre_testing" class="form-control">{{ $documentData['pre_testing'] }}</textarea>
+        <textarea name="pre_testing" class="form-control">{{ $documentData['pre_testing'] != null ? $documentData['pre_testing'] : '' }}</textarea>
 
         <label for="testing">Testing</label>
-        <textarea name="testing" class="form-control">{{ $documentData['testing'] }}</textarea>
+        <textarea name="testing" class="form-control">{{ $documentData['testing'] != null ? $documentData['testing'] : '' }}</textarea>
 
         <br>
         <label for="name_of_reference_document">Name Of Reference Document</label><button class="btn" onclick="js:add_name_of_reference_document_qc();">+</button>
