@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\DepartmentModel;
 use App\Models\RoleModel;
 use App\Models\FormsModel;
+use Illuminate\Database\Eloquent\Model;
 
 //Interface
 
@@ -89,7 +90,8 @@ class UserController extends Controller
 
     public function remove($user_id)
     {
-
+        $model = User::find($user_id);
+        return $model->remove();
     }
 
     public function edit()
