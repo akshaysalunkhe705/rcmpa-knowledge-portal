@@ -59,13 +59,16 @@
                 </tr>
             </thead>
             <tbody id="equipment_required_PR">
-                {{-- <tr>
-                    <td><input class="form-control" type="text" name="equipement_name[]" id="name"></td>
-                    <td><input class="form-control" type="text" name="equipement_location_mark_and_number[]"
-                            id="location_mark_and_number"></td>
-                    <td><input class="form-control" type="text" name="equipement_capacity[]" id="capacity"></td>
-                    <td><input class="form-control" type="text" name="equipement_unit[]" id="unit"></td>
-                </tr> --}}
+                @if ($documentData != null)
+                    @for ($i = 0; $i < count($documentData['equipement_required']['equipement_name']); $i++)
+                        <tr>
+                            <td><input class="form-control" type="text" name="equipement_name[]" id="name" value="{{ isset($documentData['equipement_required']['equipement_name'][$i]) ? $documentData['equipement_required']['equipement_name'][$i] : ''  }}"></td>
+                            <td><input class="form-control" type="text" name="equipement_location_mark_and_number[]" id="location_mark_and_number" value="{{ isset($documentData['equipement_required']['equipement_location_mark_and_number'][$i]) ? $documentData['equipement_required']['equipement_location_mark_and_number'][$i] : ''  }}"></td>
+                            <td><input class="form-control" type="text" name="equipement_capacity[]" id="capacity" value="{{ isset($documentData['equipement_required']['equipement_capacity'][$i]) ? $documentData['equipement_required']['equipement_capacity'][$i] : ''  }}"></td>
+                            <td><input class="form-control" type="text" name="equipement_unit[]" id="unit" value="{{ isset($documentData['equipement_required']['equipement_unit'][$i]) ? $documentData['equipement_required']['equipement_unit'][$i] : ''  }}"></td>
+                        </tr>
+                    @endfor
+                @endif
             </tbody>
         </table>
         <br>
