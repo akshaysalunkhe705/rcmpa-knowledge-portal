@@ -194,10 +194,9 @@ class CAPAActionController extends Controller
     }
 
 
-    public function roll_back($document_id, $version_number)
+    public function roll_back($version_number)
     {
-        return $document_id.','.$version_number;
-        $model = DocumentsModel::find($document_id);
+        return $model = DocumentsModel::where('status','ROLL_BACK')->orderBy('id', 'DESC')->first();
         $model->version_number = $version_number;
         return $model->save();
     }
