@@ -3,9 +3,9 @@
 'title' => 'CAPA',
 'heading' => 'CAPA',
 'breadcrumb1' => 'CAPA',
-'breadcrumb2' => 'Deactivate',
+'breadcrumb2' => 'Reactivate',
 'nav_status' => 'document_action',
-'sub_nav_status' => 'document_action-set-deactivate',
+'sub_nav_status' => 'document_action-set-reactivate',
 ]
 )
 
