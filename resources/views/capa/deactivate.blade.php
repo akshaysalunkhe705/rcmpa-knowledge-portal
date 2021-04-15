@@ -76,7 +76,7 @@ use App\Models\SubDocumentTitleModel;
                     <td>{{ $item->version_number }}</td>
                     <td>
                         <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}"
-                            class="btn">View</a> | Deactivated
+                            class="btn">View</a> Deactivated
                     </td>
                 </tr>
             @endforeach
