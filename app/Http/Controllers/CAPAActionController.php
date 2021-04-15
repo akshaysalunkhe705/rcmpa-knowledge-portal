@@ -201,6 +201,10 @@ class CAPAActionController extends Controller
     public function roll_back($sub_document_id, $version_number, $form_type)
     {
         $model = DocumentsModel::where('capa_action','ROLL_BACK')->where('status','SAVED')->where('sub_document_id', $sub_document_id)->orderBy('id', 'DESC')->first();
+        if(empty($model))
+        {
+            return redirect()->back();
+        }
         $model->version_number = $version_number;
         $model->document_number = mb_substr($model->fetchLocation($model->location_id), 0, 3) . '/' . mb_substr($model->fetchDepartment($model->department_id), 0, 3) . '/'.$form_type.'/' . $version_number;
         $model->status = "SUBMIT";
