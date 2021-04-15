@@ -180,7 +180,7 @@ class DocumentsModel extends Model implements BaseModelInterface
     }
     public function deactivateAllVersions($sub_document_id)
     {
-        return DocumentsModel::where('sub_document_id', $sub_document_id)->update(['status', "DEACTIVE"]);
+        return DocumentsModel::where('sub_document_id', $sub_document_id)->update(['status' => "DEACTIVE"]);
         // $documentModel->status = "ARCHIVED";
         // $documentModel->save();
     }
