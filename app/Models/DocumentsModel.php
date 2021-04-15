@@ -178,4 +178,16 @@ class DocumentsModel extends Model implements BaseModelInterface
         $documentModel->status = "ARCHIVED";
         $documentModel->save();
     }
+    public function deactivateAllVersions($sub_document_id)
+    {
+        $documentModel = DocumentsModel::where('sub_document_id', $sub_document_id)->update('status', "DEACTIVE");
+        // $documentModel->status = "ARCHIVED";
+        // $documentModel->save();
+    }
+    public function reactivateVersion($document_id)
+    {
+        $documentModel = DocumentsModel::where('id', $document_id)->first();
+        $documentModel->status = "ACTIVE";
+        $documentModel->save();
+    }
 }
