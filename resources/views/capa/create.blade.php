@@ -16,11 +16,15 @@ use App\Models\SubDocumentTitleModel;
 
 @section('main_container')
     <style>
-        section:first-child {
+        section {
             display: none;
             background-color: white;
             padding: 2%;
             box-shadow: 0px 0px 3px grey;
+        }
+
+        section:first-child{
+            display: block;
         }
 
         #process_flow_control {
