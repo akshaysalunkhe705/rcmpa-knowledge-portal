@@ -174,8 +174,8 @@ class DocumentsModel extends Model implements BaseModelInterface
     }
     public function archivedPreviousVersion($sub_document_id)
     {
-        $documentModel = DocumentsModel::where('sub_document_id', $sub_document_id)->where('status', 'ACTIVE')->first();
-        $documentModel->status = "ARCHIVED";
-        $documentModel->save();
+        return $documentModel = DocumentsModel::where('sub_document_id', $sub_document_id)->where('status', 'ACTIVE')->update(['status'=>'ARCHIVED']);
+        // $documentModel->status = "ARCHIVED";
+        // $documentModel->save();
     }
 }
