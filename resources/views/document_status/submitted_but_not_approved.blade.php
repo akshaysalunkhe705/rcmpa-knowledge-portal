@@ -30,7 +30,7 @@
                 <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
                 <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
                 <td>
-                    <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}" class="btn">View</a>
+                    <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}" class="btn">View</a> | {{ $item->capa_action }}
                 </td>
             </tr>
         @endforeach
