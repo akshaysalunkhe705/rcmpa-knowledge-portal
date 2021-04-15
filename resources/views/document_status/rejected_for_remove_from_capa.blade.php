@@ -32,7 +32,8 @@
                 <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
                 <td>{{ $item->remove_note }}</td>
                 <td>
-                    <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}" class="btn">View</a>
+                    <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}" class="btn">View</a> | 
+                    <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}" class="btn">Remove</a>
                 </td>
             </tr>
         @endforeach
