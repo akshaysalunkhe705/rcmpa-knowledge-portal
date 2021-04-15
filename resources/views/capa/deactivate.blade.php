@@ -76,9 +76,7 @@ use App\Models\SubDocumentTitleModel;
                     <td>{{ $item->version_number }}</td>
                     <td>
                         <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}"
-                            class="btn">View</a> |
-                        <a href="{{ url('hod/capa_actions/roll_back_document/') }}/{{ $item->sub_document_id }}/{{ $item->version_number }}/PROC"
-                            class="btn">Roll Back</a>
+                            class="btn">View</a> | Deactivated
                     </td>
                 </tr>
             @endforeach
