@@ -327,12 +327,12 @@ class CAPAController extends Controller
     public function create($capa_number)
     {
         // $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')->get();
-        $process = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'CREATE')->where('form_id', 1)->where('capa_number', $capa_number)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
-        $sop_production = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'CREATE')->where('form_id', 2)->where('capa_number', $capa_number)->get();
-        $sop_quality_control = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'CREATE')->where('form_id', 3)->where('capa_number', $capa_number)->get();
-        $sop_maintenance = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'CREATE')->where('form_id', 4)->where('capa_number', $capa_number)->get();
-        $msds = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'CREATE')->where('form_id', 5)->where('capa_number', $capa_number)->get();
-        $sss = DocumentsModel::where('status', 'SAVED')->where('capa_action', 'CREATE')->where('form_id', 6)->where('capa_number', $capa_number)->get();
+        $process = DocumentsModel::where('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'CREATE')->where('form_id', 1)->where('capa_number', $capa_number)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
+        $sop_production = DocumentsModel::where('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'CREATE')->where('form_id', 2)->where('capa_number', $capa_number)->get();
+        $sop_quality_control = DocumentsModel::where('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'CREATE')->where('form_id', 3)->where('capa_number', $capa_number)->get();
+        $sop_maintenance = DocumentsModel::where('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'CREATE')->where('form_id', 4)->where('capa_number', $capa_number)->get();
+        $msds = DocumentsModel::where('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'CREATE')->where('form_id', 5)->where('capa_number', $capa_number)->get();
+        $sss = DocumentsModel::where('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'CREATE')->where('form_id', 6)->where('capa_number', $capa_number)->get();
 
         return view('capa/create', [
             'capa_number' => $capa_number,
