@@ -293,7 +293,7 @@
               </span>
               <span>RCMPA</span>
             </a>
-            {{ Auth::user()->name }} <br> ({{ Auth::user()->department }})
+            <p class="text-center">{{ Auth::user()->name }} <br> ({{ Auth::user()->department }})</p>
 
             <div class="sidebar-heading">Navigation</div>
             <ul class="sidebar-menu">
