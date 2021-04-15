@@ -65,7 +65,7 @@
                             <img src="{{ url('website-images/logo.jpeg') }}" alt="logo" class="img-fluid" /></span>
                     </span>
 
-                    <span class="d-none d-lg-block">Luma</span>
+                    <span class="d-none d-lg-block"></span>
                 </a>
 
                 <!-- // END Navbar Brand -->
@@ -293,6 +293,7 @@
               </span>
               <span>RCMPA</span>
             </a>
+            {{ Auth::user()->name }} <br> ({{ Auth::user()->department }})
 
             <div class="sidebar-heading">Navigation</div>
             <ul class="sidebar-menu">
