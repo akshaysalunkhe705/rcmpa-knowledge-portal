@@ -54,7 +54,7 @@ use App\Models\SubDocumentTitleModel;
         <table class="table">
             <tr>
                 <th>CAPA No</th>
-                <th>Version</th>
+                <th>Old Version</th>
                 <th>Location/Department</th>
                 <th>Form</th>
                 <th>Master Document Title</th>
