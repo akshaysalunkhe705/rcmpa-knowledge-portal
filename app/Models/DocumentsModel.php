@@ -169,7 +169,7 @@ class DocumentsModel extends Model implements BaseModelInterface
     ///
     public function getLatestVersion($sub_document_id)
     {
-        $documentVersionNumber = DocumentsModel::select('version_number')->where('sub_document_id', $sub_document_id)->where('status', 'ACTIVE')->max('version_number')->first();
+        $documentVersionNumber = DocumentsModel::select('version_number')->where('sub_document_id', $sub_document_id)->where('status', 'ACTIVE')->max('version_number');
         return floatval($documentVersionNumber->version_number) + floatval(0.1);
     }
     public function archivedPreviousVersion($sub_document_id)
