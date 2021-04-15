@@ -432,7 +432,7 @@ class CAPAController extends Controller
         $msds = DocumentsModel::where('form_id', 5)->where('version_number','!=', null)->where('status','DEACTIVE')->where('sub_document_id',$msds_sub_document)->get();
         $sss = DocumentsModel::where('form_id', 6)->where('version_number','!=', null)->where('status','DEACTIVE')->where('sub_document_id',$sss_sub_document)->get();
 
-        return view('capa/reactive', [
+        return view('capa/reactivate', [
             'capa_number' => $capa_number,
             'process' => $process,
             'sop_production' => $sop_production,
