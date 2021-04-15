@@ -283,35 +283,35 @@ class CAPAController extends Controller
                 $formBasicData['form_id'] = 2;
                 $formBasicData['main_document_id'] = $request->sop_production_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_production_sub_document;
-                $documentModel->deactivateAllVersions($request->process_sub_document);
+                $documentModel->deactivateAllVersions($request->sop_production_sub_document);
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_qc_main_document != null) && ($request->sop_qc_sub_document != null)) {
                 $formBasicData['form_id'] = 3;
                 $formBasicData['main_document_id'] = $request->sop_qc_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_qc_sub_document;
-                $documentModel->deactivateAllVersions($request->process_sub_document);
+                $documentModel->deactivateAllVersions($request->sop_qc_sub_document);
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_maintenance_main_document != null) && ($request->sop_maintenance_sub_document != null)) {
                 $formBasicData['form_id'] = 4;
                 $formBasicData['main_document_id'] = $request->sop_maintenance_main_document;
                 $formBasicData['sub_document_id'] = $request->sop_maintenance_sub_document;
-                $documentModel->deactivateAllVersions($request->process_sub_document);
+                $documentModel->deactivateAllVersions($request->sop_maintenance_sub_document);
                 $documentModel->add($formBasicData);
             }
             if (($request->msds_main_document != null) && ($request->msds_sub_document != null)) {
                 $formBasicData['form_id'] = 5;
                 $formBasicData['main_document_id'] = $request->msds_main_document;
                 $formBasicData['sub_document_id'] = $request->msds_sub_document;
-                $documentModel->deactivateAllVersions($request->process_sub_document);
+                $documentModel->deactivateAllVersions($request->msds_sub_document);
                 $documentModel->add($formBasicData);
             }
             if (($request->sss_main_document != null) && ($request->sss_sub_document != null)) {
                 $formBasicData['form_id'] = 6;
                 $formBasicData['main_document_id'] = $request->sss_main_document;
                 $formBasicData['sub_document_id'] = $request->sss_sub_document;
-                $documentModel->deactivateAllVersions($request->process_sub_document);
+                $documentModel->deactivateAllVersions($request->sss_sub_document);
                 $documentModel->add($formBasicData);
             }
         }
