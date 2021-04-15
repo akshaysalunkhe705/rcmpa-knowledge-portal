@@ -318,7 +318,6 @@ class CAPAController extends Controller
             $formBasicData['revision_date'] = date('Y-m-d');
             $formBasicData['capa_action'] = "REACTIVATE";
         }
-        return $request;
     }
 
 
