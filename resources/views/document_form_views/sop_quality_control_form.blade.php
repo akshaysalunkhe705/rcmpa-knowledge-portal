@@ -17,7 +17,7 @@
     <br>
     <div>
         <label for="objective">Objective</label>
-        <input type="text" name="objective" class="form-control" disabled>
+        <input type="text" name="objective" class="form-control" value="{{ isset($documentData['objective']) ? $documentData['objective'] : '' }}" disabled>
     </div>
     <br>
 
@@ -33,13 +33,17 @@
             </tr>
         </thead>
         <tbody id="chemical_required_qc">
-            <tr>
-                <td><input type="text" class="form-control" name="chemical_name[]" id="chemical_name" disabled></td>
-                <td><input type="text" class="form-control" name="chemical_make[]" id="make" disabled></td>
-                <td><input type="text" class="form-control" name="chemical_grade_purity[]" id="grade_purity" disabled></td>
-                <td><input type="text" class="form-control" name="chemical_quantity[]" id="quantity" disabled></td>
-                <td><input type="text" class="form-control" name="chemical_unit[]" id="unit" disabled></td>
-            </tr>
+            @if ($documentData != null)
+                @for ($i = 0; $i < count($documentData['chemical_required']['checmical_name']); $i++)
+                    <tr>
+                        <td><input class="form-control" type="text" name="chemical_name[]" id="chemical_name" value="{{ isset($documentData['chemical_required']['checmical_name'][$i]) ? $documentData['chemical_required']['checmical_name'][$i] : '' }}"></td>
+                        <td><input class="form-control" type="text" name="chemical_make[]" id="make"  value="{{ isset($documentData['chemical_required']['chemical_make'][$i]) ? $documentData['chemical_required']['chemical_make'][$i] : '' }}"></td>
+                        <td><input class="form-control" type="text" name="chemical_grade_purity[]" id="grade_purity" value="{{ isset($documentData['chemical_required']['chemical_grade_purity'][$i]) ? $documentData['chemical_required']['chemical_grade_purity'][$i] : '' }}"></td>
+                        <td><input class="form-control" type="text" name="chemical_quantity[]" id="quantity" value="{{ isset($documentData['chemical_required']['chemical_quantity'][$i]) ? $documentData['chemical_required']['chemical_quantity'][$i] : '' }}"></td>
+                        <td><input class="form-control" type="text" name="chemical_unit[]" id="unit" value="{{ isset($documentData['chemical_required']['chemical_unit'][$i]) ? $documentData['chemical_required']['chemical_unit'][$i] : '' }}"></td>
+                    </tr>
+                @endfor
+            @endif
         </tbody>
     </table>
     <br>
@@ -54,11 +58,15 @@
             </tr>
         </thead>
         <tbody id="apparatus_required">
-            <tr>
-                <td><input type="text" class="form-control" name="apparatus_name[]" id="name" disabled></td>
-                <td><input type="text" class="form-control" name="apparatus_make[]" id="make" disabled></td>
-                <td><input type="text" class="form-control" name="apparatus_model[]" id="model" disabled></td>
-            </tr>
+            @if ($documentData != null)
+                @for ($i = 0; $i < count($documentData['apparatus_required']['apparatus_name']); $i++)
+                    <tr>
+                        <td><input class="form-control" type="text" name="apparatus_name[]" id="name" value="{{ isset($documentData['apparatus_required']['apparatus_name'][$i]) ? $documentData['apparatus_required']['apparatus_name'][$i] : ''  }}"></td>
+                        <td><input class="form-control" type="text" name="apparatus_make[]" id="location_mark_and_number" value="{{ isset($documentData['apparatus_required']['apparatus_make'][$i]) ? $documentData['apparatus_required']['apparatus_make'][$i] : ''  }}"></td>
+                        <td><input class="form-control" type="text" name="apparatus_model[]" id="capacity" value="{{ isset($documentData['apparatus_required']['apparatus_model'][$i]) ? $documentData['apparatus_required']['apparatus_model'][$i] : ''  }}"></td>
+                    </tr>
+                @endfor
+            @endif
         </tbody>
     </table>
     <br>
@@ -73,14 +81,24 @@
     <label for="name_of_reference_document">Name Of Reference Document</label>
     <table class="table table-bordered">
         <tbody id="name_of_reference_document_qc">
-            <tr>
-                <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
-                <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
-                <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
+            @if (isset($documentData['name_of_reference_document']))
+                <tr>
+                    <?php $i = 0; ?>
+                    @foreach ($documentData['name_of_reference_document'] as $item)
+                        @if ($i % 3 == 0)
+                            <?php $i = 0; ?>
+                </tr>
+                <tr>
+                @endif
+                <?php $i++; ?>
+                <td>
+                    <input type="text" name="name_of_reference_document[]" class="form-control"
+                        value="{{ $item }}">
+                </td>
+            @endforeach
             </tr>
+            @endif
         </tbody>
     </table>
     <br>
-    <label for="reference_document_urls">Reference Documents</label>
-    <input type="file" name="reference_document_urls" class="form-control" disabled>
 @endsection
