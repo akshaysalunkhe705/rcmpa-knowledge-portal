@@ -202,7 +202,7 @@ class CAPAActionController extends Controller
     {
         $model = DocumentsModel::where('capa_action','ROLL_BACK')->where('status','SAVED')->where('sub_document_id', $sub_document_id)->orderBy('id', 'DESC')->first();
         $model->version_number = $version_number;
-        $model->document_number = mb_substr($model->fetchLocation($model->location), 0, 3) . '/' . mb_substr($model->fetchDepartment($model->department), 0, 3) . '/'.$form_type.'/' . $model->getLatestVersion($model->sub_document_id);
+        $model->document_number = mb_substr($model->fetchLocation($model->location_id), 0, 3) . '/' . mb_substr($model->fetchDepartment($model->department_id), 0, 3) . '/'.$form_type.'/' . $model->getLatestVersion($model->sub_document_id);
         $model->status = "SUBMIT";
         $model->save();
         return redirect()->back();
