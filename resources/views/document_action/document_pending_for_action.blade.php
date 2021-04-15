@@ -19,6 +19,7 @@
                 <th>Form</th>
                 <th>Master Document Title</th>
                 <th>Sub Document Title</th>
+                <th>For?</th>
                 <th>ACTIONS</th>
             </tr>
         </thead>
@@ -31,6 +32,7 @@
                 <td>{{ $item->fetchForm($item->form_id) }}</td>
                 <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
                 <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
+                <td>{{ $item->capa_action }}</td>
                 <td>
                     <a style="width: 20%;" href="{{ url('hod/document_views/view_form_document') }}/{{ $item->id }}" class="btn btn-info">View</a>
                     <a style="width: 25%;" href="{{ url('admin/document_pending_for_action/approve') }}/{{ $item->id }}" class="btn btn-success">Approve</a>
