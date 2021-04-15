@@ -16,7 +16,7 @@ use App\Models\SubDocumentTitleModel;
 
 @section('main_container')
     <style>
-        section {
+        section:first-child {
             display: none;
             background-color: white;
             padding: 2%;
