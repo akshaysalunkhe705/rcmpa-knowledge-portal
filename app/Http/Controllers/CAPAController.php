@@ -28,8 +28,11 @@ class CAPAController extends Controller
         foreach ($documentAccessListIds as $key => $value) {
             $sorted_sub_document_ids[] = $value->sub_document_id;
         }
-        if (($action == 'update') || ($action == 'roll_back') || ($action == 'deactivate') || ($action == 'reactivate')) {
+        if (($action == 'update') || ($action == 'roll_back') || ($action == 'deactivate')) {
             $documentAccessListIds = DocumentsModel::whereIn('sub_document_id', $sorted_sub_document_ids)->where('status', 'ACTIVE')->get();
+        }
+        if($action == 'reactivate'){
+            $documentAccessListIds = DocumentsModel::whereIn('sub_document_id', $sorted_sub_document_ids)->where('status', 'DEACTIVE')->get();
         }
         // elseif($action == 'create') {
         //     $documentAccessListIds = DocumentsModel::whereNotIn('sub_document_id', $sorted_sub_document_ids)->get();
