@@ -168,7 +168,7 @@ $documentData = $dataSet->document_details;
 
     function add_name_of_reference_document_proc() {
         event.preventDefault();
-        $("#name_of_reference_document_proc").after(`
+        $("#name_of_reference_document_proc").append(`
         <tr>
             <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
             <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
@@ -180,7 +180,7 @@ $documentData = $dataSet->document_details;
 
     function add_department_and_thirdparty_involvement() {
         event.preventDefault();
-        $("#department_and_thirdparty_involvement_tr").after(`
+        $("#department_and_thirdparty_involvement_tr").append(`
             <tr>
                 <td>
                     <input type="text" name="department_and_third_party_involvement[]" id="department_and_third_party_involvement" class="form-control">
@@ -198,7 +198,7 @@ $documentData = $dataSet->document_details;
 
     function add_list_of_documnet_involved() {
         event.preventDefault();
-        $("#list_of_documnet_involved").after(`
+        $("#list_of_documnet_involved").append(`
             <tr>
                 <td>
                     <input type="text" name="list_of_document_involved[]" id="list_of_document_involved"class="form-control">
@@ -216,7 +216,7 @@ $documentData = $dataSet->document_details;
 
     function add_process_description() {
         event.preventDefault();
-        $("#process_description").after(`
+        $("#process_description").append(`
             <tr>
                 <td><input type="text" name="process_description[]" id="process_description" class="form-control"></td>
                 <td>
