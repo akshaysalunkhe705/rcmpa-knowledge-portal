@@ -21,17 +21,17 @@ class CAPAActionController extends Controller
     public function process_and_flow_control(Request $request)
     {
         $imagePath = array();
-        for ($i=0; $i < count($request->reference_document_urls); $i++) {
+        foreach ($request->reference_document_urls as $file) {
             //File Uplading Service
             $fileUploading = new FileUploading();
             $fileUploading->request = $request;
             $fileUploading->attribute_name = 'reference_document_urls';
-            $fileUploading->nth_number_of_image = $i;
-            $fileUploading->id = $request->document_id;
+            $fileUploading->nth_number_of_image = 0;
+            $fileUploading->id = $file->document_id;
             $fileUploading->path = 'reference_documents/' . $request->capa_number . '/' . $request->document_id;
             $fileUploading->validations = '';
             // $imagePath[] = $fileUploading->uploadFile();
-            $imagePath[] = $request->reference_document_urls->extension();
+            $imagePath[] = $file->extension();
             // $fileUploading->UploadFileAndUpdateInDB(SubjectModel::class, $fileUploading->uploadFile());
         }
 
