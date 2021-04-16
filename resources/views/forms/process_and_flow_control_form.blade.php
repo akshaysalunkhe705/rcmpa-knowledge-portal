@@ -115,6 +115,29 @@ $documentData = $dataSet->document_details;
             </tbody>
         </table>
         <br>
+        <label for="name_of_reference_document">Name Of Reference Document</label> <button class="btn btn-primary" onclick="js:add_name_of_reference_document_proc();">+</button>
+        <table class="table table-bordered">
+            <tbody id="name_of_reference_document_proc">
+                @if (isset($documentData['name_of_reference_document']))
+                    <tr>
+                        <?php $i = 0; ?>
+                        @foreach ($documentData['name_of_reference_document'] as $item)
+                            @if ($i % 3 == 0)
+                                <?php $i = 0; ?>
+                    </tr>
+                    <tr>
+                    @endif
+                    <?php $i++; ?>
+                    <td>
+                        <input type="text" name="name_of_reference_document[]" class="form-control"
+                            value="{{ $item }}">
+                    </td>
+                @endforeach
+                </tr>
+                @endif
+            </tbody>
+        </table>
+        <br>
         <div class="row">
             <div class="col-md-3">
                 <label for="reference_document_urls">Reference Document Upload</label>
@@ -141,6 +164,20 @@ $documentData = $dataSet->document_details;
 @endforeach
 
 <script>
+    
+
+    function add_name_of_reference_document_proc() {
+        event.preventDefault();
+        $("#name_of_reference_document_proc").after(`
+        <tr>
+            <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
+            <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
+            <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
+        </tr>
+        `);
+        return false;
+    }
+
     function add_department_and_thirdparty_involvement() {
         event.preventDefault();
         $("#department_and_thirdparty_involvement_tr").after(`
