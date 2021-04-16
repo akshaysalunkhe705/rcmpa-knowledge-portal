@@ -1,5 +1,5 @@
 <li class="sidebar-menu-item @if ($nav_status=='general-masters' ) active open @endif">
-    <a class="sidebar-menu-button js-sidebar-collapse" href="{{ url('admin/general-masters') }}">
+    <a class="sidebar-menu-button js-sidebar-collapse" href="{{ url('admin/general-master') }}">
         <span class="material-icons sidebar-menu-icon sidebar-menu-icon--left">format_shapes</span>
         CREATE MASTERS
     </a>
