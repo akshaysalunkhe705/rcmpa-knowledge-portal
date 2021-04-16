@@ -11,7 +11,7 @@ class FileUploading
     {
         $imagePaths = array();
         for ($i = 0; $i < count($this->request->{$this->attribute_name}); $i++) {
-            if ($this->request->{$this->attribute_name}[$i] != null) {
+            if ($this->request->{$this->attribute_name[$i]} != null) {
                 $dirModel = new DirectoryService();
                 $dirModel->createDir($this->path);
 
@@ -24,11 +24,11 @@ class FileUploading
                     ]);
                 }
 
-                $imageName = time() . '.' . $this->request->{$this->attribute_name}[$i]->extension();
+                $imageName = time() . '.' . $this->request->{$this->attribute_name[$i]}->extension();
                 if (!is_dir(public_path($this->path))) {
                     mkdir(public_path($this->path));
                 }
-                $this->request->{$this->attribute_name}[$i]->move(public_path($this->path) . '/', $imageName);
+                $this->request->{$this->attribute_name[$i]}->move(public_path($this->path) . '/', $imageName);
                 $imagePaths[] = $this->path . '/' . $imageName;
             }
         }
