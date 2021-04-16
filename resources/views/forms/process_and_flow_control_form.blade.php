@@ -49,7 +49,7 @@ $documentData = $dataSet->document_details;
         <button class="btn btn-primary" onclick="js:add_list_of_documnet_involved();">+</button>
         <table class="table table-bordered">
             <tbody id="list_of_documnet_involved">
-                @if ($documentData != null)
+                @if ($documentData['list_of_document_involved'] != null)
                     <tr>
                         <?php $i=0; ?>
                         @foreach ($documentData['list_of_document_involved'] as $item)
@@ -81,7 +81,7 @@ $documentData = $dataSet->document_details;
                 </tr>
             </thead>
             <tbody id="process_description">
-                @if ($documentData != null)
+                @if ($documentData['process_description']['description'] != null)
                     @for ($i = 0; $i < count($documentData['process_description']['description']); $i++)
                         <tr>
                             <td>
