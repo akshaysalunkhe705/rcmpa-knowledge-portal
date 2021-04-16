@@ -20,6 +20,15 @@ class CAPAActionController extends Controller
     //---------------------CREATE AND UPDATE
     public function process_and_flow_control(Request $request)
     {
+        //File Uplading Service            
+        $fileUploading = new FileUploading();
+        $fileUploading->request = $request;
+        $fileUploading->attribute_name = 'reference_document_urls';
+        $fileUploading->id = $request->document_id;
+        $fileUploading->path = 'reference_documents/' . $request->capa_number . '/' . $request->document_id;
+        $fileUploading->validations = '';
+        // $fileUploading->UploadFileAndUpdateInDB(SubjectModel::class, $fileUploading->uploadFile());
+
         $documentData = [
             'objective' => $request->objective,
             'department_and_third_party_involvement' => $request->department_and_third_party_involvement,
@@ -31,21 +40,11 @@ class CAPAActionController extends Controller
                 'document_in_use' => $request->document_in_use,
                 'spacial_remarks' => $request->special_remarks
             ],
-            'name_of_reference_document' => $request->name_of_reference_document
+            'name_of_reference_document' => $request->name_of_reference_document,
+            'reference_document_urls' => $fileUploading->uploadFile()
         ];
 
-
-        //File Uplading Service            
-        $fileUploading = new FileUploading();
-        $fileUploading->request = $request;
-        $fileUploading->attribute_name = 'reference_document_urls';
-        $fileUploading->id = $request->document_id;
-        $fileUploading->path = 'reference_documents/' . $request->capa_number . '/' . $request->document_id;
-        $fileUploading->validations = '';
-        $fileUploading->UploadFileAndUpdateInDB(SubjectModel::class, $fileUploading->uploadFile());
-
-
-        return $request->reference_document_urls;
+        return $documentData;
 
         // $documentData = json_encode($documentData, true);
         $model = DocumentsModel::find($request->document_id);
