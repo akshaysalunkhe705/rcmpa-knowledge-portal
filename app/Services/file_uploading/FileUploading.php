@@ -22,7 +22,7 @@ class FileUploading
                 ]);
             }
 
-            $imageName = time() . '.' . $this->request->{$this->attribute_name}->extension();
+            $imageName = time() . '-' . $this->request->{$this->attribute_name};
             if (!is_dir(public_path($this->path))) {
                 mkdir(public_path($this->path));
             }
