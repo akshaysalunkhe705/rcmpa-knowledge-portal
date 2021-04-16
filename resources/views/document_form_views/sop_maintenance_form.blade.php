@@ -16,46 +16,35 @@
         subDocumentId='{{ $dataSet->fetctSubDocumentTitle($dataSet->sub_document_id) }}' />
     <br>
     <label for="purpose">Purpose</label>
-    <textarea name="purpose" id="purpose" class="form-control" disabled>{{ $documentData['purpose'] }}</textarea>
+    <?= $documentData['purpose'] ?>
     <br>
     <label for="scope">scope</label>
-    <textarea name="scope" id="scope" class="form-control" disabled>{{ $documentData['scope'] }}</textarea>
+        <?= $documentData['scope'] ?>
     <br>
     <label for="responsibility">responsibility</label>
-    <textarea name="responsibility" id="responsibility" class="form-control"
-        disabled>{{ $documentData['responsibility'] }}</textarea>
+        <?= $documentData['responsibility'] ?>
     <br>
     <label for="accountability">accountability</label>
-    <textarea name="accountability" id="accountability" class="form-control"
-        disabled>{{ $documentData['accountability'] }}</textarea>
+        <?= $documentData['accountability'] ?>
     <br>
     <label for="defination">defination</label>
-    <textarea name="defination" id="defination" class="form-control"
-        disabled>{{ $documentData['defination'] }}</textarea>
+        <?= $documentData['defination'] ?>
     <br>
     <label for="procedures">procedures</label>
-    <textarea name="procedures" id="procedures" class="form-control"
-        disabled>{{ $documentData['procedures'] }}</textarea>
+        <?= $documentData['procedures'] ?>
     <br>
     <label for="precautions">precautions</label>
-    <textarea name="precautions" id="precautions" class="form-control"
-        disabled>{{ $documentData['precautions'] }}</textarea>
+        <?= $documentData['precautions'] ?>
     <br>
     <label for="applicable_formats_reference">applicable_formats_reference</label>
-    <textarea name="applicable_formats_reference" id="applicable_formats_reference" class="form-control"
-        disabled>{{ $documentData['applicable_formats_reference'] }}</textarea>
+        <?= $documentData['applicable_formats_reference'] ?>
     <br>
     <label for="abbrevations">abbrevations</label>
-    <textarea name="abbrevations" id="abbrevations" class="form-control"
-        disabled>{{ $documentData['abbrevations'] }}</textarea>
+        <?= $documentData['abbrevations'] ?>
     <br>
     <label for="document_history">document_history</label>
-    <textarea name="document_history" id="document_history" class="form-control"
-        disabled>{{ $documentData['document_history'] }}</textarea>
+        <?= $documentData['document_history'] ?>
     <br>
-    <label for="reference_document_urls">reference_document</label>
-    <input type="file" name="reference_document_urls" class="form-control" disabled>
-
     <br>
     <label for="name_of_reference_document">Name Of Reference Document</label>
     <table class="table table-bordered">
@@ -71,8 +60,7 @@
             @endif
             <?php $i++; ?>
             <td>
-                <input type="text" name="name_of_reference_document[]" class="form-control" value="{{ $item }}"
-                    disabled>
+                <?= $item ?>
             </td>
             @endforeach
             </tr>

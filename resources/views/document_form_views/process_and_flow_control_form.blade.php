@@ -17,7 +17,7 @@
     <br>
     <div>
         <label for="objective">Objective</label>
-        <input type="text" name="objective" class="form-control" value="{{ $documentData['objective'] }}" disabled>
+        <input type="text" name="objective" class="form-control" value="<?= $documentData['objective'] ?>" disabled>
     </div>
     <br>
 
@@ -34,10 +34,7 @@
                 <tr>
             @endif
             <?php $i++; ?>
-            <td>
-                <input type="text" name="department_and_third_party_involvement[]"
-                    id="department_and_third_party_involvement" class="form-control" value="{{ $item }}" disabled>
-            </td>
+            <td> <?= $item ?> </td>
             @endforeach
             </tr>
             @endif
@@ -58,8 +55,7 @@
             @endif
             <?php $i++; ?>
             <td>
-                <input type="text" name="list_of_document_involved[]" id="list_of_document_involved" class="form-control"
-                    value="{{ $item }}" disabled>
+                <?= $item ?>
             </td>
             @endforeach
             </tr>
@@ -83,26 +79,19 @@
                 @for ($i = 0; $i < count($documentData['process_description']['description']); $i++)
                     <tr>
                         <td>
-                            <input type="text" name="process_description[]" id="process_description" class="form-control"
-                                value="{{ $documentData['process_description']['description'][$i] }}" disabled>
+                            <?= $documentData['process_description']['description'][$i] ?>
                         </td>
                         <td>
-                            <input type="text" name="units[]" id="units" class="form-control"
-                                value="{{ $documentData['process_description']['unit'][$i] }}" disabled>
+                            <?= $documentData['process_description']['unit'][$i] ?>
                         </td>
                         <td>
-                            <input type="text" name="desgination_responsible[]" id="desgination_responsible"
-                                class="form-control"
-                                value="{{ $documentData['process_description']['designation_responsibility'][$i] }}"
-                                disabled>
+                            <?= $documentData['process_description']['designation_responsibility'][$i] ?>
                         </td>
                         <td>
-                            <input type="text" name="document_in_use[]" id="document_in_use" class="form-control"
-                                value="{{ $documentData['process_description']['document_in_use'][$i] }}" disabled>
+                            <?= $documentData['process_description']['document_in_use'][$i] ?>
                         </td>
                         <td>
-                            <input type="text" name="special_remarks[]" id="special_remarks" class="form-control"
-                                value="{{ $documentData['process_description']['spacial_remarks'][$i] }}" disabled>
+                            <?= $documentData['process_description']['spacial_remarks'][$i] ?>
                         </td>
                     </tr>
                 @endfor
