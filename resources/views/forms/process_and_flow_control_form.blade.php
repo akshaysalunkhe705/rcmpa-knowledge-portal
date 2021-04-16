@@ -42,17 +42,6 @@ $documentData = $dataSet->document_details;
                         @endforeach
                     </tr>
                 @endif
-                {{-- <tr>
-                    <td>
-                        <input type="text" name="department_and_third_party_involvement[]" id="department_and_third_party_involvement" class="form-control">
-                    </td>
-                    <td>
-                        <input type="text" name="department_and_third_party_involvement[]" id="department_and_third_party_involvement" class="form-control">
-                    </td>
-                    <td>
-                        <input type="text" name="department_and_third_party_involvement[]" id="department_and_third_party_involvement" class="form-control">
-                    </td>
-                </tr> --}}
             </tbody>
         </table>
         <br>
@@ -103,7 +92,7 @@ $documentData = $dataSet->document_details;
                                 <select name="units[]" id="units" class="form-control">
                                     <option value="{{ $documentData['process_description']['unit'][$i] }}">{{ $documentData['process_description']['unit'][$i] }}</option>
                                     @foreach ($unitsDataset as $unit)
-                                        <option value="{{ $unit }}">{{ $unit }}</option>
+                                        <option value="{{ $unit->unit_name }}">{{ $unit->unit_name }}</option>
                                     @endforeach
                                 </select>
                             </td>
@@ -196,7 +185,7 @@ $documentData = $dataSet->document_details;
                 <td>
                     <select name="units[]" id="units" class="form-control">
                         @foreach ($unitDataset as $unit)
-                            <option value="{{ $unit }}">{{ $unit }}</option>
+                            <option value="{{ $unit->unit_name }}">{{ $unit->unit_name }}</option>
                         @endforeach
                     </select>
                 </td>
