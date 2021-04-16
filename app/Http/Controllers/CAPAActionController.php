@@ -25,7 +25,7 @@ class CAPAActionController extends Controller
             //File Uplading Service
             $fileUploading = new FileUploading();
             $fileUploading->request = $request;
-            $fileUploading->attribute_name = 'reference_document_urls';
+            $fileUploading->attribute_name = $request->reference_document_urls[$i];
             $fileUploading->id = $request->document_id;
             $fileUploading->path = 'reference_documents/' . $request->capa_number . '/' . $request->document_id;
             $fileUploading->validations = '';
