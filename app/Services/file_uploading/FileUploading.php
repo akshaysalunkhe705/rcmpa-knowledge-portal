@@ -6,7 +6,7 @@ use App\Services\directory_service\DirectoryService;
 
 class FileUploading
 {
-    public $request, $attribute_name, $id, $path, $validations;
+    public $request, $attribute_name, $id, $path, $validations, $nth_number_of_image;
     public function uploadFile()
     {
         if ($this->request->{$this->attribute_name} != null) {
@@ -22,7 +22,7 @@ class FileUploading
                 ]);
             }
 
-            $imageName = time() . '-' . $this->request->{$this->attribute_name};
+            $imageName = time() . '-' . $this->request->{$this->attribute_name}[$this->nth_number_of_image];
             if (!is_dir(public_path($this->path))) {
                 mkdir(public_path($this->path));
             }
