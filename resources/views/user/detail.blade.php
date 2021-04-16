@@ -57,10 +57,10 @@ use App\Models\UserDocumentPermissionModel;
             @foreach ($FormsModel as $formMaster)
                 <?php $masterDocumentsCount = 0; ?>
                 <div class="masterForm-{{ $department->id }}-{{ $formMaster->id }}">
-                    <div onclick="js:toggleFormMasterSlide({{ $formMaster->id }})" class="border p-2 bg-info">
+                    <div onclick="js:toggleFormMasterSlide({{ $department->id }}-{{ $formMaster->id }})" class="border p-2 bg-info">
                         <h5>{{ $formMaster->form_name }}</h5>
                     </div>
-                    <div id="form-master-{{ $formMaster->id }}" class="form-master border p-2"
+                    <div id="form-master-{{ $department->id }}-{{ $formMaster->id }}" class="form-master border p-2"
                         style="background-color:white;">
                         <?php $mainDocumentDataset = MainDocumentTitleModel::where('department_id',
                         $department->id)
