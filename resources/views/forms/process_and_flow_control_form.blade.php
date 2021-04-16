@@ -195,7 +195,7 @@ $documentData = $dataSet->document_details;
                 <td><input type="text" name="process_description[]" id="process_description" class="form-control"></td>
                 <td>
                     <select name="units[]" id="units" class="form-control">
-                        @foreach ($unitsDataset as $unit)
+                        @foreach ($unitDataset as $unit)
                             <option value="{{ $unit }}">{{ $unit }}</option>
                         @endforeach
                     </select>
