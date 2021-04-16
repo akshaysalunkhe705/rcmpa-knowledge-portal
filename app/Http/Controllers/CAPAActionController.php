@@ -20,7 +20,7 @@ class CAPAActionController extends Controller
     //---------------------CREATE AND UPDATE
     public function process_and_flow_control(Request $request)
     {
-        return $request->reference_document_urls->extension();
+        return $request->reference_document_urls->extension()[0];
         $imagePath = array();
         for ($i=0; $i < count($request->reference_document_urls); $i++) {
             //File Uplading Service
