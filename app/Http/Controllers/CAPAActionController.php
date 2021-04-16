@@ -32,6 +32,9 @@ class CAPAActionController extends Controller
             ],
             'name_of_reference_document' => $request->name_of_reference_document
         ];
+
+        return $request->reference_document_urls;
+
         // $documentData = json_encode($documentData, true);
         $model = DocumentsModel::find($request->document_id);
         $model->document_details = $documentData;
