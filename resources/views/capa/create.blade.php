@@ -12,6 +12,7 @@
 <?php
 use App\Models\MainDocumentTitleModel;
 use App\Models\SubDocumentTitleModel;
+$unitDataset = App\Models\UnitsModel::all();
 ?>
 
 @section('main_container')
@@ -23,7 +24,7 @@ use App\Models\SubDocumentTitleModel;
             box-shadow: 0px 0px 3px grey;
         }
 
-        section:first-child{
+        section:first-child {
             display: block;
         }
 
@@ -56,32 +57,38 @@ use App\Models\SubDocumentTitleModel;
 
     <section id="process_flow_control">
         @include('forms.process_and_flow_control_form',[
-        'processDataset' => $process
+            'processDataset' => $process,
+            'unitDataset'=>$unitDataset
         ])
     </section>
     <section id="sop_production">
         @include('forms.sop_production_form',[
-        'sopProductionDataset' => $sop_production
+            'sopProductionDataset' => $sop_production,
+            'unitDataset'=>$unitDataset
         ])
     </section>
     <section id="sop_quality_control">
         @include('forms.sop_quality_control_form',[
-        'sopQualityControlDataset' => $sop_quality_control
+            'sopQualityControlDataset' => $sop_quality_control,
+            'unitDataset'=>$unitDataset
         ])
     </section>
     <section id="sop_maintenance">
         @include('forms.sop_maintenance_form',[
-        'sopMaintenanceDataset' => $sop_maintenance
+            'sopMaintenanceDataset' => $sop_maintenance,
+            'unitDataset'=>$unitDataset
         ])
     </section>
     <section id="msds">
         @include('forms.msds_form',[
-        'msdsDataset' => $msds
+            'msdsDataset' => $msds,
+            'unitDataset'=>$unitDataset
         ])
     </section>
     <section id="sss">
         @include('forms.sss_form',[
-        'sssDataset' => $sss
+            'sssDataset' => $sss,
+            'unitDataset'=>$unitDataset
         ])
     </section>
 
@@ -91,5 +98,6 @@ use App\Models\SubDocumentTitleModel;
             $('section').hide();
             $('#' + section).show();
         }
+
     </script>
 @endsection

@@ -42,9 +42,6 @@ $deptModel = new App\Models\DepartmentModel();
             <label for="department"> Department </label>
             <input type="hidden" name="department" id="department" value="{{ $deptModel->fetchIdFromDepartmentName(Auth::user()->department) }}">
             <input type="text" class="form-control" value="{{ Auth::user()->department }}" readonly>
-            {{-- <select name="department" id="department" class="form-control">
-                <option value="">Select Department</option>
-            </select> --}}
         </div>
     </div>
 
@@ -123,7 +120,8 @@ $deptModel = new App\Models\DepartmentModel();
                 });
         }
 
-        function nextPage(action) {
+        function nextPage(action) 
+        {
             if ($("#capa_number").val() == "") {
                 alert("Enter CAPA Number");
                 return false;

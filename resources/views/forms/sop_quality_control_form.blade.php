@@ -41,7 +41,14 @@
                             <td><input class="form-control" type="text" name="chemical_make[]" id="make"  value="{{ isset($documentData['chemical_required']['chemical_make'][$i]) ? $documentData['chemical_required']['chemical_make'][$i] : '' }}"></td>
                             <td><input class="form-control" type="text" name="chemical_grade_purity[]" id="grade_purity" value="{{ isset($documentData['chemical_required']['chemical_grade_purity'][$i]) ? $documentData['chemical_required']['chemical_grade_purity'][$i] : '' }}"></td>
                             <td><input class="form-control" type="text" name="chemical_quantity[]" id="quantity" value="{{ isset($documentData['chemical_required']['chemical_quantity'][$i]) ? $documentData['chemical_required']['chemical_quantity'][$i] : '' }}"></td>
-                            <td><input class="form-control" type="text" name="chemical_unit[]" id="unit" value="{{ isset($documentData['chemical_required']['chemical_unit'][$i]) ? $documentData['chemical_required']['chemical_unit'][$i] : '' }}"></td>
+                            <td>
+                                <select name="chemical_unit[]" id="units" class="form-control">
+                                    <option value="{{ isset($documentData['chemical_required']['chemical_unit'][$i]) ? $documentData['chemical_required']['chemical_unit'][$i] : '' }}">{{ isset($documentData['chemical_required']['chemical_unit'][$i]) ? $documentData['chemical_required']['chemical_unit'][$i] : '' }}</option>
+                                    @foreach ($unitsDataset as $unit)
+                                        <option value="{{ $unit }}">{{ $unit }}</option>
+                                    @endforeach
+                                </select>
+                                {{-- <input class="form-control" type="text" name="chemical_unit[]" id="unit" value="{{ isset($documentData['chemical_required']['chemical_unit'][$i]) ? $documentData['chemical_required']['chemical_unit'][$i] : '' }}"></td> --}}
                         </tr>
                     @endfor
                 @endif
@@ -129,7 +136,13 @@
                 <td><input type="text" class="form-control" name="chemical_make[]" id="make"></td>
                 <td><input type="text" class="form-control" name="chemical_grade_purity[]" id="grade_purity"></td>
                 <td><input type="text" class="form-control" name="chemical_quantity[]" id="quantity"></td>
-                <td><input type="text" class="form-control" name="chemical_unit[]" id="unit"></td>
+                <td>
+                    <select name="chemical_unit[]" id="units" class="form-control">
+                        @foreach ($unitsDataset as $unit)
+                            <option value="{{ $unit }}">{{ $unit }}</option>
+                        @endforeach
+                    </select>
+                </td>
             </tr>
             `);
             return false;

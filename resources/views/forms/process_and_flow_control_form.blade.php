@@ -76,17 +76,6 @@ $documentData = $dataSet->document_details;
                     @endforeach
                 </tr>
                 @endif
-                {{-- <tr>
-                    <td>
-                        <input type="text" name="list_of_document_involved[]" id="list_of_document_involved"class="form-control">
-                    </td>
-                    <td>
-                        <input type="text" name="list_of_document_involved[]" id="list_of_document_involved" class="form-control">
-                    </td>
-                    <td>
-                        <input type="text" name="list_of_document_involved[]" id="list_of_document_involved" class="form-control">
-                    </td>
-                </tr> --}}
             </tbody>
         </table>
         <br>
@@ -111,8 +100,12 @@ $documentData = $dataSet->document_details;
                                     class="form-control" value="{{ $documentData['process_description']['description'][$i] }}">
                             </td>
                             <td>
-                                <input type="text" name="units[]" id="units" class="form-control"
-                                    value="{{ $documentData['process_description']['unit'][$i] }}">
+                                <select name="units[]" id="units" class="form-control">
+                                    <option value="{{ $documentData['process_description']['unit'][$i] }}">{{ $documentData['process_description']['unit'][$i] }}</option>
+                                    @foreach ($unitsDataset as $unit)
+                                        <option value="{{ $unit }}">{{ $unit }}</option>
+                                    @endforeach
+                                </select>
                             </td>
                             <td>
                                 <input type="text" name="desgination_responsible[]" id="desgination_responsible"
@@ -130,13 +123,6 @@ $documentData = $dataSet->document_details;
                         </tr>
                     @endfor
                 @endif
-                {{-- <tr>
-                    <td><input type="text" name="process_description[]" id="process_description" class="form-control"></td>
-                    <td><input type="text" name="units[]" id="units" class="form-control"></td>
-                    <td><input type="text" name="desgination_responsible[]" id="desgination_responsible" class="form-control"></td>
-                    <td><input type="text" name="document_in_use[]" id="document_in_use" class="form-control"></td>
-                    <td><input type="text" name="special_remarks[]" id="special_remarks" class="form-control"></td>
-                </tr> --}}
             </tbody>
         </table>
         <br>
@@ -207,7 +193,14 @@ $documentData = $dataSet->document_details;
         $("#process_description").after(`
             <tr>
                 <td><input type="text" name="process_description[]" id="process_description" class="form-control"></td>
-                <td><input type="text" name="units[]" id="units" class="form-control"></td>
+                <td>
+                    <select name="units[]" id="units" class="form-control">
+                        <option value="{{ $documentData['process_description']['unit'][$i] }}">{{ $documentData['process_description']['unit'][$i] }}</option>
+                        @foreach ($unitsDataset as $unit)
+                            <option value="{{ $unit }}">{{ $unit }}</option>
+                        @endforeach
+                    </select>
+                </td>
                 <td><input type="text" name="desgination_responsible[]" id="desgination_responsible" class="form-control"></td>
                 <td><input type="text" name="document_in_use[]" id="document_in_use" class="form-control"></td>
                 <td><input type="text" name="special_remarks[]" id="special_remarks" class="form-control"></td>

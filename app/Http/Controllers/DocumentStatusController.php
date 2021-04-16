@@ -55,6 +55,7 @@ class DocumentStatusController extends Controller
             $model->status_by_superadmin = "APPROVE";
             $model->status = "ACTIVE";
             $model->status_by_admin = "APPROVE";
+            $model->approved_by = "Mr. Maxeem Gill";
         }
         if(Auth::user()->role == "ADMIN"){
             $model->status_by_admin = "APPROVE";

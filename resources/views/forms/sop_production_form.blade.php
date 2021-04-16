@@ -40,7 +40,14 @@
                             <td><input class="form-control" type="text" name="chemical_make[]" id="make"  value="{{ isset($documentData['chemical_required']['chemical_make'][$i]) ? $documentData['chemical_required']['chemical_make'][$i] : '' }}"></td>
                             <td><input class="form-control" type="text" name="chemical_grade_purity[]" id="grade_purity" value="{{ isset($documentData['chemical_required']['chemical_grade_purity'][$i]) ? $documentData['chemical_required']['chemical_grade_purity'][$i] : '' }}"></td>
                             <td><input class="form-control" type="text" name="chemical_quantity[]" id="quantity" value="{{ isset($documentData['chemical_required']['chemical_quantity'][$i]) ? $documentData['chemical_required']['chemical_quantity'][$i] : '' }}"></td>
-                            <td><input class="form-control" type="text" name="chemical_unit[]" id="unit" value="{{ isset($documentData['chemical_required']['chemical_unit'][$i]) ? $documentData['chemical_required']['chemical_unit'][$i] : '' }}"></td>
+                            <td>
+                                <select name="chemical_unit[]" id="units" class="form-control">
+                                    <option value="{{ isset($documentData['chemical_required']['chemical_unit'][$i]) ? $documentData['chemical_required']['chemical_unit'][$i] : '' }}">{{ isset($documentData['chemical_required']['chemical_unit'][$i]) ? $documentData['chemical_required']['chemical_unit'][$i] : '' }}</option>
+                                    @foreach ($unitsDataset as $unit)
+                                        <option value="{{ $unit }}">{{ $unit }}</option>
+                                    @endforeach
+                                </select>
+                                {{-- <input class="form-control" type="text" name="chemical_unit[]" id="unit" value="{{ isset($documentData['chemical_required']['chemical_unit'][$i]) ? $documentData['chemical_required']['chemical_unit'][$i] : '' }}"></td> --}}
                         </tr>
                     @endfor
                 @endif
@@ -65,7 +72,14 @@
                             <td><input class="form-control" type="text" name="equipement_name[]" id="name" value="{{ isset($documentData['equipement_required']['equipement_name'][$i]) ? $documentData['equipement_required']['equipement_name'][$i] : ''  }}"></td>
                             <td><input class="form-control" type="text" name="equipement_location_mark_and_number[]" id="location_mark_and_number" value="{{ isset($documentData['equipement_required']['equipement_location_mark_and_number'][$i]) ? $documentData['equipement_required']['equipement_location_mark_and_number'][$i] : ''  }}"></td>
                             <td><input class="form-control" type="text" name="equipement_capacity[]" id="capacity" value="{{ isset($documentData['equipement_required']['equipement_capacity'][$i]) ? $documentData['equipement_required']['equipement_capacity'][$i] : ''  }}"></td>
-                            <td><input class="form-control" type="text" name="equipement_unit[]" id="unit" value="{{ isset($documentData['equipement_required']['equipement_unit'][$i]) ? $documentData['equipement_required']['equipement_unit'][$i] : ''  }}"></td>
+                            <td>
+                                <select name="equipement_unit[]" id="units" class="form-control">
+                                    <option value="{{ isset($documentData['equipement_required']['equipement_unit'][$i]) ? $documentData['equipement_required']['equipement_unit'][$i] : '' }}">{{ isset($documentData['chemical_required']['chemical_unit'][$i]) ? $documentData['chemical_required']['chemical_unit'][$i] : '' }}</option>
+                                    @foreach ($unitsDataset as $unit)
+                                        <option value="{{ $unit }}">{{ $unit }}</option>
+                                    @endforeach
+                                </select>
+                                {{-- <input class="form-control" type="text" name="equipement_unit[]" id="unit" value="{{ isset($documentData['equipement_required']['equipement_unit'][$i]) ? $documentData['equipement_required']['equipement_unit'][$i] : ''  }}"></td> --}}
                         </tr>
                     @endfor
                 @endif
@@ -129,7 +143,13 @@
                 <td><input class="form-control" type="text" name="make[]" id="make"></td>
                 <td><input class="form-control" type="text" name="grade_purity[]" id="grade_purity"></td>
                 <td><input class="form-control" type="text" name="quantity[]" id="quantity"></td>
-                <td><input class="form-control" type="text" name="unit[]" id="unit"></td>
+                <td>
+                    <select name="chemical_unit[]" id="units" class="form-control">
+                        @foreach ($unitsDataset as $unit)
+                            <option value="{{ $unit }}">{{ $unit }}</option>
+                        @endforeach
+                    </select>
+                </td>
             </tr>`);
         return false;
     }
@@ -141,7 +161,13 @@
                 <td><input class="form-control" type="text" name="equipement_name[]" id="name"></td>
                 <td><input class="form-control" type="text" name="equipement_location_mark_and_number[]" id="location_mark_and_number"></td>
                 <td><input class="form-control" type="text" name="equipement_capacity[]" id="capacity"></td>
-                <td><input class="form-control" type="text" name="equipement_unit[]" id="unit"></td>
+                <td>
+                    <select name="equipement_unit[]" id="units" class="form-control">
+                        @foreach ($unitsDataset as $unit)
+                            <option value="{{ $unit }}">{{ $unit }}</option>
+                        @endforeach
+                    </select>
+                </td>
             </tr>`);
         return false;
     }

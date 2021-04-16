@@ -39,7 +39,13 @@ $documentData = $dataSet->document_details;
                             <input type="text" name="specification[]" id="specification[]" class="form-control" value="{{ $documentData != null ? $documentData['identification']['specification'][$i] : '' }}">
                         </td>
                         <td>
-                            <input type="text" name="units[]" id="units[]" class="form-control" value="{{ $documentData != null ? $documentData['identification']['units'][$i] : '' }}">
+                            <select name="units[]" id="units" class="form-control">
+                                <option value="{{ isset($documentData['identification']['units'][$i]) ? $documentData['identification']['units'][$i] : '' }}">{{ isset($documentData['identification']['units'][$i]) ? $documentData['identification']['units'][$i] : '' }}</option>
+                                @foreach ($unitsDataset as $unit)
+                                    <option value="{{ $unit }}">{{ $unit }}</option>
+                                @endforeach
+                            </select>
+                            {{-- <input type="text" name="units[]" id="units[]" class="form-control" value="{{ $documentData != null ? $documentData['identification']['units'][$i] : '' }}"> --}}
                         </td>
                         <td>
                             <input type="text" name="remark[]" id="remark[]" class="form-control" value="{{ $documentData != null ? $documentData['identification']['remark'][$i] : '' }}">
@@ -47,20 +53,6 @@ $documentData = $dataSet->document_details;
                     </tr>
                     @endfor
                 @endif
-                {{-- <tr>
-                    <td>
-                        <input type="text" name="parameter[]" id="parameter" class="form-control" >
-                    </td>
-                    <td>
-                        <input type="text" name="specification[]" id="specification" class="form-control">
-                    </td>
-                    <td>
-                        <input type="text" name="units[]" id="units" class="form-control">
-                    </td>
-                    <td>
-                        <input type="text" name="remark[]" id="remark" class="form-control">
-                    </td>
-                </tr> --}}
             </tbody>
         </table>
 
@@ -89,7 +81,11 @@ $documentData = $dataSet->document_details;
                     <input type="text" name="specification[]" id="specification" class="form-control">
                 </td>
                 <td>
-                    <input type="text" name="units[]" id="units" class="form-control">
+                    <select name="units[]" id="units" class="form-control">
+                        @foreach ($unitsDataset as $unit)
+                            <option value="{{ $unit }}">{{ $unit }}</option>
+                        @endforeach
+                    </select>
                 </td>
                 <td>
                     <input type="text" name="remark[]" id="remark" class="form-control">

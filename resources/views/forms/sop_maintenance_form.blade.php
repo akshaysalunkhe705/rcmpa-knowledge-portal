@@ -74,11 +74,6 @@
                             </td>
                     @endforeach
                 </tr>
-                {{-- <tr>
-                    <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
-                    <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
-                    <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
-                </tr> --}}
                 @endif
             </tbody>
         </table>
