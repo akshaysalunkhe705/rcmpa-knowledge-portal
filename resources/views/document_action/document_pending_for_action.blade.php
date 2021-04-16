@@ -3,9 +3,9 @@
 'title' => 'Document Status',
 'heading' => 'Document Status',
 'breadcrumb1' => 'Document Status',
-'breadcrumb2' => 'Removed Document',
-'nav_status' => 'document_status',
-'sub_nav_status' => 'document_status-removed',
+'breadcrumb2' => 'Pending For Action',
+'nav_status' => 'pending-for-action',
+'sub_nav_status' => 'document_status-pending-for-action',
 ]
 )
 
