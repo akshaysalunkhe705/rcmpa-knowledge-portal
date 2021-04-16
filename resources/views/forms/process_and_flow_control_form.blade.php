@@ -141,7 +141,7 @@ $documentData = $dataSet->document_details;
         <div class="row">
             <div class="col-md-3">
                 <label for="reference_document_urls">Reference Document Upload</label>
-                <input type="file" name="reference_document_urls" class="form-control" multiple>
+                <input type="file" name="reference_document_urls[]" class="form-control" multiple>
             </div>
         </div>
 
