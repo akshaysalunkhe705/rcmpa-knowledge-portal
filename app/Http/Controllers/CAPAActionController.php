@@ -31,7 +31,7 @@ class CAPAActionController extends Controller
             $fileUploading->path = 'reference_documents/' . $request->capa_number . '/' . $request->document_id;
             $fileUploading->validations = '';
             // $imagePath[] = $fileUploading->uploadFile();
-            $imagePath[] = $file->extension();
+            $imagePath[] = $file;
             // $fileUploading->UploadFileAndUpdateInDB(SubjectModel::class, $fileUploading->uploadFile());
         }
 
