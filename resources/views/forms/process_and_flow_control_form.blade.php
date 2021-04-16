@@ -4,6 +4,7 @@ $documentData = $dataSet->document_details;
 ?>
     <form action="{{ url('hod/capa_actions/process_and_flow_control/') }}/{{ $dataSet->id }}" method="post">
         <input type="hidden" name="document_id" value="{{ $dataSet->id }}">
+        <input type="hidden" name="capa_number" value="{{ $dataSet->capa_number }}"> <!-- this capa number is just for file uploading to create path name -->
         @csrf
         <div style="border:1px solid; padding:1%;">
             <x-document-form-header-component documentNumber='{{ $dataSet->document_number }}'

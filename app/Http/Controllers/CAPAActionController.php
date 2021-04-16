@@ -11,6 +11,7 @@ use App\Models\DocumentsModel;
 use App\Models\FormsModel;
 use App\Models\LocationModel;
 use App\Models\UserDocumentPermissionModel;
+use App\Services\file_uploading\FileUploading;
 use League\CommonMark\Block\Element\Document;
 
 class CAPAActionController extends Controller
@@ -32,6 +33,17 @@ class CAPAActionController extends Controller
             ],
             'name_of_reference_document' => $request->name_of_reference_document
         ];
+
+
+        //File Uplading Service            
+        $fileUploading = new FileUploading();
+        $fileUploading->request = $request;
+        $fileUploading->attribute_name = 'reference_document_urls';
+        $fileUploading->id = $request->document_id;
+        $fileUploading->path = 'reference_documents/' . $request->capa_number . '/' . $request->document_id;
+        $fileUploading->validations = '';
+        $fileUploading->UploadFileAndUpdateInDB(SubjectModel::class, $fileUploading->uploadFile());
+
 
         return $request->reference_document_urls;
 
