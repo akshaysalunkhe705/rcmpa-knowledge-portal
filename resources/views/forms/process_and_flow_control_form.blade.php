@@ -25,7 +25,7 @@ $documentData = $dataSet->document_details;
         <button class="btn btn-primary" onclick="js:add_department_and_thirdparty_involvement();">+</button>
         <table class="table table-bordered">
             <tbody id="department_and_thirdparty_involvement_tr">
-                @if ($documentData != null)
+                @if ($documentData['department_and_third_party_involvement'] != null)
                     <tr>
                         <?php $i=0; ?>
                         @foreach ($documentData['department_and_third_party_involvement'] as $item)
