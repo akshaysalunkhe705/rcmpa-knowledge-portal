@@ -57,7 +57,8 @@ use App\Models\UserDocumentPermissionModel;
             @foreach ($FormsModel as $formMaster)
                 <?php $masterDocumentsCount = 0; ?>
                 <div class="masterForm-{{ $department->id }}-{{ $formMaster->id }}">
-                    <div onclick="js:toggleFormMasterSlide({{ $department->id }}-{{ $formMaster->id }})" class="border p-2 bg-info">
+                    <div onclick="js:toggleFormMasterSlide({{ $department->id }},{{ $formMaster->id }})"
+                        class="border p-2 bg-info">
                         <h5>{{ $formMaster->form_name }}</h5>
                     </div>
                     <div id="form-master-{{ $department->id }}-{{ $formMaster->id }}" class="form-master border p-2"
@@ -145,121 +146,121 @@ use App\Models\UserDocumentPermissionModel;
                                             <input type="checkbox"
                                                 id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-CREATE_UPDATE_ROLLBACK_DOC"
                                                 onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'CREATE_UPDATE_ROLLBACK_DOC');" <?= $CREATE_UPDATE_ROLLBACK_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> Create | Update | Rollback
-                                                    </div>
+                                                        </div>
 
-                                                    <div class="col-md-3">
-                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ACTIVE_DOC');" <?= $VIEW_ACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Active Docs <br>
-                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-DEACTIVE_REACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'DEACTIVE_REACTIVE_DOC');" <?= $DEACTIVE_REACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> Deactivate | Reactive Docs
-                                                    </div>
+                                                        <div class="col-md-3">
+                                                            <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ACTIVE_DOC');" <?= $VIEW_ACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Active Docs <br>
+                                                            <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-DEACTIVE_REACTIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'DEACTIVE_REACTIVE_DOC');" <?= $DEACTIVE_REACTIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> Deactivate | Reactive Docs
+                                                        </div>
 
-                                                    <div class="col-md-3">
-                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_PENDING_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_PENDING_DOC');" <?= $VIEW_PENDING_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Pending Docs <br>
-                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_REJECTED_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_REJECTED_DOC');" <?= $VIEW_REJECTED_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Rejected Docs
-                                                    </div>
+                                                        <div class="col-md-3">
+                                                            <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_PENDING_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_PENDING_DOC');" <?= $VIEW_PENDING_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Pending Docs <br>
+                                                            <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_REJECTED_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_REJECTED_DOC');" <?= $VIEW_REJECTED_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Rejected Docs
+                                                        </div>
 
-                                                    <div class="col-md-3">
-                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ARCHIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ARCHIVE_DOC');" <?= $VIEW_ARCHIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Archive Docs <br>
-                                                        <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-CAPA_STATUS" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'CAPA_STATUS');" <?= $CAPA_STATUS_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View CAPA Status
+                                                        <div class="col-md-3">
+                                                            <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-VIEW_ARCHIVE_DOC" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'VIEW_ARCHIVE_DOC');" <?= $VIEW_ARCHIVE_DOC_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View Archive Docs <br>
+                                                            <input type="checkbox" id="checkbox-id-{{ $user->id }}-{{ $department->id }}-{{ $formMaster->id }}-{{ $mainDocument->id }}-{{ $subDocument->id }}-CAPA_STATUS" onchange="js:assignRoleToUser(id, {{ $user->id }}, {{ $department->id }}, {{ $formMaster->id }}, {{ $mainDocument->id }}, {{ $subDocument->id }}, 'CAPA_STATUS');" <?= $CAPA_STATUS_PERMISSION_STATUS != null ? 'checked' : 'none' ?>> View CAPA Status
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @endforeach
+                                            <br>
                                         @endforeach
-                                        <br>
-                                    @endforeach
+                                    </div>
+                                    <br><br>
                                 </div>
-                                <br><br>
-                            </div>
-                            @if ($masterDocumentsCount == 0)
-                                <style>
-                                    .masterForm-<?= $department->id ?>-<?= $formMaster->id ?>{
-                                        display: none;
-                                    }
+                                @if ($masterDocumentsCount == 0)
+                                    <style>
+                                        .masterForm-<?= $department->id ?>-<?= $formMaster->id ?>{
+                                            display: none;
+                                        }
 
-                                </style>
-                            @endif
-                        @endforeach
-                    </div>
-                    <br><br>
-                @endforeach
+                                    </style>
+                                @endif
+                            @endforeach
+                        </div>
+                        <br><br>
+                    @endforeach
 
-                <style>
-                    label {
-                        font-size: 1.2em;
-                    }
-
-                </style>
-
-                <script>
-                    function assignRoleToUser(checkbox_id, user_id, department_id, form_id, main_document_id, sub_document_id, action) {
-                        if($("#"+checkbox_id).prop("checked") == true)
-                        {
-                            $.get('{{ url('admin/user_document_permissions/set_document_action') }}',{
-                                'user_id':user_id,
-                                'department_id':department_id,
-                                'form_id':form_id,
-                                'main_document_id':main_document_id,
-                                'sub_document_id':sub_document_id,
-                                'permission_type':action,
-                            },function(response) {
-                                console.log(response);
-                            });
-                        }else{
-                            $.get('{{ url('admin/user_document_permissions/unset_document_action') }}',{
-                                'user_id':user_id,
-                                'department_id':department_id,
-                                'form_id':form_id,
-                                'main_document_id':main_document_id,
-                                'sub_document_id':sub_document_id,
-                                'permission_type':action,
-                            },function(response) {
-                                console.log(response);
-                            });
+                    <style>
+                        label {
+                            font-size: 1.2em;
                         }
-                    }
 
-                    function toggleDepartmentSlide(id) {
-                        $("#department-" + id).slideToggle();
-                    }
+                    </style>
 
-                    function toggleFormMasterSlide(id) {
-                        $("#form-master-" + id).slideToggle();
-                    }
-
-                    function checked_all(checkbox_id, user_id, department_id, form_id, main_document_id, sub_document_id, action) {
-                        if($("#"+checkbox_id).prop("checked") == true)
-                        {
-                            $.get('{{ url('admin/user_document_permissions/set_all_action') }}',{
-                                'user_id':user_id,
-                                'department_id':department_id,
-                                'form_id':form_id,
-                                'main_document_id':main_document_id,
-                                'sub_document_id':sub_document_id,
-                                'permission_type':action,
-                            },function(response) {
-                                console.log(response);
-                                location.reload();
-                            });
-                        }else{
-                            $("#curd-" + checkbox_id).attr('checked', 'checked');
-                            $("#view_active-" + checkbox_id).attr('checked', false);
-                            $("#view_rejected-" + checkbox_id).attr('checked', false);
-                            $("#view_archive-" + checkbox_id).attr('checked', false);
-                            $("#view_pending-" + checkbox_id).attr('checked', false);
-                            $("#view_deactivate-" + checkbox_id).attr('checked', false);
-                            $("#capa_status-" + checkbox_id).attr('checked', false);
-                            
-                            $.get('{{ url('admin/user_document_permissions/unset_all_action') }}',{
-                                'user_id':user_id,
-                                'department_id':department_id,
-                                'form_id':form_id,
-                                'main_document_id':main_document_id,
-                                'sub_document_id':sub_document_id,
-                                'permission_type':action,
-                            },function(response) {
-                                console.log(response);
-                                location.reload();
-                            });
+                    <script>
+                        function assignRoleToUser(checkbox_id, user_id, department_id, form_id, main_document_id, sub_document_id, action) {
+                            if($("#"+checkbox_id).prop("checked") == true)
+                            {
+                                $.get('{{ url('admin/user_document_permissions/set_document_action') }}',{
+                                    'user_id':user_id,
+                                    'department_id':department_id,
+                                    'form_id':form_id,
+                                    'main_document_id':main_document_id,
+                                    'sub_document_id':sub_document_id,
+                                    'permission_type':action,
+                                },function(response) {
+                                    console.log(response);
+                                });
+                            }else{
+                                $.get('{{ url('admin/user_document_permissions/unset_document_action') }}',{
+                                    'user_id':user_id,
+                                    'department_id':department_id,
+                                    'form_id':form_id,
+                                    'main_document_id':main_document_id,
+                                    'sub_document_id':sub_document_id,
+                                    'permission_type':action,
+                                },function(response) {
+                                    console.log(response);
+                                });
+                            }
                         }
-                    }
-                </script>
+
+                        function toggleDepartmentSlide(id) {
+                            $("#department-" + id).slideToggle();
+                        }
+
+                        function toggleFormMasterSlide(departmentid, id) {
+                            $("#form-master-"+departmentid+'-'+ id).slideToggle();
+                        }
+
+                        function checked_all(checkbox_id, user_id, department_id, form_id, main_document_id, sub_document_id, action) {
+                            if($("#"+checkbox_id).prop("checked") == true)
+                            {
+                                $.get('{{ url('admin/user_document_permissions/set_all_action') }}',{
+                                    'user_id':user_id,
+                                    'department_id':department_id,
+                                    'form_id':form_id,
+                                    'main_document_id':main_document_id,
+                                    'sub_document_id':sub_document_id,
+                                    'permission_type':action,
+                                },function(response) {
+                                    console.log(response);
+                                    location.reload();
+                                });
+                            }else{
+                                $("#curd-" + checkbox_id).attr('checked', 'checked');
+                                $("#view_active-" + checkbox_id).attr('checked', false);
+                                $("#view_rejected-" + checkbox_id).attr('checked', false);
+                                $("#view_archive-" + checkbox_id).attr('checked', false);
+                                $("#view_pending-" + checkbox_id).attr('checked', false);
+                                $("#view_deactivate-" + checkbox_id).attr('checked', false);
+                                $("#capa_status-" + checkbox_id).attr('checked', false);
+                                
+                                $.get('{{ url('admin/user_document_permissions/unset_all_action') }}',{
+                                    'user_id':user_id,
+                                    'department_id':department_id,
+                                    'form_id':form_id,
+                                    'main_document_id':main_document_id,
+                                    'sub_document_id':sub_document_id,
+                                    'permission_type':action,
+                                },function(response) {
+                                    console.log(response);
+                                    location.reload();
+                                });
+                            }
+                        }
+                    </script>
 @endsection
