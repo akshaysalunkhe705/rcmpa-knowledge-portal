@@ -18,6 +18,7 @@
             <th>Form</th>
             <th>Master Document Title</th>
             <th>Sub Document Title</th>
+            <th>For?</th>
             <th>Action</th>
         </tr>
 
@@ -29,8 +30,9 @@
                 <td>{{ $item->fetchForm($item->form_id) }}</td>
                 <td>{{ $item->fetchMainDocumentTitle($item->main_document_id) }}</td>
                 <td>{{ $item->fetctSubDocumentTitle($item->sub_document_id) }}</td>
+                <td>{{ $item->capa_action }}</td>
                 <td>
-                    <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}" class="btn">View</a> | {{ $item->capa_action }}
+                    <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}" class="btn">View</a>
                 </td>
             </tr>
         @endforeach
