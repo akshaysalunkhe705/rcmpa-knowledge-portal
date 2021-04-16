@@ -41,7 +41,7 @@ $documentData = $dataSet->document_details;
                         <td>
                             <select name="units[]" id="units" class="form-control">
                                 <option value="{{ isset($documentData['identification']['units'][$i]) ? $documentData['identification']['units'][$i] : '' }}">{{ isset($documentData['identification']['units'][$i]) ? $documentData['identification']['units'][$i] : '' }}</option>
-                                @foreach ($unitsDataset as $unit)
+                                @foreach ($unitDataset as $unit)
                                     <option value="{{ $unit }}">{{ $unit }}</option>
                                 @endforeach
                             </select>
@@ -82,7 +82,7 @@ $documentData = $dataSet->document_details;
                 </td>
                 <td>
                     <select name="units[]" id="units" class="form-control">
-                        @foreach ($unitsDataset as $unit)
+                        @foreach ($unitDataset as $unit)
                             <option value="{{ $unit }}">{{ $unit }}</option>
                         @endforeach
                     </select>

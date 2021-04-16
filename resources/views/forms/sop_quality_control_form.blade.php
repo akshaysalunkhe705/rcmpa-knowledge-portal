@@ -44,7 +44,7 @@
                             <td>
                                 <select name="chemical_unit[]" id="units" class="form-control">
                                     <option value="{{ isset($documentData['chemical_required']['chemical_unit'][$i]) ? $documentData['chemical_required']['chemical_unit'][$i] : '' }}">{{ isset($documentData['chemical_required']['chemical_unit'][$i]) ? $documentData['chemical_required']['chemical_unit'][$i] : '' }}</option>
-                                    @foreach ($unitsDataset as $unit)
+                                    @foreach ($unitDataset as $unit)
                                         <option value="{{ $unit }}">{{ $unit }}</option>
                                     @endforeach
                                 </select>
@@ -138,7 +138,7 @@
                 <td><input type="text" class="form-control" name="chemical_quantity[]" id="quantity"></td>
                 <td>
                     <select name="chemical_unit[]" id="units" class="form-control">
-                        @foreach ($unitsDataset as $unit)
+                        @foreach ($unitDataset as $unit)
                             <option value="{{ $unit }}">{{ $unit }}</option>
                         @endforeach
                     </select>
