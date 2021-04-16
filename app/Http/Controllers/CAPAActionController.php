@@ -20,14 +20,18 @@ class CAPAActionController extends Controller
     //---------------------CREATE AND UPDATE
     public function process_and_flow_control(Request $request)
     {
-        //File Uplading Service            
-        $fileUploading = new FileUploading();
-        $fileUploading->request = $request;
-        $fileUploading->attribute_name = 'reference_document_urls';
-        $fileUploading->id = $request->document_id;
-        $fileUploading->path = 'reference_documents/' . $request->capa_number . '/' . $request->document_id;
-        $fileUploading->validations = '';
-        // $fileUploading->UploadFileAndUpdateInDB(SubjectModel::class, $fileUploading->uploadFile());
+        $imagePath = array();
+        for ($i=0; $i < count($request->reference_document_urls); $i++) {
+            //File Uplading Service
+            $fileUploading = new FileUploading();
+            $fileUploading->request = $request;
+            $fileUploading->attribute_name = 'reference_document_urls';
+            $fileUploading->id = $request->document_id;
+            $fileUploading->path = 'reference_documents/' . $request->capa_number . '/' . $request->document_id;
+            $fileUploading->validations = '';
+            $imagePath[] = $fileUploading->uploadFile();
+            // $fileUploading->UploadFileAndUpdateInDB(SubjectModel::class, $fileUploading->uploadFile());
+        }
 
         $documentData = [
             'objective' => $request->objective,
@@ -41,7 +45,7 @@ class CAPAActionController extends Controller
                 'spacial_remarks' => $request->special_remarks
             ],
             'name_of_reference_document' => $request->name_of_reference_document,
-            'reference_document_urls' => $fileUploading->uploadFile()
+            'reference_document_urls' => implode(',', $imagePath)
         ];
 
         return $documentData;
