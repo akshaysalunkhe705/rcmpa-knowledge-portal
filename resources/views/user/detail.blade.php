@@ -61,7 +61,7 @@ use App\Models\UserDocumentPermissionModel;
                         class="border p-2 bg-info">
                         <h5>{{ $formMaster->form_name }}</h5>
                     </div>
-                    <div id="form-master-{{ $department->id }}-{{ $formMaster->id }}" class="form-master border p-2"
+                    <div id="form-master-{{ $department->id }}-{{ $formMaster->id }}" class="form-masters-slide border p-2"
                         style="background-color:white;">
                         <?php $mainDocumentDataset = MainDocumentTitleModel::where('department_id',
                         $department->id)
@@ -191,6 +191,9 @@ use App\Models\UserDocumentPermissionModel;
                     </style>
 
                     <script>
+                        $(document).ready(function() {
+                            $(".form-masters-slide").slideUp();
+                        })
                         function assignRoleToUser(checkbox_id, user_id, department_id, form_id, main_document_id, sub_document_id, action) {
                             if($("#"+checkbox_id).prop("checked") == true)
                             {
