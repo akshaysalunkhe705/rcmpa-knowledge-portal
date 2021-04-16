@@ -22,7 +22,7 @@ class FileUploading
                 ]);
             }
 
-            $imageName = time() . '.' . $_FILES[''.$this->attribute_name.'']['name'][$this->nth_number_of_image]; //$this->request->{$this->attribute_name}[$this->nth_number_of_image]->extension();
+            $imageName = time() . '.' . $_FILES[$this->attribute_name]['name'][$this->nth_number_of_image]; //$this->request->{$this->attribute_name}[$this->nth_number_of_image]->extension();
             if (!is_dir(public_path($this->path))) {
                 mkdir(public_path($this->path));
             }
