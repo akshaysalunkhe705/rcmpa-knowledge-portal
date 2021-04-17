@@ -34,7 +34,7 @@
                 </tr>
             </thead>
             <tbody id="chemical_required_qc">
-                @if ($documentData['chemical_required']['checmical_name'] != null)
+                @if (($documentData != null) && ($documentData['chemical_required']['checmical_name'] != null))
                     @for ($i = 0; $i < count($documentData['chemical_required']['checmical_name']); $i++)
                         <tr>
                             <td><input class="form-control" type="text" name="chemical_name[]" id="chemical_name" value="{{ isset($documentData['chemical_required']['checmical_name'][$i]) ? $documentData['chemical_required']['checmical_name'][$i] : '' }}"></td>
@@ -67,7 +67,7 @@
                 </tr>
             </thead>
             <tbody id="apparatus_required">
-                @if ($documentData['apparatus_required']['apparatus_name'] != null)
+                @if (($documentData != null) && ($documentData['apparatus_required']['apparatus_name'] != null))
                     @for ($i = 0; $i < count($documentData['apparatus_required']['apparatus_name']); $i++)
                         <tr>
                             <td><input class="form-control" type="text" name="apparatus_name[]" id="name" value="{{ isset($documentData['apparatus_required']['apparatus_name'][$i]) ? $documentData['apparatus_required']['apparatus_name'][$i] : ''  }}"></td>
@@ -90,7 +90,7 @@
         <label for="name_of_reference_document">Name Of Reference Document</label> <button class="btn btn-primary" onclick="js:add_name_of_reference_document_qc();">+</button>
         <table class="table table-bordered">
             <tbody id="name_of_reference_document_qc">
-                @if (isset($documentData['name_of_reference_document']))
+                @if (($documentData != null) && (isset($documentData['name_of_reference_document'])))
                     <tr>
                         <?php $i = 0; ?>
                         @foreach ($documentData['name_of_reference_document'] as $item)
