@@ -255,7 +255,7 @@ class CAPAActionController extends Controller
     public function reactivate($document_id)
     {
         $model = DocumentsModel::find($document_id);
-        $model->version_number = "SAVED";
+        $model->version_number = "SUBMIT";
         $model->save();
     }
 
