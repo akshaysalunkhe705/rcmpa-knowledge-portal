@@ -6,10 +6,10 @@ use App\Services\directory_service\DirectoryService;
 
 class FileUploading
 {
-    public $request, $attribute_name, $id, $path, $validations;
+    public $request, $attribute_name, $id, $path, $validations;//, $nth_number_of_image;
     public function uploadFile()
     {
-        if ($this->attribute_name != null) {
+        if ($this->request->{$this->attribute_name} != null) {
             $dirModel = new DirectoryService();
             $dirModel->createDir($this->path);
 
@@ -22,7 +22,7 @@ class FileUploading
                 ]);
             }
 
-            $imageName = time() . '-' . $this->attribute_name;
+            $imageName = time() . '.' . $this->attribute_name->extension();
             if (!is_dir(public_path($this->path))) {
                 mkdir(public_path($this->path));
             }
@@ -33,7 +33,7 @@ class FileUploading
 
     public function UploadFileAndUpdateInDB($ModelClass, $imageNamePath)
     {
-        if ($this->attribute_name != null) {
+        if ($this->request->{$this->attribute_name} != null) {
             $model = $ModelClass::find($this->id);
             $model->{$this->attribute_name} = $imageNamePath;
             $model->save();
