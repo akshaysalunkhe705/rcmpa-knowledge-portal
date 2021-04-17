@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <tbody id="chemical_required_PR">
-                @if ($documentData != null)
+                @if ($documentData['chemical_required']['checmical_name'] != null)
                     @for ($i = 0; $i < count($documentData['chemical_required']['checmical_name']); $i++)
                         <tr>
                             <td><input class="form-control" type="text" name="chemical_name[]" id="chemical_name" value="{{ isset($documentData['chemical_required']['checmical_name'][$i]) ? $documentData['chemical_required']['checmical_name'][$i] : '' }}"></td>
@@ -66,7 +66,7 @@
                 </tr>
             </thead>
             <tbody id="equipment_required_PR">
-                @if ($documentData != null)
+                @if ($documentData['equipement_required']['equipement_name'] != null)
                     @for ($i = 0; $i < count($documentData['equipement_required']['equipement_name']); $i++)
                         <tr>
                             <td><input class="form-control" type="text" name="equipement_name[]" id="name" value="{{ isset($documentData['equipement_required']['equipement_name'][$i]) ? $documentData['equipement_required']['equipement_name'][$i] : ''  }}"></td>
