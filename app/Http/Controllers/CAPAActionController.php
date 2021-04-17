@@ -21,15 +21,16 @@ class CAPAActionController extends Controller
     {
         $imagePath = array();
         $fileUploading = new FileUploading();
-        foreach ($request->process_reference_document_urls as $file) {
-            //File Uplading Service
-            $fileUploading->request = $request;
-            $fileUploading->file = $file;
-            $fileUploading->id = $request->document_id;
-            $fileUploading->path = 'reference_documents/' . $request->capa_number . '/' . $request->document_id;
-            $fileUploading->validations = '';
-            $imagePath[] = $fileUploading->uploadFile();
-        }
+        if (($request->process_reference_document_urls != null)
+            foreach ($request->process_reference_document_urls as $file) {
+                //File Uplading Service
+                $fileUploading->request = $request;
+                $fileUploading->file = $file;
+                $fileUploading->id = $request->document_id;
+                $fileUploading->path = 'reference_documents/' . $request->capa_number . '/' . $request->document_id;
+                $fileUploading->validations = '';
+                $imagePath[] = $fileUploading->uploadFile();
+            }
 
         $documentData = [
             'objective' => $request->objective,
@@ -231,7 +232,7 @@ class CAPAActionController extends Controller
         if (empty($model)) {
             return redirect()->back();
         }
-        $model->version_number = $version_number;
+        $model->document_details = $version_number;
         $model->document_number = mb_substr($model->fetchLocation($model->location_id), 0, 3) . '/' . mb_substr($model->fetchDepartment($model->department_id), 0, 3) . '/' . $form_type . '/' . $version_number;
         $model->status = "SUBMIT";
         $model->save();
