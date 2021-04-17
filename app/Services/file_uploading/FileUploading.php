@@ -6,7 +6,7 @@ use App\Services\directory_service\DirectoryService;
 
 class FileUploading
 {
-    public $request, $attribute_name, $id, $path, $validations;//, $nth_number_of_image;
+    public $request, $attribute_name, $id, $path, $validations;
     public function uploadFile()
     {
         if ($this->attribute_name != null) {
