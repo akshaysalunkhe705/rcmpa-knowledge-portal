@@ -72,7 +72,7 @@ $documentData = $dataSet->document_details;
         
     function add_sss_parameters() {
         event.preventDefault();
-        $("#sss_parameters").after(`
+        $("#sss_parameters").append(`
             <tr>
                 <td>
                     <input type="text" name="parameter[]" id="parameter" class="form-control">

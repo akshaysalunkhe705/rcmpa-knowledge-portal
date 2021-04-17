@@ -137,7 +137,7 @@
 <script>
     function add_chemical_required_pr() {
         event.preventDefault();
-        $("#chemical_required_PR").after(`
+        $("#chemical_required_PR").append(`
             <tr>
                 <td><input class="form-control" type="text" name="chemical_name[]" id="chemical_name"></td>
                 <td><input class="form-control" type="text" name="make[]" id="make"></td>
@@ -156,7 +156,7 @@
 
     function add_equipment_required_pr() {
         event.preventDefault();
-        $("#equipment_required_PR").after(`
+        $("#equipment_required_PR").append(`
             <tr>
                 <td><input class="form-control" type="text" name="equipement_name[]" id="name"></td>
                 <td><input class="form-control" type="text" name="equipement_location_mark_and_number[]" id="location_mark_and_number"></td>
@@ -174,7 +174,7 @@
 
     function add_name_of_reference_document_pr() {
         event.preventDefault();
-        $("#name_of_reference_document_sop_PR").after(`
+        $("#name_of_reference_document_sop_PR").append(`
             <tr>
                 <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
                 <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>

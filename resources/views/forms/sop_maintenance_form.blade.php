@@ -94,7 +94,7 @@
     <script>
         function add_name_of_reference_document() {
             event.preventDefault();
-            $("#name_of_reference_document_sopM").after(`
+            $("#name_of_reference_document_sopM").append(`
                 <tr>
                     <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
                     <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>

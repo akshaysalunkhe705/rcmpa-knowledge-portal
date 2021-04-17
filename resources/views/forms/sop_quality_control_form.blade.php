@@ -130,7 +130,7 @@
     <script>
         function add_chemical_required() {
             event.preventDefault();
-            $("#chemical_required_qc").after(`
+            $("#chemical_required_qc").append(`
             <tr>
                 <td><input type="text" class="form-control" name="chemical_name[]" id="chemical_name"></td>
                 <td><input type="text" class="form-control" name="chemical_make[]" id="make"></td>
@@ -150,7 +150,7 @@
 
         function add_apparatus_required() {
             event.preventDefault();
-            $("#apparatus_required").after(`
+            $("#apparatus_required").append(`
             <tr>
                 <td><input type="text" class="form-control" name="apparatus_name[]" id="name"></td>
                 <td><input type="text" class="form-control" name="apparatus_make[]" id="make"></td>
@@ -162,7 +162,7 @@
 
         function add_name_of_reference_document_qc() {
             event.preventDefault();
-            $("#name_of_reference_document_qc").after(`
+            $("#name_of_reference_document_qc").append(`
             <tr>
                 <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
                 <td><input type="text" class="form-control" name="name_of_reference_document[]"></td>
