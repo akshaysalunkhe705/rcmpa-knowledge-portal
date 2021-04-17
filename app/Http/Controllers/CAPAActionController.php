@@ -22,7 +22,6 @@ class CAPAActionController extends Controller
         $imagePath = array();
         $fileUploading = new FileUploading();
         foreach ($request->process_reference_document_urls as $file) {
-            return $file;
             //File Uplading Service
             $fileUploading->request = $request;
             $fileUploading->attribute_name = $file;
