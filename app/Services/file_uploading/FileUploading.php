@@ -26,7 +26,7 @@ class FileUploading
             if (!is_dir(public_path($this->path))) {
                 mkdir(public_path($this->path));
             }
-            $this->attribute_name->move(public_path($this->path) . '/', $imageName);
+            $this->attribute_name->move(public_path() . '/', $imageName);
             return $this->path . '/' . $imageName;
         }
     }
