@@ -43,7 +43,7 @@ class CAPAActionController extends Controller
                 'spacial_remarks' => $request->special_remarks
             ],
             'name_of_reference_document' => $request->name_of_reference_document,
-            'reference_document_urls' => implode(',', $imagePath)
+            'reference_document_urls' => $imagePath
         ];
 
         // $documentData = json_encode($documentData, true);
