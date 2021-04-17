@@ -26,7 +26,7 @@ $documentData = $dataSet->document_details;
         <button class="btn btn-primary" onclick="js:add_department_and_thirdparty_involvement();">+</button>
         <table class="table table-bordered">
             <tbody id="department_and_thirdparty_involvement_tr">
-                @if ($documentData['department_and_third_party_involvement'] != null)
+                @if (($documentData != null) && ($documentData['department_and_third_party_involvement'] != null))
                     <tr>
                         <?php $i=0; ?>
                         @foreach ($documentData['department_and_third_party_involvement'] as $item)
@@ -50,7 +50,7 @@ $documentData = $dataSet->document_details;
         <button class="btn btn-primary" onclick="js:add_list_of_documnet_involved();">+</button>
         <table class="table table-bordered">
             <tbody id="list_of_documnet_involved">
-                @if ($documentData['list_of_document_involved'] != null)
+                @if (($documentData != null) && ($documentData['list_of_document_involved'] != null))
                     <tr>
                         <?php $i=0; ?>
                         @foreach ($documentData['list_of_document_involved'] as $item)
@@ -82,7 +82,7 @@ $documentData = $dataSet->document_details;
                 </tr>
             </thead>
             <tbody id="process_description">
-                @if ($documentData['process_description']['description'] != null)
+                @if (($documentData != null) && ($documentData['process_description']['description'] != null))
                     @for ($i = 0; $i < count($documentData['process_description']['description']); $i++)
                         <tr>
                             <td>
@@ -119,7 +119,7 @@ $documentData = $dataSet->document_details;
         <label for="name_of_reference_document">Name Of Reference Document</label> <button class="btn btn-primary" onclick="js:add_name_of_reference_document_proc();">+</button>
         <table class="table table-bordered">
             <tbody id="name_of_reference_document_proc">
-                @if (isset($documentData['name_of_reference_document']))
+                @if (($documentData != null) && (isset($documentData['name_of_reference_document'])))
                     <tr>
                         <?php $i = 0; ?>
                         @foreach ($documentData['name_of_reference_document'] as $item)
@@ -145,7 +145,7 @@ $documentData = $dataSet->document_details;
                 <input type="file" name="process_reference_document_urls[]" class="form-control" multiple>
             </div>
         </div>
-        @if ($documentData['reference_document_urls'] != null)
+        @if (($documentData != null) && ($documentData['reference_document_urls'] != null))
             @foreach ($documentData['reference_document_urls'] as $item)
                 <a href="{{ url($item)}}">{{ $item }}</a><br>
             @endforeach
