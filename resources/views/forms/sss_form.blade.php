@@ -29,7 +29,7 @@ $documentData = $dataSet->document_details;
                 </tr>
             </thead>
             <tbody id="sss_parameters">
-                @if ($documentData['identification']['parameter'] != null)
+                @if (($documentData != null) && ($documentData['identification']['parameter'] != null))
                     @for ($i = 0; $i < count($documentData['identification']['parameter']); $i++)
                     <tr>
                         <td>
