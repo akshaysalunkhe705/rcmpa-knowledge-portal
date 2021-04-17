@@ -126,7 +126,7 @@
         <input type="file" name="sop_production_reference_document_urls[]" class="form-control" multiple>
     </div>
 </div>
-@if ($documentData['reference_document_urls'] != null)
+@if (($documentData != null) && ($documentData['reference_document_urls'] != null))
     @foreach ($documentData['reference_document_urls'] as $item)
         <a href="{{ url($item)}}">{{ $item }}</a><br>
     @endforeach
