@@ -46,7 +46,7 @@ class CAPAActionController extends Controller
             'reference_document_urls' => implode(',', $imagePath)
         ];
 
-        return $documentData;
+        // return $documentData;
 
         // $documentData = json_encode($documentData, true);
         $model = DocumentsModel::find($request->document_id);
