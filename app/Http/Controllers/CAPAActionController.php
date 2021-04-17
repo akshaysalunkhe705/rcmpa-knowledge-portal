@@ -21,7 +21,8 @@ class CAPAActionController extends Controller
     {
         $imagePath = array();
         $fileUploading = new FileUploading();
-        if (($request->process_reference_document_urls != null)
+        if ((isset($request->process_reference_document_urls)) && ($request->process_reference_document_urls != null))
+        {
             foreach ($request->process_reference_document_urls as $file) {
                 //File Uplading Service
                 $fileUploading->request = $request;
@@ -31,7 +32,7 @@ class CAPAActionController extends Controller
                 $fileUploading->validations = '';
                 $imagePath[] = $fileUploading->uploadFile();
             }
-
+        }
         $documentData = [
             'objective' => $request->objective,
             'department_and_third_party_involvement' => $request->department_and_third_party_involvement,
