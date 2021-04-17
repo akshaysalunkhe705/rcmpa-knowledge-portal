@@ -92,7 +92,7 @@ $documentData = $dataSet->document_details;
                             <td>
                                 <select name="units[]" id="units" class="form-control">
                                     <option value="{{ $documentData['process_description']['unit'][$i] }}">{{ $documentData['process_description']['unit'][$i] }}</option>
-                                    @foreach ($unitsDataset as $unit)
+                                    @foreach ($unitDataset as $unit)
                                         <option value="{{ $unit->unit_name }}">{{ $unit->unit_name }}</option>
                                     @endforeach
                                 </select>
