@@ -158,9 +158,7 @@ $documentData = $dataSet->document_details;
         <br>
         <input type="submit" name="SAVE" class="btn btn-primary" value="SAVE">
         <input type="submit" name="SUBMIT" class="btn btn-primary" value="SUBMIT">
-        @foreach ($documentData['reference_document_urls'] as $item)
-            <a href="{{ url($item)}}">{{ $item }}</a><br>
-        @endforeach
+        
     </form>
     <br>
     <hr>
