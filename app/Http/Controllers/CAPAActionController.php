@@ -233,7 +233,10 @@ class CAPAActionController extends Controller
         if (empty($model)) {
             return redirect()->back();
         }
-        $model->document_details = $version_number;
+        //get document details of rolled back version
+        $rolledBackModel = DocumentsModel::where('status', 'ARCHIVED')->where('sub_document_id', $sub_document_id)->where('version_number',$version_number)->orderBy('id', 'DESC')->first();
+        $model->document_details = $rolledBackModel->document_details;
+        $model->version_number = $version_number;
         $model->document_number = mb_substr($model->fetchLocation($model->location_id), 0, 3) . '/' . mb_substr($model->fetchDepartment($model->department_id), 0, 3) . '/' . $form_type . '/' . $version_number;
         $model->status = "SUBMIT";
         $model->save();
