@@ -10,9 +10,6 @@ class FileUploading
     public function uploadFile()
     {
         if ($this->file != null) {
-            $dirModel = new DirectoryService();
-            $dirModel->createDir($this->path);
-
             if ((empty($this->request)) && (empty($this->path)) && (empty($this->file))) {
                 return "Request And File And Path Can Not Be EMPTY";
             }
@@ -24,7 +21,9 @@ class FileUploading
 
             $imageName = time().rand(1,100) . '.' . $this->file->extension();
             if (!is_dir(public_path($this->path))) {
-                mkdir(public_path($this->path));
+                // mkdir(public_path($this->path));
+                $dirModel = new DirectoryService();
+                $dirModel->createDir($this->path);
             }
             $this->file->move(public_path($this->path) . '/', $imageName);
             return $this->path . '/' . $imageName;
