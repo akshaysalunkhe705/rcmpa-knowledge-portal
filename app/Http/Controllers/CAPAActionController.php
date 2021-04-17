@@ -23,7 +23,6 @@ class CAPAActionController extends Controller
         $imagePath = array();
         foreach ($request->file('reference_document_urls') as $file) {
             //File Uplading Service
-            $file->move(public_path('reference_documents/' . $request->capa_number . '/' . $request->document_id) . '/', );
             $fileUploading = new FileUploading();
             $fileUploading->request = $request;
             $fileUploading->attribute_name = $file;
