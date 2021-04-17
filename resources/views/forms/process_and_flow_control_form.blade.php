@@ -145,6 +145,11 @@ $documentData = $dataSet->document_details;
                 <input type="file" name="process_reference_document_urls[]" class="form-control" multiple>
             </div>
         </div>
+        @if ($documentData['reference_document_urls'] != null)
+            @foreach ($documentData['reference_document_urls'] as $item)
+                <a href="{{ url($item)}}">{{ $item }}</a><br>
+            @endforeach
+        @endif
 
         <br>
         <hr>
