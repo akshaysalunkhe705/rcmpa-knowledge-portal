@@ -9,7 +9,7 @@ class FileUploading
     public $request, $attribute_name, $id, $path, $validations;
     public function uploadFile()
     {
-        if ($this->request->{$this->attribute_name} != null) {
+        if ($this->attribute_name != null) {
             $dirModel = new DirectoryService();
             $dirModel->createDir($this->path);
 
