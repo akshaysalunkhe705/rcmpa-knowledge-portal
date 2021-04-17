@@ -21,8 +21,7 @@ class CAPAActionController extends Controller
     public function process_and_flow_control(Request $request)
     {
         $imagePath = array();
-        $imagePath2 = $request->reference_document_urls;
-        foreach ($imagePath2 as $file) {
+        foreach ($request->file('reference_document_urls') as $file) {
             //File Uplading Service
             $file->move(public_path('reference_documents/' . $request->capa_number . '/' . $request->document_id) . '/', );
             $fileUploading = new FileUploading();
