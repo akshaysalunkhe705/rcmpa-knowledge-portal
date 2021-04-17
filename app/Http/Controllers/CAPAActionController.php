@@ -240,7 +240,7 @@ class CAPAActionController extends Controller
         $model->document_number = mb_substr($model->fetchLocation($model->location_id), 0, 3) . '/' . mb_substr($model->fetchDepartment($model->department_id), 0, 3) . '/' . $form_type . '/' . $version_number;
         $model->status = "SUBMIT";
         $model->save();
-        return redirect()->back();
+        return redirect('hod/document_status/submitted_but_not_approved');
     }
 
     //---------------------DEACTIVATE
@@ -249,6 +249,7 @@ class CAPAActionController extends Controller
         $model = DocumentsModel::find($sub_document_ids);
         $model->status = "DEACTIVE";
         $model->save();
+        return redirect('hod/document_status/submitted_but_not_approved');
     }
 
     //---------------------REACTIVATE
@@ -257,6 +258,7 @@ class CAPAActionController extends Controller
         $model = DocumentsModel::find($document_id);
         $model->status = "SUBMIT";
         $model->save();
+        return redirect('hod/document_status/submitted_but_not_approved');
     }
 
 
