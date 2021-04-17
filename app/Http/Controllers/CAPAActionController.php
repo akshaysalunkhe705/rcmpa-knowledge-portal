@@ -12,7 +12,6 @@ use App\Models\FormsModel;
 use App\Models\LocationModel;
 use App\Models\UserDocumentPermissionModel;
 use App\Services\file_uploading\FileUploading;
-use League\CommonMark\Block\Element\Document;
 
 class CAPAActionController extends Controller
 {
@@ -23,7 +22,7 @@ class CAPAActionController extends Controller
         return $request->file('process_reference_document_urls');
         $imagePath = array();
         $fileUploading = new FileUploading();
-        foreach ($request->reference_document_urls as $file) {
+        foreach ($request->process_reference_document_urls as $file) {
             return $file;
             //File Uplading Service
             $fileUploading->request = $request;
