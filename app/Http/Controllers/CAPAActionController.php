@@ -24,7 +24,7 @@ class CAPAActionController extends Controller
         foreach ($request->process_reference_document_urls as $file) {
             //File Uplading Service
             $fileUploading->request = $request;
-            $fileUploading->attribute_name = $file;
+            $fileUploading->file = $file;
             $fileUploading->id = $request->document_id;
             $fileUploading->path = 'reference_documents/' . $request->capa_number . '/' . $request->document_id;
             $fileUploading->validations = '';
