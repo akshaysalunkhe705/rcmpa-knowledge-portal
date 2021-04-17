@@ -33,7 +33,7 @@ Route::group(['prefix' => 'capa_actions'], function () {
     
     Route::get('roll_back_document/{sub_document_id}/{version_number}/{form_type}', [CAPAActionController::class, 'roll_back']);
     Route::get('deactivate/{sub_document_ids}', [CAPAActionController::class, 'deactivate']);
-    Route::get('activate/{document_id}', [CAPAActionController::class, 'activate']);
+    Route::get('reactivate/{document_id}', [CAPAActionController::class, 'reactivate']);
 });
 
 Route::group(['prefix' => 'document_status'], function () {

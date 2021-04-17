@@ -77,7 +77,7 @@ use App\Models\SubDocumentTitleModel;
                     <td>
                         <a href="{{ url('hod/document_views/view_form_document/') }}/{{ $item->id }}"
                             class="btn">View</a> |
-                        <a href="{{ url('hod/capa_actions/activate/') }}/{{ $item->id }}"
+                        <a href="{{ url('hod/capa_actions/reactivate/') }}/{{ $item->id }}"
                             class="btn">Activate</a>
                     </td>
                 </tr>
