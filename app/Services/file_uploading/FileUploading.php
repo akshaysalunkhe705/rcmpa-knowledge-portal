@@ -33,7 +33,7 @@ class FileUploading
 
     public function UploadFileAndUpdateInDB($ModelClass, $imageNamePath)
     {
-        if ($this->request->{$this->attribute_name} != null) {
+        if ($this->attribute_name != null) {
             $model = $ModelClass::find($this->id);
             $model->{$this->attribute_name} = $imageNamePath;
             $model->save();
