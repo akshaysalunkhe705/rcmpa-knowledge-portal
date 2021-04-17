@@ -1,6 +1,6 @@
 @foreach ($sopQualityControlDataset as $dataSet)
     <?php $documentData = $dataSet->document_details; ?>
-    <form action="{{ url('hod/capa_actions/sop_quality_control') }}/{{ $dataSet->id }}" method="post">
+    <form action="{{ url('hod/capa_actions/sop_quality_control') }}/{{ $dataSet->id }}"  enctype="multipart/form-data" method="post">
         <input type="hidden" name="document_id" value="{{ $dataSet->id }}">
         @csrf
         <div style="border:1px solid; padding:1%;">

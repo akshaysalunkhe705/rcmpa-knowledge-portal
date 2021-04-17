@@ -62,6 +62,17 @@ class CAPAActionController extends Controller
 
     public function sop_production(Request $request)
     {
+        $fileUploading = new FileUploading();
+        foreach ($request->sop_production_reference_document_urls as $file) {
+            //File Uplading Service
+            $fileUploading->request = $request;
+            $fileUploading->file = $file;
+            $fileUploading->id = $request->document_id;
+            $fileUploading->path = 'reference_documents/' . $request->capa_number . '/' . $request->document_id;
+            $fileUploading->validations = '';
+            $imagePath[] = $fileUploading->uploadFile();
+        }
+
         $documentData = [
             'objective' => $request->objective,
             'chemical_required' => [
@@ -81,6 +92,7 @@ class CAPAActionController extends Controller
             'production_process' => $request->production_process,
             'post_production_process' => $request->post_production_process,
             'name_of_reference_document' => $request->name_of_reference_document,
+            'reference_document_urls' => $request->sop_production_reference_document_urls
         ];
         $model = DocumentsModel::find($request->document_id);
         $model->document_details = $documentData;

@@ -1,6 +1,6 @@
 @foreach ($sopProductionDataset as $dataSet)
     <?php $documentData = $dataSet->document_details; ?>
-    <form action="{{ url('hod/capa_actions/sop_production') }}/{{ $dataSet->id }}" method="post">
+    <form action="{{ url('hod/capa_actions/sop_production') }}/{{ $dataSet->id }}" method="post" enctype="multipart/form-data">
         <input type="hidden" name="document_id" value="{{ $dataSet->id }}">
         @csrf
         <div style="border:1px solid; padding:1%;">
@@ -120,9 +120,17 @@
 </tbody>
 </table>
 
-<label for="reference_document_urls">Reference Document Upload</label>
-<input type="file" name="reference_document_urls" class="form-control" multiple>
-<br>
+<div class="row">
+    <div class="col-md-3">
+        <label for="reference_document_urls">Reference Document Upload</label>
+        <input type="file" name="sop_production_reference_document_urls[]" class="form-control" multiple>
+    </div>
+</div>
+@if ($documentData['reference_document_urls'] != null)
+    @foreach ($documentData['reference_document_urls'] as $item)
+        <a href="{{ url($item)}}">{{ $item }}</a><br>
+    @endforeach
+@endif
 
 <hr>
 <div style="border:1px solid; padding:1%;">
