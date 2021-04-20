@@ -22,19 +22,25 @@ class CAPAController extends Controller
         if (($action == 'deactivate') || ($action == 'reactivate')) {
             $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'DEACTIVE_REACTIVE_DOC')->get();
         }
-        
+
 
         $sorted_sub_document_ids = array();
         foreach ($documentAccessListIds as $key => $value) {
             $sorted_sub_document_ids[] = $value->sub_document_id;
         }
-        if (($action == 'update') || ($action == 'roll_back') || ($action == 'deactivate')) {
+        if ($action == 'update') {
             $documentAccessListIds = DocumentsModel::whereIn('sub_document_id', $sorted_sub_document_ids)->where('status', 'ACTIVE')->get();
         }
-        if($action == 'reactivate'){
+        if ($action == 'roll_back') {
+            $documentAccessListIds = DocumentsModel::whereIn('sub_document_id', $sorted_sub_document_ids)->where('status', 'ACTIVE')->get();
+        }
+        if ($action == 'deactivate') {
+            $documentAccessListIds = DocumentsModel::whereIn('sub_document_id', $sorted_sub_document_ids)->where('status', 'ACTIVE')->get();
+        }
+        if ($action == 'reactivate') {
             $documentAccessListIds = DocumentsModel::whereIn('sub_document_id', $sorted_sub_document_ids)->where('status', 'DEACTIVE')->get();
         }
-        // elseif($action == 'create') {
+        // if ($action == 'create') {
         //     $documentAccessListIds = DocumentsModel::whereNotIn('sub_document_id', $sorted_sub_document_ids)->get();
         //     foreach ($documentAccessListIds as $key => $value) {
         //         $ids = array_search($value, $documentAccessListIds);
@@ -122,7 +128,7 @@ class CAPAController extends Controller
             $formBasicData['capa_action'] = "UPDATE";
 
             if (($request->process_main_document != null) && ($request->process_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->process_main_document)->where('sub_document_id', $request->process_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->process_main_document)->where('sub_document_id', $request->process_sub_document)->where('status', 'ACTIVE')->first();
                 $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/PROC/' . $documentModel->getLatestVersion($request->process_sub_document);
@@ -135,7 +141,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_production_main_document != null) && ($request->sop_production_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_production_main_document)->where('sub_document_id', $request->sop_production_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->sop_production_main_document)->where('sub_document_id', $request->sop_production_sub_document)->where('status', 'ACTIVE')->first();
                 $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/' . $documentModel->getLatestVersion($request->sop_production_sub_document);
@@ -148,7 +154,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_qc_main_document != null) && ($request->sop_qc_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_qc_main_document)->where('sub_document_id', $request->sop_qc_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->sop_qc_main_document)->where('sub_document_id', $request->sop_qc_sub_document)->where('status', 'ACTIVE')->first();
                 $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/' . $documentModel->getLatestVersion($request->sop_qc_sub_document);
@@ -161,7 +167,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_maintenance_main_document != null) && ($request->sop_maintenance_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_maintenance_main_document)->where('sub_document_id', $request->sop_maintenance_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->sop_maintenance_main_document)->where('sub_document_id', $request->sop_maintenance_sub_document)->where('status', 'ACTIVE')->first();
                 $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SOP/' . $documentModel->getLatestVersion($request->sop_maintenance_sub_document);
@@ -174,7 +180,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->msds_main_document != null) && ($request->msds_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->msds_main_document)->where('sub_document_id', $request->msds_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->msds_main_document)->where('sub_document_id', $request->msds_sub_document)->where('status', 'ACTIVE')->first();
                 $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/MSDS/' . $documentModel->getLatestVersion($request->msds_sub_document);
@@ -187,7 +193,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sss_main_document != null) && ($request->sss_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sss_main_document)->where('sub_document_id', $request->sss_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->sss_main_document)->where('sub_document_id', $request->sss_sub_document)->where('status', 'ACTIVE')->first();
                 $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['document_number'] = mb_substr($documentModel->fetchLocation($request->location), 0, 3) . '/' . mb_substr($documentModel->fetchDepartment($request->department), 0, 3) . '/SSS/' . $documentModel->getLatestVersion($request->sss_sub_document);
@@ -204,9 +210,9 @@ class CAPAController extends Controller
         if ($action == 'roll_back') {
             $formBasicData['revision_date'] = date('Y-m-d');
             $formBasicData['capa_action'] = "ROLL_BACK";
-            
+
             if (($request->process_main_document != null) && ($request->process_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->process_main_document)->where('sub_document_id', $request->process_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->process_main_document)->where('sub_document_id', $request->process_sub_document)->where('status', 'ACTIVE')->first();
                 // $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['form_id'] = 1;
@@ -217,7 +223,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_production_main_document != null) && ($request->sop_production_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_production_main_document)->where('sub_document_id', $request->sop_production_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->sop_production_main_document)->where('sub_document_id', $request->sop_production_sub_document)->where('status', 'ACTIVE')->first();
                 // $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['form_id'] = 2;
@@ -228,7 +234,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_qc_main_document != null) && ($request->sop_qc_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_qc_main_document)->where('sub_document_id', $request->sop_qc_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->sop_qc_main_document)->where('sub_document_id', $request->sop_qc_sub_document)->where('status', 'ACTIVE')->first();
                 // $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['form_id'] = 3;
@@ -239,7 +245,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_maintenance_main_document != null) && ($request->sop_maintenance_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_maintenance_main_document)->where('sub_document_id', $request->sop_maintenance_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->sop_maintenance_main_document)->where('sub_document_id', $request->sop_maintenance_sub_document)->where('status', 'ACTIVE')->first();
                 // $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['form_id'] = 4;
@@ -250,7 +256,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->msds_main_document != null) && ($request->msds_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->msds_main_document)->where('sub_document_id', $request->msds_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->msds_main_document)->where('sub_document_id', $request->msds_sub_document)->where('status', 'ACTIVE')->first();
                 // $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['form_id'] = 5;
@@ -261,7 +267,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sss_main_document != null) && ($request->sss_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sss_main_document)->where('sub_document_id', $request->sss_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->sss_main_document)->where('sub_document_id', $request->sss_sub_document)->where('status', 'ACTIVE')->first();
                 // $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['form_id'] = 6;
@@ -276,7 +282,7 @@ class CAPAController extends Controller
             $formBasicData['capa_action'] = "DEACTIVATE";
             $formBasicData['status'] = "DEACTIVE";
             if (($request->process_main_document != null) && ($request->process_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->process_main_document)->where('sub_document_id', $request->process_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->process_main_document)->where('sub_document_id', $request->process_sub_document)->where('status', 'ACTIVE')->first();
                 // $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['form_id'] = 1;
@@ -286,7 +292,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_production_main_document != null) && ($request->sop_production_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_production_main_document)->where('sub_document_id', $request->sop_production_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->sop_production_main_document)->where('sub_document_id', $request->sop_production_sub_document)->where('status', 'ACTIVE')->first();
                 // $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['form_id'] = 2;
@@ -296,7 +302,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_qc_main_document != null) && ($request->sop_qc_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_qc_main_document)->where('sub_document_id', $request->sop_qc_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->sop_qc_main_document)->where('sub_document_id', $request->sop_qc_sub_document)->where('status', 'ACTIVE')->first();
                 // $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['form_id'] = 3;
@@ -306,7 +312,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sop_maintenance_main_document != null) && ($request->sop_maintenance_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sop_maintenance_main_document)->where('sub_document_id', $request->sop_maintenance_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->sop_maintenance_main_document)->where('sub_document_id', $request->sop_maintenance_sub_document)->where('status', 'ACTIVE')->first();
                 // $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['form_id'] = 4;
@@ -316,7 +322,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->msds_main_document != null) && ($request->msds_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->msds_main_document)->where('sub_document_id', $request->msds_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->msds_main_document)->where('sub_document_id', $request->msds_sub_document)->where('status', 'ACTIVE')->first();
                 // $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['form_id'] = 5;
@@ -326,7 +332,7 @@ class CAPAController extends Controller
                 $documentModel->add($formBasicData);
             }
             if (($request->sss_main_document != null) && ($request->sss_sub_document != null)) {
-                $previousActiveVersionModel = DocumentsModel::where('main_document_id',$request->sss_main_document)->where('sub_document_id', $request->sss_sub_document)->where('status','ACTIVE')->first();
+                $previousActiveVersionModel = DocumentsModel::where('main_document_id', $request->sss_main_document)->where('sub_document_id', $request->sss_sub_document)->where('status', 'ACTIVE')->first();
                 // $formBasicData['document_details'] = $previousActiveVersionModel->document_details;
                 $formBasicData['created_date'] = date("Y-m-d", strtotime($previousActiveVersionModel->created_date));
                 $formBasicData['form_id'] = 6;
@@ -345,12 +351,12 @@ class CAPAController extends Controller
     public function create($capa_number)
     {
         // $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')->get();
-        $process = DocumentsModel::whereIn('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'CREATE')->where('form_id', 1)->where('capa_number', $capa_number)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
-        $sop_production = DocumentsModel::whereIn('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'CREATE')->where('form_id', 2)->where('capa_number', $capa_number)->get();
-        $sop_quality_control = DocumentsModel::whereIn('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'CREATE')->where('form_id', 3)->where('capa_number', $capa_number)->get();
-        $sop_maintenance = DocumentsModel::whereIn('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'CREATE')->where('form_id', 4)->where('capa_number', $capa_number)->get();
-        $msds = DocumentsModel::whereIn('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'CREATE')->where('form_id', 5)->where('capa_number', $capa_number)->get();
-        $sss = DocumentsModel::whereIn('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'CREATE')->where('form_id', 6)->where('capa_number', $capa_number)->get();
+        $process = DocumentsModel::whereIn('status', ['CREATE', 'SAVED', 'REJECT'])->where('capa_action', 'CREATE')->where('form_id', 1)->where('capa_number', $capa_number)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
+        $sop_production = DocumentsModel::whereIn('status', ['CREATE', 'SAVED', 'REJECT'])->where('capa_action', 'CREATE')->where('form_id', 2)->where('capa_number', $capa_number)->get();
+        $sop_quality_control = DocumentsModel::whereIn('status', ['CREATE', 'SAVED', 'REJECT'])->where('capa_action', 'CREATE')->where('form_id', 3)->where('capa_number', $capa_number)->get();
+        $sop_maintenance = DocumentsModel::whereIn('status', ['CREATE', 'SAVED', 'REJECT'])->where('capa_action', 'CREATE')->where('form_id', 4)->where('capa_number', $capa_number)->get();
+        $msds = DocumentsModel::whereIn('status', ['CREATE', 'SAVED', 'REJECT'])->where('capa_action', 'CREATE')->where('form_id', 5)->where('capa_number', $capa_number)->get();
+        $sss = DocumentsModel::whereIn('status', ['CREATE', 'SAVED', 'REJECT'])->where('capa_action', 'CREATE')->where('form_id', 6)->where('capa_number', $capa_number)->get();
 
         return view('capa/create', [
             'capa_number' => $capa_number,
@@ -365,12 +371,12 @@ class CAPAController extends Controller
     public function update($capa_number)
     {
         // $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')->get();
-        $process = DocumentsModel::whereIn('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'UPDATE')->where('form_id', 1)->where('capa_number', $capa_number)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
-        $sop_production = DocumentsModel::whereIn('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'UPDATE')->where('form_id', 2)->where('capa_number', $capa_number)->get();
-        $sop_quality_control = DocumentsModel::whereIn('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'UPDATE')->where('form_id', 3)->where('capa_number', $capa_number)->get();
-        $sop_maintenance = DocumentsModel::whereIn('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'UPDATE')->where('form_id', 4)->where('capa_number', $capa_number)->get();
-        $msds = DocumentsModel::whereIn('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'UPDATE')->where('form_id', 5)->where('capa_number', $capa_number)->get();
-        $sss = DocumentsModel::whereIn('status', ['CREATE','SAVED','REJECT'])->where('capa_action', 'UPDATE')->where('form_id', 6)->where('capa_number', $capa_number)->get();
+        $process = DocumentsModel::whereIn('status', ['CREATE', 'SAVED', 'REJECT'])->where('capa_action', 'UPDATE')->where('form_id', 1)->where('capa_number', $capa_number)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
+        $sop_production = DocumentsModel::whereIn('status', ['CREATE', 'SAVED', 'REJECT'])->where('capa_action', 'UPDATE')->where('form_id', 2)->where('capa_number', $capa_number)->get();
+        $sop_quality_control = DocumentsModel::whereIn('status', ['CREATE', 'SAVED', 'REJECT'])->where('capa_action', 'UPDATE')->where('form_id', 3)->where('capa_number', $capa_number)->get();
+        $sop_maintenance = DocumentsModel::whereIn('status', ['CREATE', 'SAVED', 'REJECT'])->where('capa_action', 'UPDATE')->where('form_id', 4)->where('capa_number', $capa_number)->get();
+        $msds = DocumentsModel::whereIn('status', ['CREATE', 'SAVED', 'REJECT'])->where('capa_action', 'UPDATE')->where('form_id', 5)->where('capa_number', $capa_number)->get();
+        $sss = DocumentsModel::whereIn('status', ['CREATE', 'SAVED', 'REJECT'])->where('capa_action', 'UPDATE')->where('form_id', 6)->where('capa_number', $capa_number)->get();
 
         return view('capa/update', [
             'capa_number' => $capa_number,
@@ -385,12 +391,12 @@ class CAPAController extends Controller
     public function rollback($capa_number, $process_sub_document, $sop_maintenance_sub_document, $sop_production_sub_document, $sop_qc_sub_document, $msds_sub_document, $sss_sub_document)
     {
         // $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')->get();
-        $process = DocumentsModel::where('form_id', 1)->where('version_number','!=', null)->where('status', 'ARCHIVED')->where('sub_document_id',$process_sub_document)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
-        $sop_production = DocumentsModel::where('form_id', 2)->where('version_number','!=', null)->where('status', 'ARCHIVED')->where('sub_document_id',$sop_production_sub_document)->get();
-        $sop_quality_control = DocumentsModel::where('form_id', 3)->where('version_number','!=', null)->where('status', 'ARCHIVED')->where('sub_document_id',$sop_qc_sub_document)->get();
-        $sop_maintenance = DocumentsModel::where('form_id', 4)->where('version_number','!=', null)->where('status', 'ARCHIVED')->where('sub_document_id',$sop_maintenance_sub_document)->get();
-        $msds = DocumentsModel::where('form_id', 5)->where('version_number','!=', null)->where('status', 'ARCHIVED')->where('sub_document_id',$msds_sub_document)->get();
-        $sss = DocumentsModel::where('form_id', 6)->where('version_number','!=', null)->where('status', 'ARCHIVED')->where('sub_document_id',$sss_sub_document)->get();
+        $process = DocumentsModel::where('form_id', 1)->where('version_number', '!=', null)->where('status', 'ARCHIVED')->where('sub_document_id', $process_sub_document)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
+        $sop_production = DocumentsModel::where('form_id', 2)->where('version_number', '!=', null)->where('status', 'ARCHIVED')->where('sub_document_id', $sop_production_sub_document)->get();
+        $sop_quality_control = DocumentsModel::where('form_id', 3)->where('version_number', '!=', null)->where('status', 'ARCHIVED')->where('sub_document_id', $sop_qc_sub_document)->get();
+        $sop_maintenance = DocumentsModel::where('form_id', 4)->where('version_number', '!=', null)->where('status', 'ARCHIVED')->where('sub_document_id', $sop_maintenance_sub_document)->get();
+        $msds = DocumentsModel::where('form_id', 5)->where('version_number', '!=', null)->where('status', 'ARCHIVED')->where('sub_document_id', $msds_sub_document)->get();
+        $sss = DocumentsModel::where('form_id', 6)->where('version_number', '!=', null)->where('status', 'ARCHIVED')->where('sub_document_id', $sss_sub_document)->get();
 
         return view('capa/roll_back', [
             'capa_number' => $capa_number,
@@ -405,12 +411,12 @@ class CAPAController extends Controller
     public function deactivate($capa_number, $process_sub_document, $sop_maintenance_sub_document, $sop_production_sub_document, $sop_qc_sub_document, $msds_sub_document, $sss_sub_document)
     {
         // $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')->get();
-        $process = DocumentsModel::where('form_id', 1)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->where('sub_document_id',$process_sub_document)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
-        $sop_production = DocumentsModel::where('form_id', 2)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->where('sub_document_id',$sop_production_sub_document)->get();
-        $sop_quality_control = DocumentsModel::where('form_id', 3)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->where('sub_document_id',$sop_qc_sub_document)->get();
-        $sop_maintenance = DocumentsModel::where('form_id', 4)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->where('sub_document_id',$sop_maintenance_sub_document)->get();
-        $msds = DocumentsModel::where('form_id', 5)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->where('sub_document_id',$msds_sub_document)->get();
-        $sss = DocumentsModel::where('form_id', 6)->where('version_number','!=', null)->where('status','!=', 'ACTIVE')->where('sub_document_id',$sss_sub_document)->get();
+        $process = DocumentsModel::where('form_id', 1)->where('version_number', '!=', null)->where('status', '!=', 'ACTIVE')->where('sub_document_id', $process_sub_document)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
+        $sop_production = DocumentsModel::where('form_id', 2)->where('version_number', '!=', null)->where('status', '!=', 'ACTIVE')->where('sub_document_id', $sop_production_sub_document)->get();
+        $sop_quality_control = DocumentsModel::where('form_id', 3)->where('version_number', '!=', null)->where('status', '!=', 'ACTIVE')->where('sub_document_id', $sop_qc_sub_document)->get();
+        $sop_maintenance = DocumentsModel::where('form_id', 4)->where('version_number', '!=', null)->where('status', '!=', 'ACTIVE')->where('sub_document_id', $sop_maintenance_sub_document)->get();
+        $msds = DocumentsModel::where('form_id', 5)->where('version_number', '!=', null)->where('status', '!=', 'ACTIVE')->where('sub_document_id', $msds_sub_document)->get();
+        $sss = DocumentsModel::where('form_id', 6)->where('version_number', '!=', null)->where('status', '!=', 'ACTIVE')->where('sub_document_id', $sss_sub_document)->get();
 
         return view('capa/deactivate', [
             'capa_number' => $capa_number,
@@ -425,12 +431,12 @@ class CAPAController extends Controller
     public function reactivate($capa_number, $process_sub_document, $sop_maintenance_sub_document, $sop_production_sub_document, $sop_qc_sub_document, $msds_sub_document, $sss_sub_document)
     {
         // $documentAccessListIds = UserDocumentPermissionModel::where('user_id', Auth::user()->id)->where('permission_type', 'CREATE_UPDATE_ROLLBACK_DOC')->get();
-        $process = DocumentsModel::where('form_id', 1)->where('status','ARCHIVED')->where('sub_document_id',$process_sub_document)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
-        $sop_production = DocumentsModel::where('form_id', 2)->where('status','ARCHIVED')->where('sub_document_id',$sop_production_sub_document)->get();
-        $sop_quality_control = DocumentsModel::where('form_id', 3)->where('status','ARCHIVED')->where('sub_document_id',$sop_qc_sub_document)->get();
-        $sop_maintenance = DocumentsModel::where('form_id', 4)->where('status','ARCHIVED')->where('sub_document_id',$sop_maintenance_sub_document)->get();
-        $msds = DocumentsModel::where('form_id', 5)->where('status','ARCHIVED')->where('sub_document_id',$msds_sub_document)->get();
-        $sss = DocumentsModel::where('form_id', 6)->where('status','ARCHIVED')->where('sub_document_id',$sss_sub_document)->get();
+        $process = DocumentsModel::where('form_id', 1)->where('status', 'ARCHIVED')->where('sub_document_id', $process_sub_document)->get(); //->whereIn('sub_document_id', array_column(json_decode($documentAccessListIds, true), 'sub_document_id'))
+        $sop_production = DocumentsModel::where('form_id', 2)->where('status', 'ARCHIVED')->where('sub_document_id', $sop_production_sub_document)->get();
+        $sop_quality_control = DocumentsModel::where('form_id', 3)->where('status', 'ARCHIVED')->where('sub_document_id', $sop_qc_sub_document)->get();
+        $sop_maintenance = DocumentsModel::where('form_id', 4)->where('status', 'ARCHIVED')->where('sub_document_id', $sop_maintenance_sub_document)->get();
+        $msds = DocumentsModel::where('form_id', 5)->where('status', 'ARCHIVED')->where('sub_document_id', $msds_sub_document)->get();
+        $sss = DocumentsModel::where('form_id', 6)->where('status', 'ARCHIVED')->where('sub_document_id', $sss_sub_document)->get();
 
         return view('capa/reactivate', [
             'capa_number' => $capa_number,
