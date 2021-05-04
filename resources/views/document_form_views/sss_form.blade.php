@@ -18,8 +18,10 @@
     
     <br>
     <label for="">Client Name</label>
-    <?= isset($documentData['client_name']) ? $documentData['client_name'] : '' ?>
-    <br>
+    @if (Auth::user()->department == 'SALES')
+        <?= isset($documentData['client_name']) ? $documentData['client_name'] : '' ?>
+        <br>
+    @endif
     <table class="table table-bordered">
         <thead>
             <tr>
