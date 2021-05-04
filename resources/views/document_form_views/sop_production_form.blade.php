@@ -103,5 +103,15 @@
 </tbody>
 </table>
 
+    
+<br>
+    
+<label for="download_docs">Download Reference Documents</label>
+<br>
+@for ($i = 0; $i < count($documentData['reference_document_urls']); $i++)
+    <a href="{{ url($documentData['reference_document_urls'][$i]) }}">Downloads</a> <br>
+@endfor
+<br>
+
 
 @endsection

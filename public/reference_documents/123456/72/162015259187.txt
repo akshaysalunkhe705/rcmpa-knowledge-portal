@@ -1,0 +1,39 @@
+FORM
+    input = text, radio, checkbox, file, range, number
+    select (dropdown)
+    textarea
+    (above fields with validation and responsive and other features)
+    button 
+
+
+COMPONENT
+    accordian
+    alerts popup
+    card
+    navigations (animated)
+    modals popup
+    listview pagination
+    gridview pagination
+    tooltips
+    progressbar (for downloading uploading page reflecting etc)
+    toast (footer popup)
+    row cols (gridview)
+
+
+HELPER
+    colors = primary, info, danger, warning, success
+    shadow
+    position
+    sizing
+    spacing
+    border
+    background
+    visibility
+    CONTROLLER
+
+ICONS
+    vector ICONS
+    material ICONS
+
+Animations
+    
