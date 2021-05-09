@@ -12,6 +12,7 @@ use App\Models\MainDocumentTitleModel;
 use App\Models\SubDocumentTitleModel;
 use App\Models\FormsModel;
 use App\Models\UserDocumentPermissionModel;
+use App\Repository\DependantMainAndSubDocumentsListRepository;
 use Illuminate\Support\Facades\Auth;
 
 class GeneralMasterController extends Controller
@@ -68,5 +69,17 @@ class GeneralMasterController extends Controller
             $options .= "<option value='".$value->id."'>".$value->department_name."</option>";
         }
         return $options;
+    }
+
+    public function findListDepartmentsByUsingLocationId(DependantMainAndSubDocumentsListRepository $listRepositpry, $locationId){
+        return $listRepositpry->findListDepartmentsByUsingLocationId($locationId);
+    }
+
+    public function findListMainDocsByUsingDepartmentAndFormId(DependantMainAndSubDocumentsListRepository $listRepositpry, $departmentId, $formId){
+        return $listRepositpry->findListMainDocsByUsingDepartmentAndFormId($departmentId, $formId);
+    }
+
+    public function findListSubMainDocsByUsingDepartmentAndFormAndMainDocId(DependantMainAndSubDocumentsListRepository $listRepositpry, $departmentId, $formId, $mainDocumentId){
+        return $listRepositpry->findListSubMainDocsByUsingDepartmentAndFormAndMainDocId($departmentId, $formId, $mainDocumentId);
     }
 }

@@ -31,7 +31,8 @@ $deptModel = new App\Models\DepartmentModel();
         </div>
         <div class="col-md-4">
             <label for="location"> Location </label>
-            <select name="location" id="location" class="form-control" ><!-- onchange="js:fetchDepartment();" -->
+            <select name="location" id="location" class="form-control">
+                <!-- onchange="js:fetchDepartment();" -->
                 <option value="">Select Location</option>
                 @foreach ($locationModel as $item)
                     <option value="{{ $item->id }}">{{ $item->location_name }}</option>
@@ -40,7 +41,8 @@ $deptModel = new App\Models\DepartmentModel();
         </div>
         <div class="col-md-4">
             <label for="department"> Department </label>
-            <input type="hidden" name="department" id="department" value="{{ $deptModel->fetchIdFromDepartmentName(Auth::user()->department) }}">
+            <input type="hidden" name="department" id="department"
+                value="{{ $deptModel->fetchIdFromDepartmentName(Auth::user()->department) }}">
             <input type="text" class="form-control" value="{{ Auth::user()->department }}" readonly>
         </div>
     </div>
@@ -94,7 +96,8 @@ $deptModel = new App\Models\DepartmentModel();
         <div class="row">
             <div class="col-md-10"></div>
             <div class="col-md-2">
-                <button class="btn btn-primary btn-block" onclick="js:nextPage('{{ $action }}');"> Next ({{ $action }}) </button>
+                <button class="btn btn-primary btn-block" onclick="js:nextPage('{{ $action }}');"> Next
+                    ({{ $action }}) </button>
             </div>
         </div>
     </div>
@@ -120,8 +123,7 @@ $deptModel = new App\Models\DepartmentModel();
                 });
         }
 
-        function nextPage(action) 
-        {
+        function nextPage(action) {
             if ($("#capa_number").val() == "") {
                 alert("Enter CAPA Number");
                 return false;
@@ -168,19 +170,22 @@ $deptModel = new App\Models\DepartmentModel();
                         location.href = "{{ url('/hod/capa/set/update') }}/" + capa_number;
                     }
                     if (action == "roll_back") {
-                        location.href = "{{ url('/hod/capa/set/roll_back') }}/" + capa_number +'/'+ response.process_sub_document +
+                        location.href = "{{ url('/hod/capa/set/roll_back') }}/" + capa_number + '/' + response
+                            .process_sub_document +
                             '/' + response.sop_maintenance_sub_document + '/' + response
                             .sop_production_sub_document + '/' + response.sop_qc_sub_document + '/' + response
                             .msds_sub_document + '/' + response.sss_sub_document;
                     }
                     if (action == "deactivate") {
-                        location.href = "{{ url('/hod/capa/set/deactivate') }}/" + capa_number +'/'+ response.process_sub_document +
+                        location.href = "{{ url('/hod/capa/set/deactivate') }}/" + capa_number + '/' + response
+                            .process_sub_document +
                             '/' + response.sop_maintenance_sub_document + '/' + response
                             .sop_production_sub_document + '/' + response.sop_qc_sub_document + '/' + response
                             .msds_sub_document + '/' + response.sss_sub_document;
                     }
                     if (action == "reactivate") {
-                        location.href = "{{ url('/hod/capa/set/reactivate') }}/" + capa_number +'/'+ response.process_sub_document +
+                        location.href = "{{ url('/hod/capa/set/reactivate') }}/" + capa_number + '/' + response
+                            .process_sub_document +
                             '/' + response.sop_maintenance_sub_document + '/' + response
                             .sop_production_sub_document + '/' + response.sop_qc_sub_document + '/' + response
                             .msds_sub_document + '/' + response.sss_sub_document;
@@ -192,6 +197,27 @@ $deptModel = new App\Models\DepartmentModel();
         function showSelectedFormDocument(id) {
             $("#selected-form-" + id).css('visibility', 'visible');
         }
+    </script>
 
+    <script>
+        function fetchMainDocumentTitle() {
+            $.get('general_master/fetch_main_document_title', {
+                department_id: $("#department_id-5").val()
+            },
+            function(response) {
+                console.log(response);
+                $("#main_document_id-5").html(response);
+            });
+        }
+
+        function fetchDepartment() {
+            $.get('general_master/fetch_department_from_location', {
+                location_id: $("#location_id-4").val()
+            },
+            function(response) {
+                console.log(response);
+                $("#department_id-4").html(response);
+            });
+        }
     </script>
 @endsection
