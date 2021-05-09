@@ -74,7 +74,7 @@ $deptModel = new App\Models\DepartmentModel();
                     ->whereIn('id', array_column(json_decode($documentAccessListIds, true), 'main_document_id'))
                     ->get(); ?>
                     <select name="main_document_name-{{ $form->id }}" id="main_document_name-{{ $i }}"
-                        class="form-control" onchange="js:fetchSubDocumentTitle({{ $i }});">
+                        class="form-control" onchange="js:fetchSubDocumentTitle({{ $i }}, {{ $form->id }});">
                         <option value="">Select Document Name</option>
                         @foreach ($mainDocumentTitleModel as $document)
                             <option value="{{ $document->id }}">{{ $document->main_document_title }}</option>
@@ -113,9 +113,10 @@ $deptModel = new App\Models\DepartmentModel();
                 });
         }
 
-        function fetchSubDocumentTitle(id) {
+        function fetchSubDocumentTitle(id, form_id) {
             $.get('{{ url('admin/general_master/fetch_sub_document_title') }}', {
-                    main_document_id: $("#main_document_name-" + id).val()
+                    form_id: form_id,
+                    main_document_id: $("#main_document_name-" + id).val(),
                 },
                 function(response) {
                     console.log(response);

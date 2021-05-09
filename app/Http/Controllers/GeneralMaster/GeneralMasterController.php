@@ -53,7 +53,10 @@ class GeneralMasterController extends Controller
             $sorted_sub_document_ids[] = $value->sub_document_id;
         }
 
-        $subDocumentTitleModel = SubDocumentTitleModel::whereIn('id', $sorted_sub_document_ids)->where('main_document_id', $request->main_document_id)->get();
+        $subDocumentTitleModel = SubDocumentTitleModel::whereIn('id', $sorted_sub_document_ids)
+        ->where('form_id', $request->form_id)
+        ->where('main_document_id', $request->main_document_id)
+        ->get();
         $options='<option value="">Select Sub Document Title</option>';
         foreach ($subDocumentTitleModel as $key => $value) {
             $options .= "<option value='".$value->id."'>".$value->sub_document_title."</option>";
