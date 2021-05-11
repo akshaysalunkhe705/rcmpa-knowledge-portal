@@ -17,8 +17,8 @@
         subDocumentId='{{ $dataSet->fetctSubDocumentTitle($dataSet->sub_document_id) }}' />
     
     <br>
-    <label for="">Client Name</label>
     @if (Auth::user()->department == 'SALES')
+        <label for="">Client Name</label>
         <?= isset($documentData['client_name']) ? $documentData['client_name'] : '' ?>
         <br>
     @endif

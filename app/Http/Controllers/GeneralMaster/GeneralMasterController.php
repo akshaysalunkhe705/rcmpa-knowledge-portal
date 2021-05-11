@@ -24,7 +24,7 @@ class GeneralMasterController extends Controller
         $mainDocumentTitleModel = MainDocumentTitleModel::all();
         $subDocumentTitleModel = SubDocumentTitleModel::all();
         $formsModel = FormsModel::all();
-
+    
         return view('general_master/index', [
             'locationModel' => $locationModel,
             'departmentModel' => $departmentModel,
@@ -36,8 +36,7 @@ class GeneralMasterController extends Controller
 
     public function fetchMainDocumentTitle(Request $request)
     {
-        
-        $subDocumentTitleModel = MainDocumentTitleModel::where('department_id', $request->department_id)->get();
+        $subDocumentTitleModel = MainDocumentTitleModel::where('department_id', $request->department_id)->where('form_id', $request->form_id)->get();
         $options='<option value="">Select Main Document Title</option>';
         foreach ($subDocumentTitleModel as $key => $value) {
             $options .= "<option value='".$value->id."'>".$value->main_document_title."</option>";

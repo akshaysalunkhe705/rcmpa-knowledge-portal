@@ -207,7 +207,8 @@
         {
             $.get('general_master/fetch_main_document_title',
             {
-                department_id:$("#department_id-5").val()
+                department_id:$("#department_id-5").val(),
+                form_id:$("#form-5").val()
             },
             function(response){
                 console.log(response);
