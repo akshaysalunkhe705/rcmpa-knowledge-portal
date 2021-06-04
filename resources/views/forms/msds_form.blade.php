@@ -18,7 +18,7 @@ $documentData = $dataSet->document_details;
         <br>
         <label for="identification">identification</label>
         <div class="row">
-            <div class="col-md-4">Product Idenitifer</div>
+            <div class="col-md-4">Product Identifer</div>
             <div class="col-md-4">
                 <input type="text" name="product_identification" id="product_identification" class="form-control" value="{{ isset($documentData) ? $documentData['identification']['product_identification'] : '' }}">
             </div>
@@ -79,6 +79,21 @@ $documentData = $dataSet->document_details;
         <br>
         <label for="toxiocological_information">Toxiocological Information</label>
         <textarea name="toxiocological_information" id="toxiocological_information" class="form-control">{{ isset($documentData) ? $documentData['toxiocological_information'] : '' }}</textarea>
+        <br>
+        <label for="ecological_information">Ecological Information</label>
+        <textarea name="ecological_information" id="ecological_information" class="form-control">{{ isset($documentData) ? $documentData['ecological_information'] : '' }}</textarea>
+        <br>
+        <label for="disposal_considerations">Disposal Considerations</label>
+        <textarea name="disposal_considerations" id="disposal_considerations" class="form-control">{{ isset($documentData) ? $documentData['disposal_considerations'] : '' }}</textarea>
+        <br>
+        <label for="transport_information">Transport Information</label>
+        <textarea name="transport_information" id="transport_information" class="form-control">{{ isset($documentData) ? $documentData['transport_information'] : '' }}</textarea>
+        <br>
+        <label for="regulatory_information">Regulatory Information</label>
+        <textarea name="regulatory_information" id="regulatory_information" class="form-control">{{ isset($documentData) ? $documentData['regulatory_information'] : '' }}</textarea>
+        <br>
+        <label for="other_information">Other Information</label>
+        <textarea name="other_information" id="other_information" class="form-control">{{ isset($documentData) ? $documentData['other_information'] : '' }}</textarea>
 
         <hr>
         <div style="border:1px solid; padding:1%;">
@@ -103,5 +118,10 @@ $documentData = $dataSet->document_details;
         CKEDITOR.replace('physical_and_chemical_properties', {});
         CKEDITOR.replace('stability_and_reactivity', {});
         CKEDITOR.replace('toxiocological_information', {});
+        CKEDITOR.replace('ecological_information', {});
+        CKEDITOR.replace('disposal_considerations', {});
+        CKEDITOR.replace('transport_information', {});
+        CKEDITOR.replace('regulatory_information', {});
+        CKEDITOR.replace('other_information', {});
     </script>
 @endforeach

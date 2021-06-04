@@ -189,7 +189,12 @@ class CAPAActionController extends Controller
             'exposure_control_or_personal_protection' => $request->exposure_control_or_personal_protection,
             'physical_and_chemical_properties' => $request->physical_and_chemical_properties,
             'stability_and_reactivity' => $request->stability_and_reactivity,
-            'toxiocological_information' => $request->toxiocological_information
+            'toxiocological_information' => $request->toxiocological_information,
+            'ecological_information' => $request->ecological_information,
+            'disposal_considerations' => $request->disposal_considerations,
+            'transport_information' => $request->transport_information,
+            'regulatory_information' => $request->regulatory_information,
+            'other_information' => $request->other_information
         ];
         $model = DocumentsModel::find($request->document_id);
         $model->document_details = $documentData;
