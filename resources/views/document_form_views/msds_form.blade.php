@@ -77,5 +77,20 @@
     <br><br>
     <label for="toxiocological_information">Toxiocological Information</label><br>
     <?= $documentData['toxiocological_information'] ?>
+    <br><br>
+    <label for="ecological_information">Ecological Information</label><br>
+    <?= $documentData['ecological_information'] ?>
+    <br><br>
+    <label for="disposal_considerations">Disposal Considerations</label><br>
+    <?= $documentData['disposal_considerations'] ?>
+    <br><br>
+    <label for="transport_information">Transport Information</label><br>
+    <?= $documentData['transport_information'] ?>
+    <br><br>
+    <label for="regulatory_information">Regulatory Information</label><br>
+    <?= $documentData['regulatory_information'] ?>
+    <br><br>
+    <label for="other_information">Other Information</label><br>
+    <?= $documentData['other_information'] ?>
 
 @endsection
