@@ -16,7 +16,7 @@ $documentData = $dataSet->document_details;
         </div>
 
         <br>
-        <label for="identification">identification</label>
+        <label for="identification">Section 1 Identification</label>
         <div class="row">
             <div class="col-md-4">Product Identifer</div>
             <div class="col-md-4">
@@ -50,49 +50,49 @@ $documentData = $dataSet->document_details;
         </div>
 
         <br>
-        <label for="hazards_identification">Hazards Identification</label>
+        <label for="hazards_identification">Section 2 Identification</label>
         <textarea name="hazards_identification" id="hazards_identification" class="form-control">{{ isset($documentData) ? $documentData['hazards_identification'] : '' }}</textarea>
         <br>
-        <label for="composition_information_or_ingredients">Composition Information/Ingredients</label>
+        <label for="composition_information_or_ingredients">Section 3 Composition/Information on Ingredients</label>
         <textarea name="composition_information_or_ingredients" id="composition_information_or_ingredients" class="form-control">{{ isset($documentData) ? $documentData['composition_information_or_ingredients'] : '' }}</textarea>
         <br>
-        <label for="first_and_measures">First And Measures</label>
+        <label for="first_and_measures">Section 4 First And Measures</label>
         <textarea name="first_and_measures" id="first_and_measures" class="form-control">{{ isset($documentData) ? $documentData['first_and_measures'] : '' }}</textarea>
         <br>
-        <label for="firefighting_measures">Firefighting Measures</label>
+        <label for="firefighting_measures">Section 5 Firefighting Measures</label>
         <textarea name="firefighting_measures" id="firefighting_measures" class="form-control">{{ isset($documentData) ? $documentData['firefighting_measures'] : '' }}</textarea>
         <br>
-        <label for="accidental_release_measures">Accidental Release Measures</label>
+        <label for="accidental_release_measures">Section 6 Accidental Release Measures</label>
         <textarea name="accidental_release_measures" id="accidental_release_measures" class="form-control">{{ isset($documentData) ? $documentData['accidental_release_measures'] : '' }}</textarea>
         <br>
-        <label for="handling_and_storage">Handling And Storage</label>
+        <label for="handling_and_storage">Section 7 Handling And Storage</label>
         <textarea name="handling_and_storage" id="handling_and_storage" class="form-control">{{ isset($documentData) ? $documentData['handling_and_storage'] : '' }}</textarea>
         <br>
-        <label for="exposure_control_or_personal_protection">Exposure Control/Personal Protection</label>
+        <label for="exposure_control_or_personal_protection">Section 8 Exposure Control/Personal Protection</label>
         <textarea name="exposure_control_or_personal_protection" id="exposure_control_or_personal_protection" class="form-control">{{ isset($documentData) ? $documentData['exposure_control_or_personal_protection'] : '' }}</textarea>
         <br>
-        <label for="physical_and_chemical_properties">Physical And Chemical Properties</label>
+        <label for="physical_and_chemical_properties">Section 9 Physical And Chemical Properties</label>
         <textarea name="physical_and_chemical_properties" id="physical_and_chemical_properties" class="form-control">{{ isset($documentData) ? $documentData['physical_and_chemical_properties'] : '' }}</textarea>
         <br>
-        <label for="stability_and_reactivity">Stability And Reactivity</label>
+        <label for="stability_and_reactivity">Section 10 Stability And Reactivity</label>
         <textarea name="stability_and_reactivity" id="stability_and_reactivity" class="form-control">{{ isset($documentData) ? $documentData['stability_and_reactivity'] : '' }}</textarea>
         <br>
-        <label for="toxiocological_information">Toxiocological Information</label>
+        <label for="toxiocological_information">Section 11 Toxiocological Information</label>
         <textarea name="toxiocological_information" id="toxiocological_information" class="form-control">{{ isset($documentData) ? $documentData['toxiocological_information'] : '' }}</textarea>
         <br>
-        <label for="ecological_information">Ecological Information</label>
+        <label for="ecological_information">Section 12 Ecological Information</label>
         <textarea name="ecological_information" id="ecological_information" class="form-control">{{ isset($documentData) ? $documentData['ecological_information'] : '' }}</textarea>
         <br>
-        <label for="disposal_considerations">Disposal Considerations</label>
+        <label for="disposal_considerations">Section 13 Disposal Considerations</label>
         <textarea name="disposal_considerations" id="disposal_considerations" class="form-control">{{ isset($documentData) ? $documentData['disposal_considerations'] : '' }}</textarea>
         <br>
-        <label for="transport_information">Transport Information</label>
+        <label for="transport_information">Section 14 Transport Information</label>
         <textarea name="transport_information" id="transport_information" class="form-control">{{ isset($documentData) ? $documentData['transport_information'] : '' }}</textarea>
         <br>
-        <label for="regulatory_information">Regulatory Information</label>
+        <label for="regulatory_information">Section 15 Regulatory Information</label>
         <textarea name="regulatory_information" id="regulatory_information" class="form-control">{{ isset($documentData) ? $documentData['regulatory_information'] : '' }}</textarea>
         <br>
-        <label for="other_information">Other Information</label>
+        <label for="other_information">Section 16 Other Information</label>
         <textarea name="other_information" id="other_information" class="form-control">{{ isset($documentData) ? $documentData['other_information'] : '' }}</textarea>
 
         <hr>

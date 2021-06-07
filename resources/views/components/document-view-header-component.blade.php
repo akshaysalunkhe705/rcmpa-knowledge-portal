@@ -49,7 +49,7 @@
         <td>{{ $approvedBy }}</td>
     </tr>
     <tr>
-        <th>Document Name</th>
+        <th>Sub-Document Name</th>
         <td>{{ $subDocumentId }}</td>
         <th>Pages</th>
         <td></td>

@@ -42,11 +42,11 @@
         <input type="text" name="department" class="form-control" value="{{ $department }}" readonly>
     </div>
     <div class="col-md-3">
-        <label for="main_document_id">Main Document Id</label>
+        <label for="main_document_id">Master Document</label>
         <input type="text" name="main_document_id" class="form-control" value="{{ $mainDocumentId }}" readonly>
     </div>
     <div class="col-md-3">
-        <label for="sub_document_id">Sub Document Id</label>
+        <label for="sub_document_id">Sub Document</label>
         <input type="text" name="sub_document_id" class="form-control" value="{{ $subDocumentId }}" readonly>
     </div>
 </div>
