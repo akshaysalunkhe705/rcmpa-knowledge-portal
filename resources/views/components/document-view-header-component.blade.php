@@ -6,7 +6,7 @@
 <table class="table table-bordered">
     <tr>
         <td rowspan="6" align="center" width="30%">
-            <h3> RCMPA Polishing Technology Pvt Ltd. </h3>
+            <h3> RCMPA Polishing Technologies Pvt Ltd. </h3>
         </td>
     </tr>
     <tr>
